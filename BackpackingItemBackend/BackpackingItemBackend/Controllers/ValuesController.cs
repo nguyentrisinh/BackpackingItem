@@ -23,6 +23,23 @@ namespace BackpackingItemBackend.Controllers
             return "value";
         }
 
+
+        /// <summary>
+        /// Creates a Values.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /values
+        ///     {
+        ///        "id": "values",
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="item"></param>
+        /// <returns>A newly created TodoItem</returns>
+        /// <response code="201">Returns the newly created item</response>
+        /// <response code="400">If the item is null</response>
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
@@ -35,6 +52,9 @@ namespace BackpackingItemBackend.Controllers
         {
         }
 
+        /// <summary>
+        /// Deletes a specific Value.
+        /// </summary>
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)

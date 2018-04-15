@@ -9,3 +9,4 @@ F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingIte
 F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemBackend\obj\Debug\netcoreapp2.0\BackpackingItemBackend.AssemblyInfo.cs
 F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemBackend\obj\Debug\netcoreapp2.0\BackpackingItemBackend.dll
 F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemBackend\obj\Debug\netcoreapp2.0\BackpackingItemBackend.pdb
+F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemBackend\bin\Debug\netcoreapp2.0\BackpackingItemBackend.xml

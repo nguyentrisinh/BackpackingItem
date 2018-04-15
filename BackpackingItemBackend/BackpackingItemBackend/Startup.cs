@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BackpackingItemBackend.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+
 
 namespace BackpackingItemBackend
 {
@@ -52,6 +52,10 @@ namespace BackpackingItemBackend
             });
 
             services.AddMvc();
+
+            //... rest of services configuration
+            services.AddSwaggerDocumentation();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,7 +70,14 @@ namespace BackpackingItemBackend
 
             app.UseCors("CorsPolicy");
 
+            // Using Swagger static files
+            app.UseStaticFiles();
+
+            //.... rest of app configuration
+            app.UseSwaggerDocumentation();
+
             app.UseMvc();
+
         }
     }
 }
