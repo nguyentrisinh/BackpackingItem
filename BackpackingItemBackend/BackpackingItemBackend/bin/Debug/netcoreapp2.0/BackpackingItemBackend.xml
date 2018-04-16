@@ -4,6 +4,14 @@
         <name>BackpackingItemBackend</name>
     </assembly>
     <members>
+        <member name="M:BackpackingItemBackend.BaseControllers.ApiControllerBase.AsSuccessResponse(System.Object,System.Net.HttpStatusCode)">
+            <summary>
+            Provide explicit statusCode in case data is dynamic
+            </summary>
+            <param name="data"></param>
+            <param name="statusCode"></param>
+            <returns></returns>
+        </member>
         <member name="M:BackpackingItemBackend.Controllers.ValuesController.Post(System.String)">
              <summary>
              Creates a Values.

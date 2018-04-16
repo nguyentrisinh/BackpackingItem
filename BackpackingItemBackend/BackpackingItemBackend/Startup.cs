@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using BackpackingItemBackend.BaseServices;
+using BackpackingItemBackend.Middlewares;
 
 
 namespace BackpackingItemBackend
@@ -26,6 +28,8 @@ namespace BackpackingItemBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            #region JWT
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                .AddJwtBearer(options =>
                {
@@ -41,6 +45,9 @@ namespace BackpackingItemBackend
                    };
                });
 
+            #endregion
+
+            #region CORS
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -50,13 +57,30 @@ namespace BackpackingItemBackend
                       .AllowCredentials()
                 .Build());
             });
+            #endregion
 
             services.AddMvc();
 
+            #region SwaggerDocument
             //... rest of services configuration
             services.AddSwaggerDocumentation();
+            #endregion
+
+            #region DI
+
+            ConfigureDependencInjection(services);
+
+            #endregion
 
         }
+
+        #region Configure DI
+
+        public void ConfigureDependencInjection(IServiceCollection services)
+        {
+            services.AddTransient<IThrowService, ThrowService>();
+        }
+        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -69,6 +93,17 @@ namespace BackpackingItemBackend
             app.UseAuthentication();
 
             app.UseCors("CorsPolicy");
+
+            #region Middlewares
+
+            #region GlobalExceptionMiddleware
+
+            app.UseGlobalExceptionMiddleware();
+
+            #endregion
+
+            #endregion
+
 
             // Using Swagger static files
             app.UseStaticFiles();

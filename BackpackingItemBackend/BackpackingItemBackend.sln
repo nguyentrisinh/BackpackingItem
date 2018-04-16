@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackpackingItemBackend", "BackpackingItemBackend\BackpackingItemBackend.csproj", "{4D5A2967-DC5F-4B32-85C5-38867EE779EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackpackingItemBackend", "BackpackingItemBackend\BackpackingItemBackend.csproj", "{4D5A2967-DC5F-4B32-85C5-38867EE779EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
