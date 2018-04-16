@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackpackingItemBackend", "BackpackingItemBackend\BackpackingItemBackend.csproj", "{4D5A2967-DC5F-4B32-85C5-38867EE779EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Web", "Lib.Web\Lib.Web.csproj", "{42D75494-FB03-4D22-A6CA-6078BB16595A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4D5A2967-DC5F-4B32-85C5-38867EE779EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D5A2967-DC5F-4B32-85C5-38867EE779EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D5A2967-DC5F-4B32-85C5-38867EE779EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42D75494-FB03-4D22-A6CA-6078BB16595A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42D75494-FB03-4D22-A6CA-6078BB16595A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42D75494-FB03-4D22-A6CA-6078BB16595A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42D75494-FB03-4D22-A6CA-6078BB16595A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

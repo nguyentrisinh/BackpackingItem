@@ -5090,21 +5090,6 @@
         "runtime": {
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
-      },
-      "Lib.Web/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.All": "2.0.3",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.1",
-          "Swashbuckle.AspNetCore": "2.4.0"
-        },
-        "compile": {
-          "bin/placeholder/Lib.Web.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Lib.Web.dll": {}
-        }
       }
     }
   },
@@ -13239,16 +13224,10 @@
         "windowsazure.storage.8.1.4.nupkg.sha512",
         "windowsazure.storage.nuspec"
       ]
-    },
-    "Lib.Web/1.0.0": {
-      "type": "project",
-      "path": "../Lib.Web/Lib.Web.csproj",
-      "msbuildProject": "../Lib.Web/Lib.Web.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "Lib.Web >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.3",
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.1",
@@ -13266,11 +13245,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\BackpackingItemBackend\\BackpackingItemBackend.csproj",
-      "projectName": "BackpackingItemBackend",
-      "projectPath": "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\BackpackingItemBackend\\BackpackingItemBackend.csproj",
+      "projectUniqueName": "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\Lib.Web\\Lib.Web.csproj",
+      "projectName": "Lib.Web",
+      "projectPath": "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\Lib.Web\\Lib.Web.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\BackpackingItemBackend\\obj\\",
+      "outputPath": "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\Lib.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -13290,11 +13269,7 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
-          "projectReferences": {
-            "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\Lib.Web\\Lib.Web.csproj": {
-              "projectPath": "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\Lib.Web\\Lib.Web.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -13311,6 +13286,7 @@
             "version": "[2.0.3, )"
           },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.0.0, )",
             "autoReferenced": true

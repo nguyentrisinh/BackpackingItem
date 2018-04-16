@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
-using BackpackingItemBackend.Infrastructures;
+using Lib.Web.Infrastructures;
 using Microsoft.AspNetCore.Identity;
 
-namespace BackpackingItemBackend.BaseServices
+namespace Lib.Web.Services
 {
     public class ThrowService : IThrowService
     {

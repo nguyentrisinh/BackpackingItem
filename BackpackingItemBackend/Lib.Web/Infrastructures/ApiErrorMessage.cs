@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BackpackingItemBackend.Infrastructures
+namespace Lib.Web.Infrastructures
 {
     public class ApiErrorMessage
     {

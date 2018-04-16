@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using BackpackingItemBackend.BaseServices;
+using Lib.Web.Services;
 using BackpackingItemBackend.Middlewares;
 
 

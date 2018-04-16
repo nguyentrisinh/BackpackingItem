@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using BackpackingItemBackend.Infrastructures;
-using BackpackingItemBackend.BaseServices;
+using Lib.Web.Infrastructures;
+using Lib.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BackpackingItemBackend.BaseControllers
+namespace Lib.Web.Controllers
 {
     public abstract class ApiControllerBase : Controller
     {

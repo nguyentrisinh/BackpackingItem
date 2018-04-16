@@ -5,8 +5,8 @@ using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using BackpackingItemBackend.BaseControllers;
-using BackpackingItemBackend.BaseServices;
+using Lib.Web.Controllers;
+using Lib.Web.Services;
 using System.Threading.Tasks;
 
 namespace BackpackingItemBackend.Controllers

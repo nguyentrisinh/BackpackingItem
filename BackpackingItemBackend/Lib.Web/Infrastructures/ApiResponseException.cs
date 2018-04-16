@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 
-namespace BackpackingItemBackend.Infrastructures
+namespace Lib.Web.Infrastructures
 {
     public class ApiResponseException : System.Exception
     {
