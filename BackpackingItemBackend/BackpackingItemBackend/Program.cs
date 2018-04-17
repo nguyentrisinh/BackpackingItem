@@ -14,12 +14,25 @@ namespace BackpackingItemBackend
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseSetting("detailedErrors", "true")
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .UseApplicationInsights()
+                .CaptureStartupErrors(true)
+                .Build();
+
+            host.Run();
+
+            //BuildWebHost(args).Run();
+
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+        //public static IWebHost BuildWebHost(string[] args) =>
+        //    WebHost.CreateDefaultBuilder(args)
+        //        .UseStartup<Startup>()
+        //        .Build();
     }
 }
