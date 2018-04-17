@@ -23,7 +23,6 @@
     ".NETCoreApp,Version=v2.0": {
       "BackpackingItemBackend/1.0.0": {
         "dependencies": {
-          "BackpackingItemStore.Core": "1.0.0",
           "Lib.Web": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.3",
           "Microsoft.EntityFrameworkCore.Tools": "2.0.2",
@@ -4115,19 +4114,6 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
-      "BackpackingItemStore.Core/1.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.All": "2.0.3",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.1",
-          "Swashbuckle.AspNetCore": "2.4.0"
-        },
-        "runtime": {
-          "BackpackingItemStore.Core.dll": {}
-        },
-        "compile": {
-          "BackpackingItemStore.Core.dll": {}
-        }
-      },
       "Lib.Web/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.0.3",
@@ -6480,11 +6466,6 @@
       "sha512": "sha512-W6ZZ0/o7+3Qb77mRAQyLjPudHG3OMeeQ4p9yY13PUdJArmRCx2cLMm5F4tpIjJXxzHC0ew0oK7DMDGILMdfCnw==",
       "path": "windowsazure.storage/8.1.4",
       "hashPath": "windowsazure.storage.8.1.4.nupkg.sha512"
-    },
-    "BackpackingItemStore.Core/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "Lib.Web/1.0.0": {
       "type": "project",

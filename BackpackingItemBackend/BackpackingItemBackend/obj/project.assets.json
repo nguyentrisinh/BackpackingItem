@@ -5091,21 +5091,6 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
-      "BackpackingItemStore.Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.All": "2.0.3",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.1",
-          "Swashbuckle.AspNetCore": "2.4.0"
-        },
-        "compile": {
-          "bin/placeholder/BackpackingItemStore.Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BackpackingItemStore.Core.dll": {}
-        }
-      },
       "Lib.Web/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -13255,11 +13240,6 @@
         "windowsazure.storage.nuspec"
       ]
     },
-    "BackpackingItemStore.Core/1.0.0": {
-      "type": "project",
-      "path": "../BackpackingItemStore.Core/BackpackingItemStore.Core.csproj",
-      "msbuildProject": "../BackpackingItemStore.Core/BackpackingItemStore.Core.csproj"
-    },
     "Lib.Web/1.0.0": {
       "type": "project",
       "path": "../Lib.Web/Lib.Web.csproj",
@@ -13268,7 +13248,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "BackpackingItemStore.Core >= 1.0.0",
       "Lib.Web >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 2.0.2",
@@ -13315,9 +13294,6 @@
           "projectReferences": {
             "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\Lib.Web\\Lib.Web.csproj": {
               "projectPath": "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\Lib.Web\\Lib.Web.csproj"
-            },
-            "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\BackpackingItemStore.Core\\BackpackingItemStore.Core.csproj": {
-              "projectPath": "F:\\Sinh\\Hoc tap\\Nam 4\\HK2\\.NET Technology\\project\\BackpackingItem\\BackpackingItemBackend\\BackpackingItemStore.Core\\BackpackingItemStore.Core.csproj"
             }
           }
         }

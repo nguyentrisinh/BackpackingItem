@@ -10,12 +10,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Lib.Web.Services;
-using BackpackingItemBackend.Middlewares;
-using BackpackingItemStore.Core.DataContext;
-using BackpackingItemStore.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Lib.Web.Services;
+using BackpackingItemBackend.Middlewares;
+using BackpackingItemBackend.Models;
+using BackpackingItemBackend.DataContext;
 
 namespace BackpackingItemBackend
 {
@@ -32,20 +32,33 @@ namespace BackpackingItemBackend
         public void ConfigureServices(IServiceCollection services)
         {
 
-            #region Database And Migration
-
-            services.AddDbContext<DataContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("BackpackingItemStore.Core")));
-
+            #region Database and Migration 
+            // Add framework services.
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             #endregion
 
             #region Identity
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<DataContext>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
             #endregion
+
+            //#region Database And Migration
+
+            //services.AddDbContext<DataContext>(
+            //    options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("BackpackingItemStore.Core")));
+
+            //#endregion
+
+            //#region Identity
+
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<DataContext>()
+            //    .AddDefaultTokenProviders();
+
+            //#endregion
 
             #region JWT
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

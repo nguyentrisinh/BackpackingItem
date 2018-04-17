@@ -12,5 +12,3 @@ F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingIte
 F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemBackend\bin\Debug\netcoreapp2.0\BackpackingItemBackend.xml
 F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemBackend\bin\Debug\netcoreapp2.0\Lib.Web.dll
 F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemBackend\bin\Debug\netcoreapp2.0\Lib.Web.pdb
-F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemBackend\bin\Debug\netcoreapp2.0\BackpackingItemStore.Core.dll
-F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemBackend\bin\Debug\netcoreapp2.0\BackpackingItemStore.Core.pdb

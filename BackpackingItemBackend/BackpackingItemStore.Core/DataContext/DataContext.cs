@@ -43,7 +43,7 @@ namespace BackpackingItemStore.Core.DataContext
             builder.Ignore<GuidEntityBase>();
             builder.Ignore<EntityBase<Guid, long>>();
 
-            builder.ConfigureModel<Category>();
+            builder.ConfigureModel<CategoryConfiguration>();
         }
 
         public override int SaveChanges()
