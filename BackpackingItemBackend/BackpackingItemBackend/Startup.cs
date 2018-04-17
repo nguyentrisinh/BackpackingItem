@@ -16,6 +16,8 @@ using Lib.Web.Services;
 using BackpackingItemBackend.Middlewares;
 using BackpackingItemBackend.Models;
 using BackpackingItemBackend.DataContext;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace BackpackingItemBackend
 {
@@ -38,12 +40,12 @@ namespace BackpackingItemBackend
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             #endregion
 
-            #region Identity
+            //#region Identity
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-            #endregion
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders();
+            //#endregion
 
             //#region Database And Migration
 
@@ -52,13 +54,14 @@ namespace BackpackingItemBackend
 
             //#endregion
 
-            //#region Identity
 
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<DataContext>()
-            //    .AddDefaultTokenProviders();
+            #region Identity
+            // Now Authorize is not usable
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
-            //#endregion
+            #endregion
 
             #region JWT
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -109,21 +112,28 @@ namespace BackpackingItemBackend
 
         public void ConfigureDependencInjection(IServiceCollection services)
         {
+            services.AddScoped<IDbinitializer, Dbinitializer>();
+
             services.AddTransient<IThrowService, ThrowService>();
         }
         #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        //public void Configure(IApplicationBuilder app, IHostingEnvironment env, IDbinitializer dbinitializer)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IDbinitializer dbinitializer)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+            #region User JWT Authentication
             app.UseAuthentication();
+            #endregion
 
+            #region CorsPolicy
             app.UseCors("CorsPolicy");
+            #endregion
 
             #region Middlewares
 
@@ -135,9 +145,23 @@ namespace BackpackingItemBackend
 
             #endregion
 
+            #region Seed Data
+            dbinitializer.Init();
+            #endregion
 
+
+            #region StaticFiles
             // Using Swagger static files
             app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "ImageResources")),
+                RequestPath = "/StaticFiles"
+            });
+
+            #endregion
 
             //.... rest of app configuration
             app.UseSwaggerDocumentation();

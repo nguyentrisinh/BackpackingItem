@@ -8,6 +8,8 @@ using System.Security.Claims;
 using Lib.Web.Controllers;
 using Lib.Web.Services;
 using System.Threading.Tasks;
+using BackpackingItemBackend.DataContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackpackingItemBackend.Controllers
 {
@@ -16,12 +18,14 @@ namespace BackpackingItemBackend.Controllers
     //public class StartupController : Controller
     public class StartupController : ApiControllerBase
     {
+        private readonly ApplicationDbContext _context;
+
 
         #region Contructor
 
-        public StartupController(IThrowService throwService) : base(throwService)
+        public StartupController(ApplicationDbContext context, IThrowService throwService) : base(throwService)
         {
-
+            _context = context;
         }
 
         #endregion
@@ -32,8 +36,19 @@ namespace BackpackingItemBackend.Controllers
         //{
 
         //}
-
+            
         //#endregion
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> GetConnectFromDb()
+        {
+            var category = await _context.Categories
+                .Include(ent => ent.SubCategories)
+                .SingleOrDefaultAsync(m => m.Name == "Đồ phượt");
+
+            return await this.AsSuccessResponse(category, HttpStatusCode.OK);
+        }
 
         [HttpGet, Authorize]
         public async Task<IActionResult> Get()

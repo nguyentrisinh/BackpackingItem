@@ -129,6 +129,18 @@ namespace BackpackingItemBackend.DataContext
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Variant> Variants { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Voucher> Vouchers { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<ShipmentInfo> ShipmentInfos { get; set; }
 
     }
 }
