@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BackpackingItemBackend.Models
+namespace BackpackingItemBackend.Models.ReturnModel
 {
-    public class Product
+    public class ProductReturnModel
     {
         #region Id
         public long Id { get; set; }
@@ -35,18 +35,32 @@ namespace BackpackingItemBackend.Models
         public decimal BasePrice { get; set; }
         #endregion
 
-        #region SubCategory
-        public virtual SubCategory SubCategory { get; set; }
+        #region SubCategoryId
         public long SubCategoryId { get; set; }
         #endregion
 
-        #region Supplier
-        public virtual Supplier Supplier { get; set; }
+        #region SupplierId
         public long SupplierId { get; set; }
         #endregion
 
         #region Variants
-        public List<Variant> Variants { get; set; }
+        //public List<Variant> Variants { get; set; }
         #endregion
+
+        public static ProductReturnModel Create(Product product)
+        {
+            return new ProductReturnModel()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                ImageUrl = product.ImageUrl,
+                Description = product.Description,
+                WarrantyInfomation = product.WarrantyInfomation,
+                ReturnInformation = product.ReturnInformation,
+                BasePrice = product.BasePrice,
+                SubCategoryId = product.SubCategoryId,
+                SupplierId = product.SupplierId,
+            };
+        }
     }
 }

@@ -108,8 +108,8 @@ namespace BackpackingItemBackend.DataContext
         #region Seed Supplier
         public List<Supplier> SeedSupplier ()
         {
-            //if(!mDataContext.Set<Supplier>().Any())
-            //{
+            if(!mDataContext.Set<Supplier>().Any())
+            {
                 var suppliers = new List<Supplier>()
                 {
                     new Supplier() { Name = "Dainese", Country = "USA" },
@@ -119,31 +119,30 @@ namespace BackpackingItemBackend.DataContext
                     new Supplier() { Name = "AGV", Country = "Italia" }
                 };
                 mDataContext.Set<Supplier>().AddRange(suppliers);
-            mDataContext.SaveChanges();
+                return suppliers;
 
-            return suppliers;
-
-            //} else
-            //{
-            //    var suppliers = mDataContext.Set<Supplier>().ToList();
-            //    return suppliers;
-            //}
+            } else
+            {
+                var suppliers = mDataContext.Set<Supplier>().ToList();
+                return suppliers;
+            }
         }
         #endregion
 
         #region Seed Product
         public List<Product> SeedProduct(List<Supplier> suppliers, List<SubCategory> subCategories)
         {
-            //if (!mDataContext.Set<Product>().Any())
-            //{
-                #region First Product
+            if (!mDataContext.Set<Product>().Any())
+            {
+                #region Products
                 var product1 = new Product()
                 {
                     Name = "AGV Fluid Garda White Italy",
                     ImageUrl = "/StaticFiles/MyImages/agv-fluid-garda-white-italia-helmet-2-800x800.jpg",
-                    Description = "AGV Fluid là dòng nón 3/4 được thiết kế đi trong đô thị, thành phố. Là dòng nón 3/4 của AGV có 2 kính, thích hợp đi cả ngày lẫn đêm\n ĐẶC TÍNH KỸ THUẬT\n 1/ Lớp shell vỏ nón AGV Fluid được tổng hợp theo công nghệ HIR-TH (nhựa tổng hợp). Lớp mút xốp EPS 3 mật độ được thiết kế theo 4 lớp lót khác nhau.\n2/ Hệ thống thông gió IVS (Ventilation System) thông gió với lỗ thông hơi phía trước dẫn khí luồng xuyên qua đầu người lái. Lượng không khí lưu thông qua trung tâm nón được đặt ở vị trí tối ưu để người đội luôn cảm thấy thoải mái, dễ chịu, không bị nóng. Tất cả các lỗ thông hơi đều có thể với cần gạt đóng mở.\n3/ AGV Fluid có nội thất bên trong nón AGV Fluid có thể tháo rời vệ sinh giặt dễ dàng.\n4/ Nón AGV Fluid giúp giảm bớt gió và tiếng ồn khi chạy tốc độ cao.\n5/ Tấm kính chắn gió bên ngoài và kính phụ chống nắng mặt trời tích hợp bên trong đều chống tia UV, có thể tháo lắp mà không cần sử dụng các dụng cụ ",
+                    Description = "AGV Fluid là dòng nón 3/4 được thiết kế đi trong đô thị, thành phố. Là dòng nón 3/4 của AGV có 2 kính, thích hợp đi cả ngày lẫn đêm \nĐẶC TÍNH KỸ THUẬT \n1/ Lớp shell vỏ nón AGV Fluid được tổng hợp theo công nghệ HIR-TH (nhựa tổng hợp). Lớp mút xốp EPS 3 mật độ được thiết kế theo 4 lớp lót khác nhau. \n2/ Hệ thống thông gió IVS (Ventilation System) thông gió với lỗ thông hơi phía trước dẫn khí luồng xuyên qua đầu người lái. Lượng không khí lưu thông qua trung tâm nón được đặt ở vị trí tối ưu để người đội luôn cảm thấy thoải mái, dễ chịu, không bị nóng. Tất cả các lỗ thông hơi đều có thể với cần gạt đóng mở.\n3/ AGV Fluid có nội thất bên trong nón AGV Fluid có thể tháo rời vệ sinh giặt dễ dàng.\n4/ Nón AGV Fluid giúp giảm bớt gió và tiếng ồn khi chạy tốc độ cao.\n5/ Tấm kính chắn gió bên ngoài và kính phụ chống nắng mặt trời tích hợp bên trong đều chống tia UV, có thể tháo lắp mà không cần sử dụng các dụng cụ ",
                     WarrantyInfomation = "12 Tháng",
                     ReturnInformation = "7 Ngày",
+                    BasePrice = 5610000,
                     SubCategoryId = subCategories.Find(ent => ent.Name == "Mũ bảo hiểm 3/4").Id,
                     SupplierId = suppliers.Find(ent => ent.Name == "AGV").Id
                 };
@@ -155,6 +154,7 @@ namespace BackpackingItemBackend.DataContext
                     Description = "AGV Fluid là dòng nón 3/4 được thiết kế đi trong đô thị, thành phố. Là dòng nón 3/4 của AGV có 2 kính, thích hợp đi cả ngày lẫn đêm. \nĐẶC TÍNH KỸ THUẬT \n1/ Lớp shell vỏ nón AGV Fluid được tổng hợp theo công nghệ HIR-TH (nhựa tổng hợp). Lớp mút xốp EPS 3 mật độ được thiết kế theo 4 lớp lót khác nhau. \n2/ Hệ thống thông gió IVS (Ventilation System) thông gió với lỗ thông hơi phía trước dẫn khí luồng xuyên qua đầu người lái. Lượng không khí lưu thông qua trung tâm nón được đặt ở vị trí tối ưu để người đội luôn cảm thấy thoải mái, dễ chịu, không bị nóng. Tất cả các lỗ thông hơi đều có thể với cần gạt đóng mở. \n3/ AGV Fluid có nội thất bên trong nón AGV Fluid có thể tháo rời vệ sinh giặt dễ dàng. \n4/ Nón AGV Fluid giúp giảm bớt gió và tiếng ồn khi chạy tốc độ cao. \n5/ Tấm kính chắn gió bên ngoài và kính phụ chống nắng mặt trời tích hợp bên trong đều chống tia UV, có thể tháo lắp mà không cần sử dụng các dụng cụ. \nModel Fluid với kiểu dáng gọn nhẹ, tích hợp kính chống nắng bên trong cực kì tiện lợi để anh chị em đi trong thành phố, đi gần cũng như đi dạo mát.",
                     WarrantyInfomation = "12 Tháng",
                     ReturnInformation = "7 Ngày",
+                    BasePrice = 6510000,
                     SubCategoryId = subCategories.Find(ent => ent.Name == "Mũ bảo hiểm 3/4").Id,
                     SupplierId = suppliers.Find(ent => ent.Name == "AGV").Id
                 };
@@ -166,6 +166,7 @@ namespace BackpackingItemBackend.DataContext
                     Description = "AGV Fluid là dòng nón 3/4 được thiết kế đi trong đô thị, thành phố. Là dòng nón 3/4 của AGV có 2 kính, thích hợp đi cả ngày lẫn đêm. \nĐẶC TÍNH KỸ THUẬT \n1/ Lớp shell vỏ nón AGV Fluid được tổng hợp theo công nghệ HIR-TH (nhựa tổng hợp). Lớp mút xốp EPS 3 mật độ được thiết kế theo 4 lớp lót khác nhau. \n2/ Hệ thống thông gió IVS (Ventilation System) thông gió với lỗ thông hơi phía trước dẫn khí luồng xuyên qua đầu người lái. Lượng không khí lưu thông qua trung tâm nón được đặt ở vị trí tối ưu để người đội luôn cảm thấy thoải mái, dễ chịu, không bị nóng. Tất cả các lỗ thông hơi đều có thể với cần gạt đóng mở. \n3/ AGV Fluid có nội thất bên trong nón AGV Fluid có thể tháo rời vệ sinh giặt dễ dàng. \n4/ Nón AGV Fluid giúp giảm bớt gió và tiếng ồn khi chạy tốc độ cao. \n5/ Tấm kính chắn gió bên ngoài và kính phụ chống nắng mặt trời tích hợp bên trong đều chống tia UV, có thể tháo lắp mà không cần sử dụng các dụng cụ. \nModel Fluid với kiểu dáng gọn nhẹ, tích hợp kính chống nắng bên trong cực kì tiện lợi để anh chị em đi trong thành phố, đi gần cũng như đi dạo mát.",
                     WarrantyInfomation = "12 Tháng",
                     ReturnInformation = "7 Ngày",
+                    BasePrice = 7050000,
                     SubCategoryId = subCategories.Find(ent => ent.Name == "Mũ bảo hiểm Fullface").Id,
                     SupplierId = suppliers.Find(ent => ent.Name == "AGV").Id
                 };
@@ -177,6 +178,7 @@ namespace BackpackingItemBackend.DataContext
                     Description = "AGV Fluid là dòng nón 3/4 được thiết kế đi trong đô thị, thành phố. Là dòng nón 3/4 của AGV có 2 kính, thích hợp đi cả ngày lẫn đêm. \nĐẶC TÍNH KỸ THUẬT \n1/ Lớp shell vỏ nón AGV Fluid được tổng hợp theo công nghệ HIR-TH (nhựa tổng hợp). Lớp mút xốp EPS 3 mật độ được thiết kế theo 4 lớp lót khác nhau. \n2/ Hệ thống thông gió IVS (Ventilation System) thông gió với lỗ thông hơi phía trước dẫn khí luồng xuyên qua đầu người lái. Lượng không khí lưu thông qua trung tâm nón được đặt ở vị trí tối ưu để người đội luôn cảm thấy thoải mái, dễ chịu, không bị nóng. Tất cả các lỗ thông hơi đều có thể với cần gạt đóng mở. \n3/ AGV Fluid có nội thất bên trong nón AGV Fluid có thể tháo rời vệ sinh giặt dễ dàng. \n4/ Nón AGV Fluid giúp giảm bớt gió và tiếng ồn khi chạy tốc độ cao. \n5/ Tấm kính chắn gió bên ngoài và kính phụ chống nắng mặt trời tích hợp bên trong đều chống tia UV, có thể tháo lắp mà không cần sử dụng các dụng cụ. \nModel Fluid với kiểu dáng gọn nhẹ, tích hợp kính chống nắng bên trong cực kì tiện lợi để anh chị em đi trong thành phố, đi gần cũng như đi dạo mát.",
                     WarrantyInfomation = "12 Tháng",
                     ReturnInformation = "7 Ngày",
+                    BasePrice = 7250000,
                     SubCategoryId = subCategories.Find(ent => ent.Name == "Mũ bảo hiểm Fullface").Id,
                     SupplierId = suppliers.Find(ent => ent.Name == "AGV").Id
                 };
@@ -192,11 +194,11 @@ namespace BackpackingItemBackend.DataContext
 
                 mDataContext.Set<Product>().AddRange(products);
                 return products;
-            //} else
-            //{
-            //    var products = mDataContext.Set<Product>().ToList();
-            //    return products;
-            //}
+            } else
+            {
+                var products = mDataContext.Set<Product>().ToList();
+                return products;
+            }
         }
         #endregion
 

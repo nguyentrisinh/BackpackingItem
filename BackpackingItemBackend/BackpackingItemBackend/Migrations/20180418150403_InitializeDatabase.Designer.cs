@@ -12,8 +12,8 @@ using System;
 namespace BackpackingItemBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180417093742_DoneModels")]
-    partial class DoneModels
+    [Migration("20180418150403_InitializeDatabase")]
+    partial class InitializeDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -106,7 +106,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("City");
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.Color", b =>
@@ -120,7 +120,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Color");
+                    b.ToTable("Colors");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.District", b =>
@@ -138,7 +138,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("District");
+                    b.ToTable("Districts");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.Image", b =>
@@ -154,7 +154,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasIndex("VariantId");
 
-                    b.ToTable("Image");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.Order", b =>
@@ -188,7 +188,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasIndex("VoucherId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.OrderDetail", b =>
@@ -212,7 +212,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasIndex("VariantId");
 
-                    b.ToTable("OrderDetail");
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.Product", b =>
@@ -240,7 +240,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.ShipmentInfo", b =>
@@ -265,7 +265,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasIndex("DistrictId");
 
-                    b.ToTable("ShipmentInfo");
+                    b.ToTable("ShipmentInfos");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.Size", b =>
@@ -279,7 +279,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Size");
+                    b.ToTable("Sizes");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.SubCategory", b =>
@@ -309,7 +309,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Supplier");
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.Variant", b =>
@@ -339,7 +339,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasIndex("SizeId");
 
-                    b.ToTable("Variant");
+                    b.ToTable("Variants");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.Voucher", b =>
@@ -359,7 +359,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Voucher");
+                    b.ToTable("Vouchers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

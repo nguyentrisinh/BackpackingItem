@@ -12,8 +12,8 @@ using System;
 namespace BackpackingItemBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180417065544_ModelsUptoVariant")]
-    partial class ModelsUptoVariant
+    [Migration("20180418152842_AddBasePrice_Product")]
+    partial class AddBasePrice_Product
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -97,6 +97,18 @@ namespace BackpackingItemBackend.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("BackpackingItemBackend.Models.City", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities");
+                });
+
             modelBuilder.Entity("BackpackingItemBackend.Models.Color", b =>
                 {
                     b.Property<long>("Id")
@@ -108,13 +120,107 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Color");
+                    b.ToTable("Colors");
+                });
+
+            modelBuilder.Entity("BackpackingItemBackend.Models.District", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long>("CityId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("ShippingFee");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Districts");
+                });
+
+            modelBuilder.Entity("BackpackingItemBackend.Models.Image", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<long>("VariantId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VariantId");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("BackpackingItemBackend.Models.Order", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("CustomerId");
+
+                    b.Property<DateTime>("Datetime");
+
+                    b.Property<long>("DistrictId");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("ReceivePersonName");
+
+                    b.Property<int>("Status");
+
+                    b.Property<decimal>("TotalPrice");
+
+                    b.Property<long>("VoucherId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("DistrictId");
+
+                    b.HasIndex("VoucherId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("BackpackingItemBackend.Models.OrderDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long>("OrderId");
+
+                    b.Property<decimal>("PricePerUnit");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<decimal>("TotalPrice");
+
+                    b.Property<long>("VariantId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("VariantId");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.Product", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<decimal>("BasePrice");
 
                     b.Property<string>("Description");
 
@@ -136,7 +242,32 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("BackpackingItemBackend.Models.ShipmentInfo", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("CustomerId")
+                        .IsRequired();
+
+                    b.Property<long>("DistrictId");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("ReceivedPersonName");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("DistrictId");
+
+                    b.ToTable("ShipmentInfos");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.Size", b =>
@@ -150,7 +281,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Size");
+                    b.ToTable("Sizes");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.SubCategory", b =>
@@ -180,7 +311,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Supplier");
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("BackpackingItemBackend.Models.Variant", b =>
@@ -210,7 +341,27 @@ namespace BackpackingItemBackend.Migrations
 
                     b.HasIndex("SizeId");
 
-                    b.ToTable("Variant");
+                    b.ToTable("Variants");
+                });
+
+            modelBuilder.Entity("BackpackingItemBackend.Models.Voucher", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Code");
+
+                    b.Property<string>("Method");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<int>("RemainQuantity");
+
+                    b.Property<float>("Value");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vouchers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -321,6 +472,53 @@ namespace BackpackingItemBackend.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("BackpackingItemBackend.Models.District", b =>
+                {
+                    b.HasOne("BackpackingItemBackend.Models.City", "City")
+                        .WithMany("Districts")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BackpackingItemBackend.Models.Image", b =>
+                {
+                    b.HasOne("BackpackingItemBackend.Models.Variant", "Variant")
+                        .WithMany("Images")
+                        .HasForeignKey("VariantId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BackpackingItemBackend.Models.Order", b =>
+                {
+                    b.HasOne("BackpackingItemBackend.Models.ApplicationUser", "Customer")
+                        .WithMany("CustomerOrders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BackpackingItemBackend.Models.District", "District")
+                        .WithMany("Orders")
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BackpackingItemBackend.Models.Voucher", "Voucher")
+                        .WithMany("Orders")
+                        .HasForeignKey("VoucherId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BackpackingItemBackend.Models.OrderDetail", b =>
+                {
+                    b.HasOne("BackpackingItemBackend.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BackpackingItemBackend.Models.Variant", "Variant")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("VariantId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("BackpackingItemBackend.Models.Product", b =>
                 {
                     b.HasOne("BackpackingItemBackend.Models.SubCategory", "SubCategory")
@@ -331,6 +529,19 @@ namespace BackpackingItemBackend.Migrations
                     b.HasOne("BackpackingItemBackend.Models.Supplier", "Supplier")
                         .WithMany("Products")
                         .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BackpackingItemBackend.Models.ShipmentInfo", b =>
+                {
+                    b.HasOne("BackpackingItemBackend.Models.ApplicationUser", "Customer")
+                        .WithMany("ShipmentInfos")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BackpackingItemBackend.Models.District", "District")
+                        .WithMany("ShipmentInfos")
+                        .HasForeignKey("DistrictId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

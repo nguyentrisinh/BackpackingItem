@@ -31,15 +31,6 @@ namespace BackpackingItemBackend.Controllers
 
         #endregion
 
-        //#region Contructor
-
-        //public StartupController()
-        //{
-
-        //}
-            
-        //#endregion
-
         [HttpGet]
         [Route("[action]")]
         public async Task<IActionResult> GetConnectFromDb()
