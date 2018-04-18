@@ -9,6 +9,7 @@ using Lib.Web.Controllers;
 using Lib.Web.Services;
 using System.Threading.Tasks;
 using BackpackingItemBackend.DataContext;
+using BackpackingItemBackend.Models.ReturnModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace BackpackingItemBackend.Controllers
@@ -43,11 +44,20 @@ namespace BackpackingItemBackend.Controllers
         [Route("[action]")]
         public async Task<IActionResult> GetConnectFromDb()
         {
-            var category = await _context.Categories
+            var category = _context.Categories
                 .Include(ent => ent.SubCategories)
-                .SingleOrDefaultAsync(m => m.Name == "Đồ phượt");
+                .ToList();
 
-            return await this.AsSuccessResponse(category, HttpStatusCode.OK);
+            List<CategoryReturnModel> categories = new List<CategoryReturnModel>();
+
+            foreach (var categoryObject in category)
+            {
+                CategoryReturnModel categoryReturnItem = CategoryReturnModel.Create(categoryObject);
+                categories.Add(categoryReturnItem);
+            }
+
+                
+            return await this.AsSuccessResponse(categories, HttpStatusCode.OK);
         }
 
         [HttpGet, Authorize]
