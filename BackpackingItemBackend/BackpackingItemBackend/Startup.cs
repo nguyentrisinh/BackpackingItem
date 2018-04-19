@@ -146,7 +146,7 @@ namespace BackpackingItemBackend
             #endregion
 
             #region Seed Data
-            dbinitializer.Init();
+            //dbinitializer.Init();
             #endregion
 
 
