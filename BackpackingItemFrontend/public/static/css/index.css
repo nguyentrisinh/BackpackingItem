@@ -386,6 +386,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 4, ../scss/Product.scss */
 .Product {
+  display: block;
   margin: 0 0.5em;
   background-color: white;
   padding: 0.5em;

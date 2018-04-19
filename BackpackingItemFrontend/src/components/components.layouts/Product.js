@@ -9,7 +9,7 @@ export default class Product extends React.Component{
     render(){
         const {data}= this.props;
         return (
-            <div className="Product">
+            <a href="#" className="Product">
                 <div className="Product-wrapImage">
                     <img className="Product-img" src={`${DOMAIN+data.imageUrl}`} alt=""/>
                 </div>
@@ -22,7 +22,7 @@ export default class Product extends React.Component{
                 <div className="Product-add">
                     Thêm vào giỏ
                 </div>
-            </div>
+            </a>
         )
     }
 }

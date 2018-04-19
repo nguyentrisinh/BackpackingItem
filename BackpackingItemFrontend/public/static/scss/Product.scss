@@ -2,9 +2,9 @@
 @import 'compass/css3';
 
 .Product {
+  display:block;
   @include margin(0 0.5em);
-  background-color: white;
-  @include padding(0.5em);
+  background-color: white;  @include padding(0.5em);
   &-price {
     @include padding(1em 0);
     font-weight: 600;
