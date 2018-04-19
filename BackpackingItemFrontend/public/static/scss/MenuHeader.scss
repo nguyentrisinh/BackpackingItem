@@ -1,0 +1,48 @@
+@import 'bourbon/bourbon';
+@import 'compass/css3';
+@import 'color';
+
+.MenuHeader {
+  font-size: 14px;
+  background: black;
+  color: white;
+  &-logo {
+    height: 30px;
+
+  }
+  &-wrap {
+    height: 45px;
+    @include align-items(center);
+    @include justify-content(space-between);
+    @include display-flex();
+    //@include flex(1 2 3);
+    @include flex-direction(row);
+  }
+  &-search{
+    @include flex-grow(1);
+  }
+  &-searchInput{
+    width: 100%;
+    max-width: 400px;
+    @include border-radius(5px);
+    background-color: transparent;
+    border: none;
+    background-color: #eee;
+    height: 25px;
+    color: black;
+    @include padding(0 30px 0 1em);
+    outline: none;
+    @include background-image(url("/static/images/searchIcon.png"));
+    @include background-size(20px);
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+    &:focus{
+      outline: none;
+    }
+  }
+  &-user{
+    @include display-flex();
+    @include align-items(center);
+
+  }
+}
