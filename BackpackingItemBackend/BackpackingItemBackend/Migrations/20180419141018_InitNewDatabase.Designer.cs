@@ -12,8 +12,8 @@ using System;
 namespace BackpackingItemBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180418152842_AddBasePrice_Product")]
-    partial class AddBasePrice_Product
+    [Migration("20180419141018_InitNewDatabase")]
+    partial class InitNewDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -229,6 +229,8 @@ namespace BackpackingItemBackend.Migrations
                     b.Property<string>("Name");
 
                     b.Property<string>("ReturnInformation");
+
+                    b.Property<string>("ShortDescription");
 
                     b.Property<long>("SubCategoryId");
 

@@ -19,6 +19,10 @@ namespace BackpackingItemBackend.Models
         public string ImageUrl { get; set; }
         #endregion
 
+        #region ShortDescription
+        public string ShortDescription { get; set; }
+        #endregion
+
         #region Description
         public string Description { get; set; }
         #endregion

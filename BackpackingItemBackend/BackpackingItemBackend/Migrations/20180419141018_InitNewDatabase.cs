@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BackpackingItemBackend.Migrations
 {
-    public partial class InitializeDatabase : Migration
+    public partial class InitNewDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -292,10 +292,12 @@ namespace BackpackingItemBackend.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    BasePrice = table.Column<decimal>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     ImageUrl = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     ReturnInformation = table.Column<string>(nullable: true),
+                    ShortDescription = table.Column<string>(nullable: true),
                     SubCategoryId = table.Column<long>(nullable: false),
                     SupplierId = table.Column<long>(nullable: false),
                     WarrantyInfomation = table.Column<string>(nullable: true)
