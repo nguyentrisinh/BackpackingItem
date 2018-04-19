@@ -11,6 +11,7 @@ using BackpackingItemBackend.DataContext;
 using BackpackingItemBackend.Models.ReturnModel;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
+using BackpackingItemBackend.Constants;
 
 namespace BackpackingItemBackend.Controllers
 {
@@ -36,7 +37,7 @@ namespace BackpackingItemBackend.Controllers
         {
             var category = _context.Categories
                 .Include(ent => ent.SubCategories)
-                    //.ThenInclude(ent => ent.Products)
+                    .ThenInclude(ent => ent.Products)
                 .ToList();
 
             List<CategoryReturnModel> categories = new List<CategoryReturnModel>();
@@ -49,6 +50,26 @@ namespace BackpackingItemBackend.Controllers
 
 
             return await this.AsSuccessResponse(categories, HttpStatusCode.OK);
+        }
+
+        [HttpGet]
+        [Route("{categoryId:long}")]
+        public async Task<IActionResult> GetById(long categoryId)
+        {
+            try
+            {
+                var category = _context.Categories
+                    .Include(ent => ent.SubCategories)
+                        .ThenInclude(ent => ent.Products)
+                    .First(ent => ent.Id == categoryId);
+
+                return await this.AsSuccessResponse(CategoryReturnModel.Create(category), HttpStatusCode.OK);
+            }
+            catch (InvalidOperationException)
+            {
+                ThrowService.ThrowApiException(ErrorsDefine.Find(1900), HttpStatusCode.BadRequest);
+                return await this.AsSuccessResponse(null, HttpStatusCode.OK);
+            }
         }
     }
 }

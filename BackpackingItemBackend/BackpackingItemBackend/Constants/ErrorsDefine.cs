@@ -14,6 +14,9 @@ namespace BackpackingItemBackend.Constants
             //9999: Server can not handle this error
             //9998: Error Identity
 
+            //19xx: Cagtegory Error
+            {1900, "Category not found" },
+
             //20xx: SubCategory Error
             {2000, "SubCategory not found"},
 
