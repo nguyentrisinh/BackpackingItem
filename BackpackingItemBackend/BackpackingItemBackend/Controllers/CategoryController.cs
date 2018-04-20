@@ -31,6 +31,8 @@ namespace BackpackingItemBackend.Controllers
 
         #endregion
 
+        #region Method
+
         [HttpGet]
         [Route("[action]")]
         public async Task<IActionResult> GetCategoryList()
@@ -71,5 +73,7 @@ namespace BackpackingItemBackend.Controllers
                 return await this.AsSuccessResponse(null, HttpStatusCode.OK);
             }
         }
+
+        #endregion
     }
 }
