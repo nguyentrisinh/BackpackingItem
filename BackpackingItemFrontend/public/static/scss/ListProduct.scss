@@ -1,0 +1,10 @@
+@import "bourbon/bourbon";
+@import "compass/css3";
+
+.ListProduct{
+  @include display-flex();
+  @include flex-direction(row);
+  &-item{
+    @include flex(1 1 25%);
+  }
+}

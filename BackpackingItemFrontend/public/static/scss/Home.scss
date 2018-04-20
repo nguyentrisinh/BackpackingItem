@@ -1,0 +1,17 @@
+@import 'bourbon/bourbon';
+@import 'compass/css3';
+
+.Home{
+  margin-top:  100vh;
+  position: relative;
+  &-coverImg{
+@include transform(translateY(-100%));
+    width: 100%;
+    @include position(absolute, null 0 null 0);
+    object-fit: cover;
+  }
+  &-content{
+    background-color: #ececec;
+    padding-bottom: 100px;
+  }
+}

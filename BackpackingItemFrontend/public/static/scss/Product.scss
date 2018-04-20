@@ -1,0 +1,39 @@
+@import 'bourbon/bourbon';
+@import 'compass/css3';
+
+.Product {
+  display:block;
+  @include margin(0 0.5em);
+  background-color: white;  @include padding(0.5em);
+  &-price {
+    @include padding(1em 0);
+    font-weight: 600;
+  }
+  &-name {
+    display: -webkit-box;
+    line-height: 1.5;
+    height: calc(1em * 1.5 * 2);
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    //@include padding(em);
+  }
+  &-add {
+    cursor: pointer;
+    display: inline-block;
+    @include border-radius(3px);
+    text-transform: uppercase;
+    border: solid 1px black;
+    @include margin(1em 0);
+    @include padding(0.5em 1em);
+    &:hover {
+      background-color: #e62739;
+      color: white;
+      border-color: white;
+    }
+  }
+}
