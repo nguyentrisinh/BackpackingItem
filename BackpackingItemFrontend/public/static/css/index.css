@@ -1,3 +1,8 @@
+/* line 2, ../scss/App.scss */
+.App-content {
+  margin-top: 162px;
+}
+
 /* line 3, ../scss/BackgroundSlider.scss */
 .BackgroundSlider {
   z-index: -99999999;
@@ -58,16 +63,15 @@ html, body {
 /* line 5, ../scss/MenuHeader.scss */
 .MenuHeader {
   font-size: 14px;
-  background: black;
-  color: white;
+  background: white;
 }
-/* line 9, ../scss/MenuHeader.scss */
+/* line 10, ../scss/MenuHeader.scss */
 .MenuHeader-logo {
   height: 30px;
 }
-/* line 13, ../scss/MenuHeader.scss */
+/* line 14, ../scss/MenuHeader.scss */
 .MenuHeader-wrap {
-  height: 45px;
+  height: 60px;
   -webkit-align-items: center;
   align-items: center;
   -webkit-justify-content: space-between;
@@ -77,38 +81,17 @@ html, body {
   -webkit-flex-direction: row;
   flex-direction: row;
 }
-/* line 21, ../scss/MenuHeader.scss */
+/* line 22, ../scss/MenuHeader.scss */
 .MenuHeader-search {
+  text-align: center;
   -webkit-flex-grow: 1;
   flex-grow: 1;
 }
-/* line 24, ../scss/MenuHeader.scss */
+/* line 26, ../scss/MenuHeader.scss */
 .MenuHeader-searchInput {
-  width: 100%;
   max-width: 400px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  background-color: transparent;
-  border: none;
-  background-color: #eee;
-  height: 25px;
-  color: black;
-  padding: 0 30px 0 1em;
-  outline: none;
-  background-image: url("/static/images/searchIcon.png");
-  -moz-background-size: 20px;
-  -o-background-size: 20px;
-  -webkit-background-size: 20px;
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: right 5px center;
 }
-/* line 39, ../scss/MenuHeader.scss */
-.MenuHeader-searchInput:focus {
-  outline: none;
-}
-/* line 43, ../scss/MenuHeader.scss */
+/* line 45, ../scss/MenuHeader.scss */
 .MenuHeader-user {
   display: -webkit-flex;
   display: flex;
@@ -183,18 +166,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 5, ../scss/MainMenu.scss */
 .MainMenu {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: white;
 }
 /* line 7, ../scss/MainMenu.scss */
 .MainMenu-icon {
-  margin-bottom: 1em;
+  margin-bottom: 5px;
 }
 /* line 9, ../scss/MainMenu.scss */
 .MainMenu-icon img {
-  border-radius: 50%;
-  width: 50px;
+  width: 40px;
 }
-/* line 15, ../scss/MainMenu.scss */
+/* line 16, ../scss/MainMenu.scss */
 .MainMenu-wrap {
   display: -webkit-flex;
   display: flex;
@@ -205,8 +187,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   -webkit-justify-content: space-between;
   justify-content: space-between;
 }
-/* line 21, ../scss/MainMenu.scss */
+/* line 22, ../scss/MainMenu.scss */
 .MainMenu-name {
+  color: black;
+  font-size: 1em;
+  font-weight: 100;
   display: inline-block;
   max-width: 100%;
   overflow: hidden;
@@ -215,8 +200,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   word-wrap: normal;
   overflow: visible;
 }
-/* line 25, ../scss/MainMenu.scss */
+/* line 28, ../scss/MainMenu.scss */
+.MainMenu-name:hover {
+  color: #a1c900;
+}
+/* line 32, ../scss/MainMenu.scss */
 .MainMenu-item {
+  text-align: center;
   -webkit-flex: 1 0 14.28%;
   flex: 1 0 14.28%;
   display: inline-block;
@@ -230,7 +220,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   -webkit-flex-direction: column;
   flex-direction: column;
   font-weight: bold;
-  color: white;
+  color: black;
   -webkit-flex-grow: 1;
   flex-grow: 1;
   text-transform: uppercase;
@@ -238,17 +228,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   cursor: pointer;
   padding: 1em 0;
 }
-/* line 40, ../scss/MainMenu.scss */
+/* line 48, ../scss/MainMenu.scss */
 .MainMenu-item:hover {
   color: #a1c900;
 }
-/* line 42, ../scss/MainMenu.scss */
+/* line 51, ../scss/MainMenu.scss */
 .MainMenu-item.is-active {
-  color: white;
+  color: #a1c900;
 }
-/* line 45, ../scss/MainMenu.scss */
+/* line 55, ../scss/MainMenu.scss */
 .MainMenu-item.is-active:before {
-  border-width: 7px;
+  border-width: 13px;
   content: "";
   position: absolute;
   bottom: -2px;
@@ -258,9 +248,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-top-width: 0 !important;
   border-bottom-color: inherit;
   -webkit-transform: translate(-13px, -1px);
-  transform: translate(-13px, -1px);
+  transform: translate(-20px, -1px);
 }
-/* line 58, ../scss/MainMenu.scss */
+/* line 68, ../scss/MainMenu.scss */
 .MainMenu-item.is-active:after {
   content: "";
   position: absolute;
@@ -270,7 +260,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-style: solid;
   border-top-width: 0 !important;
   border-bottom-color: inherit;
-  border-width: 5px;
+  border-width: 9px;
   -webkit-transform: translate(-4px, -1px);
   transform: translate(-4px, -1px);
 }
@@ -279,8 +269,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .SubMenu {
   padding: 0.5em 0;
   background-color: white;
+  border: solid 1px #e8e8e8;
+  color: black;
+  border-top: none;
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  border-color: rgba(0, 0, 0, 0.09);
 }
-/* line 7, ../scss/SubMenu.scss */
+/* line 14, ../scss/SubMenu.scss */
 .SubMenu-item {
   cursor: pointer;
   padding: 0.5em 1em;
@@ -288,7 +284,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 4, ../scss/Home.scss */
 .Home {
-  margin-top: 100vh;
+  margin-top: 73vh;
   position: relative;
 }
 /* line 7, ../scss/Home.scss */
@@ -305,7 +301,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 /* line 13, ../scss/Home.scss */
 .Home-content {
-  background-color: #ececec;
+  background-color: white;
   padding-bottom: 100px;
 }
 
@@ -410,6 +406,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   box-orient: vertical;
 }
 /* line 25, ../scss/Product.scss */
+.Product-content {
+  text-align: center;
+}
+/* line 28, ../scss/Product.scss */
 .Product-add {
   cursor: pointer;
   display: inline-block;
@@ -421,7 +421,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin: 1em 0;
   padding: 0.5em 1em;
 }
-/* line 33, ../scss/Product.scss */
+/* line 36, ../scss/Product.scss */
 .Product-add:hover {
   background-color: #e62739;
   color: white;

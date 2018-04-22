@@ -1,5 +1,7 @@
 import React from 'react';
 import {getStaticImage} from '../../utils/utils';
+import {Divider} from 'antd';
+import {Input} from 'antd';
 
 export default class MenuHeader extends React.Component {
     constructor(props) {
@@ -15,7 +17,13 @@ export default class MenuHeader extends React.Component {
                         <img src={getStaticImage("logo.png")} alt=""/>
                     </div>
                     <div className="MenuHeader-search">
-                        <input type="text" className="MenuHeader-searchInput"/>
+                        <Input.Search
+                            className="MenuHeader-searchInput"
+                            placeholder="input search text"
+                            onSearch={value => console.log(value)}
+                            enterButton
+                        />
+                        {/*<input type="text" className="MenuHeader-searchInput"/>*/}
                     </div>
 
                     <div className="MenuHeader-user">
@@ -28,6 +36,11 @@ export default class MenuHeader extends React.Component {
                         </a>
 
                     </div>
+
+                </div>
+                <div className="container">
+
+                    <Divider className={'mt-0 mb-0'}/>
                 </div>
 
             </div>

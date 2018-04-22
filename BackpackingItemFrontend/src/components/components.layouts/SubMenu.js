@@ -13,7 +13,7 @@ const style = {
         backgroundColor:'rgba(255,255,255,0.2)',
         // textTransform:"uppercase",
         marginTop:-15,
-        borderTop:'solid 1px white'
+        // borderTop:'solid 1px white'
     },
     arrowStyle: {
 

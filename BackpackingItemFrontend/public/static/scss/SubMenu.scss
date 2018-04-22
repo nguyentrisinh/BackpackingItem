@@ -2,8 +2,15 @@
 @import 'compass/css3';
 
 .SubMenu{
-  @include padding(0.5em 0);
+  //color: white;
+   @include padding(0.5em 0);
   background-color: white;
+  border: solid 1px #e8e8e8;
+  color: black;
+  border-top: none;
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  border-color: rgba(0, 0, 0, 0.09);
   &-item{
     cursor: pointer;
     @include padding(0.5em 1em);

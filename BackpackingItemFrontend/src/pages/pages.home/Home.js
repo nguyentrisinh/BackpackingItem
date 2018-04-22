@@ -14,10 +14,7 @@ class Home extends React.Component {
 
     render() {
         return (
-           <div>
-               <div className="Home">
-                   <img className="Home-coverImg" src={getStaticImage("Artboard.png")} alt=""/>
-                   <div className="Home-content">
+
                        <div className=" container">
                            <IntroCategory/>
                            <Label title={"Sản phẩm mới"}/>
@@ -29,12 +26,6 @@ class Home extends React.Component {
                            {/*<ListProduct/>*/}
 
                        </div>
-
-                   </div>
-
-               </div>
-               <BackgroundSlider/>
-           </div>
 
         )
     }
