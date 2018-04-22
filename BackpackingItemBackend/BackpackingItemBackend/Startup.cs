@@ -93,7 +93,9 @@ namespace BackpackingItemBackend
             });
             #endregion
 
+            #region MVC
             services.AddMvc();
+            #endregion
 
             #region SwaggerDocument
             //... rest of services configuration

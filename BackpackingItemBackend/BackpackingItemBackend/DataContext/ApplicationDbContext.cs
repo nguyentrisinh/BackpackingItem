@@ -23,6 +23,8 @@ namespace BackpackingItemBackend.DataContext
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
+            #region ModelConfiguration
+
             #region ApplicationUser Configuration 
             builder.Entity<ApplicationUser>().HasKey(ent => ent.Id);
 
@@ -123,9 +125,11 @@ namespace BackpackingItemBackend.DataContext
             builder.Entity<ShipmentInfo>().HasOne(ent => ent.District).WithMany(ent => ent.ShipmentInfos).HasForeignKey(ent => ent.DistrictId)
                 .IsRequired().OnDelete(DeleteBehavior.Cascade);
             #endregion
+            #endregion
 
         }
 
+        #region DbSet
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
@@ -141,6 +145,7 @@ namespace BackpackingItemBackend.DataContext
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<ShipmentInfo> ShipmentInfos { get; set; }
+        #endregion
 
     }
 }
