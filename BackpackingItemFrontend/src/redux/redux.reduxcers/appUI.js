@@ -2,16 +2,16 @@ import * as Types from "../redux.consts/appUI";
 import update from "react-addons-update";
 
 const initialState = {
-   currentCategory:null
+    currentCategory: null
 }
 
 export default function appUI(state = initialState, action) {
 
     switch (action.type) {
         case Types.CLICK_MENU:
-            return update(state,{
-                currentCategory:{
-                    $set:action.id
+            return update(state, {
+                currentCategory: {
+                    $set: action.id
                 }
             })
         // case Types.GET_USER_INFO:

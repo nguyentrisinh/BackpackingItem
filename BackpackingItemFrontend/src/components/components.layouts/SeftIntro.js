@@ -37,17 +37,17 @@ export default class SeftIntro extends React.Component {
                     </div>
                 </div>
                 <div className="SelfIntro-item">
-                <div className="SelfIntro-icon">
-                <img src={getStaticImage("phone.png")} alt=""/>
-                </div>
-                <div className="SelfIntro-info">
-                <div className="SelfIntro-title">
-                TƯ VẤN TẬN TÌNH
-                </div>
-                <div className="SelfIntro-description">
-               Khách hàng là thượng đế
-                </div>
-                </div>
+                    <div className="SelfIntro-icon">
+                        <img src={getStaticImage("phone.png")} alt=""/>
+                    </div>
+                    <div className="SelfIntro-info">
+                        <div className="SelfIntro-title">
+                            TƯ VẤN TẬN TÌNH
+                        </div>
+                        <div className="SelfIntro-description">
+                            Khách hàng là thượng đế
+                        </div>
+                    </div>
                 </div>
 
             </div>

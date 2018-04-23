@@ -1,7 +1,6 @@
 import React from 'react';
-import {getStaticImage} from '../../utils/utils';
-import {Divider} from 'antd';
-import {Input} from 'antd';
+import {getStaticImage, numberFormat} from '../../utils/utils';
+import {Divider, Input,Popover,Button,List,Avatar,Icon,Select,InputNumber,Card} from 'antd';
 
 export default class MenuHeader extends React.Component {
     constructor(props) {
@@ -24,6 +23,53 @@ export default class MenuHeader extends React.Component {
                             enterButton
                         />
                         {/*<input type="text" className="MenuHeader-searchInput"/>*/}
+                    </div>
+                    <div className="MenuHeader-cart mr-3">
+                        <Popover placement="bottom"  trigger="click" title="Giỏ hàng" content={
+                            <Card bodyStyle={{padding:0}} bordered={false} actions={[<div>{numberFormat('3500000',',') + ' VND'}</div>,<div className='color-green'>
+                                <Icon className='mr-2' type="shopping-cart" />
+                               ĐẶT HÀNG
+                            </div>]}>
+                                <List style={{width:'auto'}}
+                                      className="p-0"
+                                    // className="demo-loadmore-list"
+                                    // loading={loading}
+                                      itemLayout="horizontal"
+                                    // loadMore={loadMore}
+                                      dataSource={new Array(5).fill(0)}
+                                      renderItem={item => (
+                                          <List.Item actions={[<Button shape='circle' type='danger'>
+                                              <Icon type="delete"></Icon>
+                                          </Button>]}>
+                                              <List.Item.Meta
+                                                  className='mr-3'
+                                                  avatar={<Avatar src="http://localhost:1502//StaticFiles/MyImages/agv-fluid-garda-white-italia-helmet-2-800x800.jpg" />}
+                                                  title={<a href="https://ant.design">Áo giáp </a>}
+                                                  description={numberFormat('3500000',',') + ' VND'}
+                                              />
+                                              <Select defaultValue="M">
+                                                  <Select.Option value="S">S</Select.Option>
+                                                  <Select.Option value="M">M</Select.Option>
+                                                  <Select.Option value="L">L</Select.Option>
+                                              </Select>
+                                              <Select defaultValue="orange">
+                                                  <Select.Option value="orange">Cam</Select.Option>
+                                                  <Select.Option value="red">Đỏ</Select.Option>
+                                                  <Select.Option value="yellow">Vàng</Select.Option>
+                                              </Select>
+
+                                              <InputNumber style={{width:'60px'}} min={1} defaultValue={2}></InputNumber>
+
+                                          </List.Item>
+                                      )}
+                                />
+                            </Card>
+                            }>
+                            <Button type="primary" size="large" shape="circle" icon="shopping-cart"/>
+                        </Popover>
+                        {/*<Popover placement="bottomLeft" content={"hihi"} title="Title">*/}
+                            {/*<Button type="primary">Hover me</Button>*/}
+                        {/*</Popover>*/}
                     </div>
 
                     <div className="MenuHeader-user">

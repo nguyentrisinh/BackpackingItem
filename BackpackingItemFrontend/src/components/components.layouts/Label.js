@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-export default class Label extends React.Component{
-    constructor(props){
+
+export default class Label extends React.Component {
+    constructor(props) {
         super(props);
-        this.state={};
+        this.state = {};
     }
-    render(){
+
+    render() {
         return (
             <div className="Label">
                 <div className="Label-title">
@@ -18,5 +20,5 @@ export default class Label extends React.Component{
 }
 
 Label.propTypes = {
-    title:PropTypes.string.isRequired
+    title: PropTypes.string.isRequired
 }

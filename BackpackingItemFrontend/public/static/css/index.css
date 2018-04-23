@@ -53,11 +53,21 @@ html, body {
 
 /* line 3, ../scss/Menu.scss */
 .Menu {
-  z-index: 9999999999999;
+  z-index: 11;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
+}
+
+/* line 4, ../scss/color.scss */
+.color-gray {
+  color: #ccc;
+}
+
+/* line 8, ../scss/color.scss */
+.color-green {
+  color: #51b748;
 }
 
 /* line 5, ../scss/MenuHeader.scss */
@@ -472,4 +482,40 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .Footer {
   height: 300px;
   background-color: black;
+}
+
+/* line 6, ../scss/DetailPage.scss */
+.DetailPage-productName {
+  font-size: 1.5em;
+}
+/* line 10, ../scss/DetailPage.scss */
+.DetailPage-productDescription {
+  line-height: 1.5;
+}
+/* line 13, ../scss/DetailPage.scss */
+.DetailPage-actionLabel {
+  min-width: 80px;
+}
+/* line 16, ../scss/DetailPage.scss */
+.DetailPage-actionItem {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+/* line 20, ../scss/DetailPage.scss */
+.DetailPage-price {
+  font-size: 1.2em;
+  color: #51b748;
+}
+/* line 24, ../scss/DetailPage.scss */
+.DetailPage-addButton {
+  background-color: #51b748;
+  color: white;
+}
+/* line 27, ../scss/DetailPage.scss */
+.DetailPage-addButton:hover {
+  background-color: white;
+  color: #51b748;
+  border-color: #51b748;
 }

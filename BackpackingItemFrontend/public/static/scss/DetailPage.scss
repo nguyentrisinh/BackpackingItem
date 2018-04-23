@@ -1,0 +1,33 @@
+@import 'bourbon/bourbon';
+@import 'compass/css3';
+@import 'color';
+
+.DetailPage {
+  &-productName {
+    font-size: 1.5em;
+
+  }
+  &-productDescription {
+    line-height: 1.5;
+  }
+  &-actionLabel {
+    min-width: 80px;
+  }
+  &-actionItem {
+    @include display-flex();
+    @include align-items(center);
+  }
+  &-price{
+    font-size: 1.2em;
+    color: $Green;
+  }
+  &-addButton{
+    background-color: $Green;
+    color: white;
+    &:hover{
+      background-color: white;
+      color: $Green;
+      border-color: $Green;
+    }
+  }
+}

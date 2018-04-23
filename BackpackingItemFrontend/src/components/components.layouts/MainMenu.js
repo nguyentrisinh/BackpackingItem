@@ -6,15 +6,11 @@ import classNames from 'classnames';
 import {getStaticImage} from "../../utils/utils";
 
 class MainMenu extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
     renderMenu = () => {
         return MAP_CATEGORY.map(item => {
             return (
-                <div onClick={this.onClickMainMenu.bind(this,item.id)} id={"category"+item.id} className={classNames("MainMenu-item",{"is-active":this.props.currentCategory==item.id})}>
+                <div onClick={this.onClickMainMenu.bind(this, item.id)} id={"category" + item.id}
+                     className={classNames("MainMenu-item", {"is-active": this.props.currentCategory == item.id})}>
                     <div className="MainMenu-icon">
                         <img src={getStaticImage(item.imageName)} alt=""/>
                     </div>
@@ -28,9 +24,13 @@ class MainMenu extends React.Component {
             )
         })
     }
-
-    onClickMainMenu = (id) =>{
+    onClickMainMenu = (id) => {
         this.props.clickMenu(id);
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {};
     }
 
     render() {
@@ -47,10 +47,10 @@ class MainMenu extends React.Component {
     }
 }
 
-const mapStateToProps = state =>    {
+const mapStateToProps = state => {
     return {
-        currentCategory:state.appUI.currentCategory
+        currentCategory: state.appUI.currentCategory
     }
 }
 
-export default connect(mapStateToProps,{clickMenu})(MainMenu)
+export default connect(mapStateToProps, {clickMenu})(MainMenu)

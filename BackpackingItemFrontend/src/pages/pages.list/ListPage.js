@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Layout, Breadcrumb, Card, Radio, Slider, Anchor} from 'antd';
+import {Anchor, Breadcrumb, Card, Col, Radio, Row, Slider} from 'antd';
 import {Product} from '../../components/components.layouts/index'
 
 const product = {
@@ -15,11 +15,6 @@ const product = {
 }
 
 export default class ListPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
     renderProduct = () => {
         return new Array(20).fill(product).map(item => {
             return (
@@ -28,6 +23,11 @@ export default class ListPage extends React.Component {
                 </Col>
             )
         });
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {};
     }
 
     render() {
@@ -48,8 +48,8 @@ export default class ListPage extends React.Component {
                         </Breadcrumb>
                     </Card>
 
-                        <Col span={5}>
-                            <Anchor offsetTop={172}>
+                    <Col span={5}>
+                        <Anchor offsetTop={172}>
                             <Card title="Sắp xếp" className={'mb-2'}>
                                 <Radio.Group>
                                     <Radio style={radioStyle} value={1}>Nổi bật</Radio>
@@ -67,8 +67,8 @@ export default class ListPage extends React.Component {
                                 <Slider range defaultValue={[20, 50]}/>
 
                             </Card>
-                            </Anchor>
-                        </Col>
+                        </Anchor>
+                    </Col>
 
 
                     <Col span={19}>

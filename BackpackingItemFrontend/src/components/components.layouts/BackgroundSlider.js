@@ -5,18 +5,18 @@ import {clickMenu} from "../../redux/redux.actions/appUI";
 import {getStaticImage} from "../../utils/utils";
 
 class BackgroundSlider extends React.Component {
+    onClick = () => {
+        this.props.clickMenu(null);
+    }
+
     constructor(props) {
         super(props);
         this.state = {};
     }
 
-    onClick = () =>{
-        this.props.clickMenu(null);
-    }
-
     render() {
         return (
-            <div  onClick={this.onClick}>
+            <div onClick={this.onClick}>
                 <Swiper
                     autoplay
                     loop
@@ -29,19 +29,19 @@ class BackgroundSlider extends React.Component {
                     </div>
                     <div>
 
-                        <img className="BackgroundSlider-img"  src={getStaticImage("banner2.jpg")} alt=""/>
+                        <img className="BackgroundSlider-img" src={getStaticImage("banner2.jpg")} alt=""/>
                     </div>
                     <div>
 
-                        <img className="BackgroundSlider-img"  src={getStaticImage("banner3.jpg")} alt=""/>
+                        <img className="BackgroundSlider-img" src={getStaticImage("banner3.jpg")} alt=""/>
                     </div>
                     <div>
 
-                        <img className="BackgroundSlider-img"  src={getStaticImage("banner4.jpg")} alt=""/>
+                        <img className="BackgroundSlider-img" src={getStaticImage("banner4.jpg")} alt=""/>
                     </div>
                     <div>
 
-                        <img className="BackgroundSlider-img"  src={getStaticImage("banner5.jpg")} alt=""/>
+                        <img className="BackgroundSlider-img" src={getStaticImage("banner5.jpg")} alt=""/>
                     </div>
                     {/*<div>Slide 1</div>*/}
                     {/*<div>Slide 2</div>*/}
@@ -56,4 +56,4 @@ class BackgroundSlider extends React.Component {
     }
 }
 
-export default connect(null,{clickMenu})(BackgroundSlider)
+export default connect(null, {clickMenu})(BackgroundSlider)
