@@ -15,6 +15,10 @@ namespace BackpackingItemBackend.Models
         public string Name { get; set; }
         #endregion
 
+        #region Weight 
+        public long Weight { get; set; }
+        #endregion
+
         #region OldPrice 
         public decimal OldPrice { get; set; }
         #endregion
