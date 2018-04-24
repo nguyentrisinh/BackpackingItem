@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using BackpackingItemBackend.Constants;
+using BackpackingItemBackend.Services;
+using Lib.Web.Models;
 
 
 namespace BackpackingItemBackend.Controllers
@@ -21,12 +23,14 @@ namespace BackpackingItemBackend.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        protected IProductService productService;
 
         #region Contructor
 
-        public ProductsController(ApplicationDbContext context, IThrowService throwService) : base(throwService)
+        public ProductsController(ApplicationDbContext context, IProductService services, IThrowService throwService) : base(throwService)
         {
             _context = context;
+            productService = services;
         }
 
         #endregion
@@ -35,18 +39,8 @@ namespace BackpackingItemBackend.Controllers
         [Route("[action]")]
         public async Task<IActionResult> GetLatestProducts(int numberOfProduct)
         {
-            var productList = _context.Products
-                .OrderByDescending(ent => ent.Id)
-                .Take(numberOfProduct)
-                .ToList();
 
-            List<ProductReturnModel> products = new List<ProductReturnModel>();
-
-            foreach (var productObject in productList)
-            {
-                ProductReturnModel productReturnItem = ProductReturnModel.Create(productObject);
-                products.Add(productReturnItem);
-            }
+            List<ProductReturnModel> products = productService.GetLatestProducts(numberOfProduct);
 
             return await this.AsSuccessResponse(products, HttpStatusCode.OK);
 
@@ -89,5 +83,17 @@ namespace BackpackingItemBackend.Controllers
                 return await this.AsSuccessResponse(null, HttpStatusCode.OK);
             }
         }
+
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> GetPagingList(PagingParams pagingParams)
+        {
+            var model = productService.getProducts(pagingParams);
+
+            return await this.AsSuccessResponse(model, HttpStatusCode.OK);
+
+        }
+
     }
 }
