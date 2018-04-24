@@ -10,8 +10,9 @@ import ListProduct from './ListProduct';
 import SelfIntro from './SeftIntro';
 import Footer from './Footer';
 
-export {BackgroundSlider,
-MenuHeader,
+export {
+    BackgroundSlider,
+    MenuHeader,
     Menu,
     MainMenu,
     SubMenu,

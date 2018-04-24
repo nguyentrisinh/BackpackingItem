@@ -7,33 +7,25 @@ import {clickMenu} from "../../redux/redux.actions/appUI";
 
 const style = {
     style: {
-        borderRadius:0,
-        padding:0,
-        boxShadow:'none',
-        backgroundColor:'rgba(255,255,255,0.2)',
+        borderRadius: 0,
+        padding: 0,
+        boxShadow: 'none',
+        backgroundColor: 'rgba(255,255,255,0.2)',
         // textTransform:"uppercase",
-        marginTop:-15,
-        borderTop:'solid 1px white'
+        marginTop: -15,
+        // borderTop:'solid 1px white'
     },
-    arrowStyle: {
-
-    }
+    arrowStyle: {}
 }
 
-class SubMenu extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={};
-    }
-
+class SubMenu extends React.Component {
     handleClickOutside = evt => {
         this.props.closeSubMenu();
     };
-
-    renderMenu = () =>{
+    renderMenu = () => {
         const {indexCategory} = this.props;
-        if (indexCategory!=-1){
-            return MAP_CATEGORY[indexCategory].children.map(item=>{
+        if (indexCategory != -1) {
+            return MAP_CATEGORY[indexCategory].children.map(item => {
                 return (
                     <div className="SubMenu-item">
                         {
@@ -44,43 +36,53 @@ class SubMenu extends React.Component{
             })
         }
     }
-    render(){
+
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    render() {
         return (
-                <div className="SubMenu">
-                    {
-                        this.renderMenu()
-                    }
-                </div>
+            <div className="SubMenu">
+                {
+                    this.renderMenu()
+                }
+            </div>
         )
     }
 }
 
 const SubMenuWithClickOutside = onClickOutside(SubMenu);
 
-class ToolTipSubMenu extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={};
-    }
-    closeSubMenu = (    )=>{
+class ToolTipSubMenu extends React.Component {
+    closeSubMenu = () => {
         this.props.clickMenu(null);
     }
-    getCurrentCategory = () =>{
-        return MAP_CATEGORY.findIndex(o=>o.id == this.props.currentCategory);
+    getCurrentCategory = () => {
+        return MAP_CATEGORY.findIndex(o => o.id == this.props.currentCategory);
     }
-    render(){
+
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    render() {
         const foundIndex = this.getCurrentCategory();
         return (
-            <ToolTip style={style} active={true} position="bottom" parent={`#${"category"+this.props.currentCategory}`}>
-                <SubMenuWithClickOutside outsideClickIgnoreClass={"MainMenu"} closeSubMenu={this.closeSubMenu} indexCategory={foundIndex}/>
+            <ToolTip style={style} active={true} position="bottom"
+                     parent={`#${"category" + this.props.currentCategory}`}>
+                <SubMenuWithClickOutside outsideClickIgnoreClass={"MainMenu"} closeSubMenu={this.closeSubMenu}
+                                         indexCategory={foundIndex}/>
             </ToolTip>
         )
     }
 }
 
-const mapStateToProps = state =>    {
+const mapStateToProps = state => {
     return {
-        currentCategory:state.appUI.currentCategory
+        currentCategory: state.appUI.currentCategory
     }
 }
-export default connect(mapStateToProps,{clickMenu})(ToolTipSubMenu);
+export default connect(mapStateToProps, {clickMenu})(ToolTipSubMenu);

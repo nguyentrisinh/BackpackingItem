@@ -2,7 +2,7 @@
 @import 'compass/css3';
 
 .Home{
-  margin-top:  100vh;
+  margin-top:  73vh;
   position: relative;
   &-coverImg{
 @include transform(translateY(-100%));
@@ -11,7 +11,8 @@
     object-fit: cover;
   }
   &-content{
-    background-color: #ececec;
+    //background-color: #ececec;
+    background-color: white;
     padding-bottom: 100px;
   }
 }

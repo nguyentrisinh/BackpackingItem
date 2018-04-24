@@ -1,5 +1,3 @@
-import * as Types from "../redux.consts/appData";
-import update from "react-addons-update";
 // update(state, {$merge: {userInfo: res}})
 const initialState = {
     userInfo: null,

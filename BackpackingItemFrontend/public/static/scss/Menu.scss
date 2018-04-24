@@ -1,7 +1,7 @@
 @import 'bourbon/bourbon';
 
 .Menu{
-  z-index: 9999999999999;
+  z-index: 11;
 
 @include position(fixed, 0 0 null 0);
 
