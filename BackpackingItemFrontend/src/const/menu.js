@@ -14,20 +14,16 @@ export const MENU = [
             },
             {
                 link: '/',
-                name: "Mũ bảo hiểm lật cằm",
+                name: "Mũ bảo hiểm cào cào",
             },
-            {
-                link: '/',
-                name: "Mũ bảo hiểm nửa đầu",
-            },
-            {
-                link: '/',
-                name: "Mũ bảo hiểm trẻ em",
-            },
-            {
-                link: '/',
-                name: "Mũ bảo hiểm 3/4 đầu",
-            },
+            // {
+            //     link: '/',
+            //     name: "Mũ bảo hiểm trẻ em",
+            // },
+            // {
+            //     link: '/',
+            //     name: "Mũ bảo hiểm 3/4 đầu",
+            // },
             {
                 link: '/',
                 name: "Kính gắn mũ bảo hiểm",
@@ -220,7 +216,7 @@ export const MENU = [
             {
 
                 link: '/',
-                name: "Bình giữ nhiệt, túi giữ nhiệt ,thùng đá, túi nước"
+                name: "Thùng - Bình"
             },
             {
 
@@ -249,7 +245,7 @@ export const MENU = [
     {
         id: 'devices',
         link: '/',
-        name: "Thiết bị công nghệ - Điện - Điện tử",
+        name: "Thiết bị công nghệ",
         children: [
             {
 
