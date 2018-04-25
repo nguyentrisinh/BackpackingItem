@@ -58,18 +58,19 @@ namespace BackpackingItemBackend.DataContext
                 var sizes = SeedSize();
                 #endregion
 
-
                 #region variant
                 var variants = SeedVariant(colors, sizes, products);
 
                 
                 #endregion
 
-
                 #region images
                 var images = SeedImages();
 
                 #endregion
+
+
+                #region IDENTITY_INSERT configuration and SaveChanges
                 mDataContext.Database.OpenConnection();
                 mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants ON");
                 // Save Changes in Database
@@ -80,6 +81,7 @@ namespace BackpackingItemBackend.DataContext
 
                 //mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants OFF");
                 //mDataContext.Database.BeginTransaction().Commit();
+                #endregion
             }
 
         }
@@ -420,8 +422,6 @@ namespace BackpackingItemBackend.DataContext
         }
 
         #endregion
-
-
 
         #region Seed Variant
         public List<Variant> SeedVariant(List<Color> colors, List<Size> sizes,List<Product> products)
