@@ -44,11 +44,25 @@ namespace BackpackingItemBackend.Models.ReturnModel
         #endregion
 
         #region Variants
-        //public List<Variant> Variants { get; set; }
+        public List<VariantReturnModel> Variants { get; set; }
         #endregion
 
         public static ProductReturnModel Create(Product product)
         {
+            #region VariantReturnModel variants
+            List<VariantReturnModel> variants = new List<VariantReturnModel>();
+
+            if (product.Variants != null)
+            {
+                foreach (var variant in product.Variants)
+                {
+                    VariantReturnModel variantReturnItem = VariantReturnModel.Create(variant);
+                    variants.Add(variantReturnItem);
+                }
+            }
+            #endregion
+
+
             return new ProductReturnModel()
             {
                 Id = product.Id,
@@ -60,6 +74,8 @@ namespace BackpackingItemBackend.Models.ReturnModel
                 BasePrice = product.BasePrice,
                 SubCategoryId = product.SubCategoryId,
                 SupplierId = product.SupplierId,
+
+                Variants = product.Variants == null ? null : variants,
             };
         }
     }

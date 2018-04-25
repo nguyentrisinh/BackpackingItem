@@ -7,6 +7,11 @@ namespace Lib.Web.Models
 {
     public class PagedList<T>
     {
+        public PagedList()
+        {
+
+        }
+
         public PagedList(IQueryable<T> source, int pageNumber, int pageSize)
         {
             this.TotalItems = source.Count();

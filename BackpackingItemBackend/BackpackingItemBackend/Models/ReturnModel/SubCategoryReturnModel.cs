@@ -25,6 +25,7 @@ namespace BackpackingItemBackend.Models.ReturnModel
 
         public static SubCategoryReturnModel Create(SubCategory subCategory)
         {
+            #region ProductReturnModel Products
             List<ProductReturnModel> products = new List<ProductReturnModel>();
 
             if (subCategory.Products != null)
@@ -35,6 +36,7 @@ namespace BackpackingItemBackend.Models.ReturnModel
                     products.Add(productReturnItem);
                 }
             }
+            #endregion
 
             return new SubCategoryReturnModel
             {

@@ -14,6 +14,8 @@ using BackpackingItemBackend.Constants;
 using BackpackingItemBackend.Services;
 using Lib.Web.Models;
 using BackpackingItemBackend.PagingParam;
+using BackpackingItemBackend.Models;
+using BackpackingItemBackend.Models.ReturnModel;
 
 
 namespace BackpackingItemBackend.Controllers
@@ -71,24 +73,26 @@ namespace BackpackingItemBackend.Controllers
         [Route("{productId:long}")]
         public async Task<IActionResult> GetById(long productId)
         {
-            try
-            {
-                var product = _context.Products
-                    .First(ent => ent.Id == productId);
+            //try
+            //{
+            //    var product = _context.Products
+            //        .First(ent => ent.Id == productId);
 
-                return await this.AsSuccessResponse(product, HttpStatusCode.OK);
-            }
-            catch (InvalidOperationException)
-            {
-                ThrowService.ThrowApiException(ErrorsDefine.Find(2100), HttpStatusCode.BadRequest);
-                return await this.AsSuccessResponse(null, HttpStatusCode.OK);
-            }
+            //    return await this.AsSuccessResponse(product, HttpStatusCode.OK);
+            //}
+            //catch (InvalidOperationException)
+            //{
+            //    ThrowService.ThrowApiException(ErrorsDefine.Find(2100), HttpStatusCode.BadRequest);
+            //    return await this.AsSuccessResponse(null, HttpStatusCode.OK);
+            //}
+            Product product = productService.GetById(productId);
+            ProductReturnModel productReturnModel = ProductReturnModel.Create(product);
+            return await this.AsSuccessResponse(productReturnModel, HttpStatusCode.OK);
         }
 
-
+        #region GET List
         [HttpGet]
-        [Route("[action]")]
-        public async Task<IActionResult> GetPagingList(ProductPagingParams pagingParams)
+        public async Task<IActionResult> GetProducts(ProductPagingParams pagingParams)
         {
             var model = productService.getProducts(pagingParams);
 
@@ -96,5 +100,26 @@ namespace BackpackingItemBackend.Controllers
 
         }
 
+        [HttpGet]
+        [Route("[action]/{categoryId:long}")]
+        public async Task<IActionResult> GetProductsByCategory(ProductPagingParams pagingParams, long categoryId)
+        {
+            var model = productService.getProductsByCategory(pagingParams, categoryId);
+
+            return await this.AsSuccessResponse(model, HttpStatusCode.OK);
+
+        }
+
+        [HttpGet]
+        [Route("[action]/{subCategoryId:long}")]
+        public async Task<IActionResult> getProductsBySubCategory(ProductPagingParams pagingParams, long subCategoryId)
+        {
+            var model = productService.getProductsBySubCategory(pagingParams, subCategoryId);
+
+            return await this.AsSuccessResponse(model, HttpStatusCode.OK);
+
+        }
+
+        #endregion
     }
 }
