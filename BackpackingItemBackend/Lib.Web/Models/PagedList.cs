@@ -13,9 +13,17 @@ namespace Lib.Web.Models
             this.PageNumber = pageNumber;
             this.PageSize = pageSize;
             this.Content = source
-                            .Skip(pageSize * (pageNumber - 1))
-                            .Take(pageSize)
-                            .ToList();
+                .Skip(pageSize * (pageNumber - 1))
+                .Take(pageSize)
+                .ToList();
+        }
+
+        public PagedList(List<T> list, int pageNumber, int pageSize, int totalItems)
+        {
+            this.TotalItems = totalItems;
+            this.PageNumber = pageNumber;
+            this.PageSize = pageSize;
+            this.Content = list;
         }
 
         public int TotalItems { get; }

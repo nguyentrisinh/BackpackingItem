@@ -13,6 +13,7 @@ using System.Net;
 using BackpackingItemBackend.Constants;
 using BackpackingItemBackend.Services;
 using Lib.Web.Models;
+using BackpackingItemBackend.PagingParam;
 
 
 namespace BackpackingItemBackend.Controllers
@@ -87,7 +88,7 @@ namespace BackpackingItemBackend.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public async Task<IActionResult> GetPagingList(PagingParams pagingParams)
+        public async Task<IActionResult> GetPagingList(ProductPagingParams pagingParams)
         {
             var model = productService.getProducts(pagingParams);
 
