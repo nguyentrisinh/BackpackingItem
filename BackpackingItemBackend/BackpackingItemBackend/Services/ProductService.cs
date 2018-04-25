@@ -7,6 +7,7 @@ using BackpackingItemBackend.DataContext;
 using BackpackingItemBackend.Models;
 using BackpackingItemBackend.Models.ReturnModel;
 using Lib.Web.Models;
+using BackpackingItemBackend.PagingParam;
 
 namespace BackpackingItemBackend.Services
 {
@@ -15,7 +16,7 @@ namespace BackpackingItemBackend.Services
         List<ProductReturnModel> GetLatestProducts(int numberOfProduct);
 
         // Get Products Paging List
-        PagedList<Product> getProducts(PagingParams pagingParams);
+        PagedList<Product> getProducts(ProductPagingParams pagingParams);
 
     }
 
@@ -52,11 +53,39 @@ namespace BackpackingItemBackend.Services
 
 
         // Test paging
-        public PagedList<Product> getProducts(PagingParams pagingParams)
+        public PagedList<Product> getProducts(ProductPagingParams pagingParams)
         {
             var query = _context.Products.AsQueryable();
-            return new PagedList<Product>(
-                query, pagingParams.PageNumber, pagingParams.PageSize);
+
+            #region Order
+            // Order 
+            switch (pagingParams.OrderChoice)
+            {
+                case OrderChoices.IsNew:
+                    query = query.OrderBy(ent => ent.Id);
+                    break;
+                case OrderChoices.NameOrder:
+                    query = query.OrderBy(ent => ent.Name);
+                    break;
+                case OrderChoices.NameDescOrder:
+                    query = query.OrderByDescending(ent => ent.Name);
+                    break;
+                case OrderChoices.PriceOrder:
+                    query = query.OrderBy(ent => ent.BasePrice);
+                    break;
+                case OrderChoices.PriceDescOrder:
+                    query = query.OrderByDescending(ent => ent.BasePrice);
+                    break;
+                default:
+                    break;
+            }
+            #endregion
+
+            #region PriceFilter
+            query = query.Where(ent => ent.BasePrice >= pagingParams.PriceMin && ent.BasePrice <= pagingParams.PriceMax);
+            #endregion
+
+            return new PagedList<Product>(query, pagingParams.PageNumber, pagingParams.PageSize);
         }
 
 
