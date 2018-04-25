@@ -18,7 +18,9 @@ export default class Product extends React.Component {
                 bordered
                 // style={{width: 300}}
                 cover={
-                    <img className="Product-img" src={`${DOMAIN + data.imageUrl}`} alt=""/>
+                    <div className="Product-wrapImg">
+                       <img className="Product-img" src={`${DOMAIN + data.imageUrl}`} alt=""/>
+                   </div>
                 }
 
                 actions={[
