@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -14,6 +16,19 @@ namespace BackpackingItemBackend.DataContext
             : base(options)
         {
 
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(
+                new SqlConnectionStringBuilder
+                {
+                    DataSource = @"(localdb)\MSSQLLocalDB",
+                    MultipleActiveResultSets = true,
+                    InitialCatalog = "BackpackingStore3",
+                    IntegratedSecurity = true,
+                    ConnectTimeout = 30
+                }.ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -65,6 +80,11 @@ namespace BackpackingItemBackend.DataContext
             #region Variant Configuration
             builder.Entity<Variant>().HasKey(ent => ent.Id);
 
+            builder.Entity<Variant>()
+                .Property(v => v.Id)
+                .UseSqlServerIdentityColumn();
+
+            //builder.Entity<Variant>().Property(a => a.Id).ValueGeneratedNever();
             builder.Entity<Variant>().HasOne(ent => ent.Product).WithMany(ent => ent.Variants).HasForeignKey(ent => ent.ProductId)
                 .IsRequired().OnDelete(DeleteBehavior.Cascade);
             builder.Entity<Variant>().HasOne(ent => ent.Color).WithMany(ent => ent.Variants).HasForeignKey(ent => ent.ColorId)
