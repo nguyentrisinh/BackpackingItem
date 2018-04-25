@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BackgroundSlider, Footer, Menu} from '../../components/components.layouts';
+import {BackgroundSlider, Footer, Menu,Loading} from '../../components/components.layouts';
 import Home from '../../pages/pages.home/Home';
 import DetailPage from '../../pages/pages.detail/DetailPage';
 import ListPage from '../../pages/pages.list/ListPage';
@@ -13,6 +13,8 @@ class App extends Component {
                 <Route exact path={'/'} component={Home}/>
                 <Route exact path={'/list'} component={ListPage}/>
                 <Route exact path={'/detail'} component={DetailPage}/>
+                <Route exact path={'/loading'} component={Loading}/>
+
 
             </Switch>
         )

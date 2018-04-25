@@ -1,6 +1,6 @@
 import React from 'react';
 import {Anchor, Breadcrumb, Card, Col, Radio, Row, Slider} from 'antd';
-import {Product} from '../../components/components.layouts/index'
+import {Product,Path,SideBar} from '../../components/components.layouts/index'
 
 const product = {
     basePrice: 2300000,
@@ -31,43 +31,13 @@ export default class ListPage extends React.Component {
     }
 
     render() {
-        const radioStyle = {
-            display: 'block',
-            height: '30px',
-            lineHeight: '30px',
-        };
         return (
             <div className="ListPage container">
                 <Row gutter={10}>
-                    <Card bordered={false}>
-                        <Breadcrumb>
-                            <Breadcrumb.Item>Home</Breadcrumb.Item>
-                            <Breadcrumb.Item><a href="">Application Center</a></Breadcrumb.Item>
-                            <Breadcrumb.Item><a href="">Application List</a></Breadcrumb.Item>
-                            <Breadcrumb.Item>An Application</Breadcrumb.Item>
-                        </Breadcrumb>
-                    </Card>
+                   <Path/>
 
                     <Col span={5}>
-                        <Anchor offsetTop={172}>
-                            <Card title="Sắp xếp" className={'mb-2'}>
-                                <Radio.Group>
-                                    <Radio style={radioStyle} value={1}>Nổi bật</Radio>
-                                    <Radio style={radioStyle} value={2}>Mới</Radio>
-                                    <Radio style={radioStyle} value={3}>Bán chạy</Radio>
-                                    <Radio style={radioStyle} value={4}>Khuyến mãi</Radio>
-                                    <Radio style={radioStyle} value={5}>Giá từ thấp đến cao</Radio>
-                                    <Radio style={radioStyle} value={6}>Giá từ cao đến thấp</Radio>
-                                    <Radio style={radioStyle} value={7}>Tên từ A-Z</Radio>
-                                    <Radio style={radioStyle} value={8}>Tên từ Z-A</Radio>
-                                </Radio.Group>
-
-                            </Card>
-                            <Card title="Lọc theo giá">
-                                <Slider range defaultValue={[20, 50]}/>
-
-                            </Card>
-                        </Anchor>
+                       <SideBar/>
                     </Col>
 
 

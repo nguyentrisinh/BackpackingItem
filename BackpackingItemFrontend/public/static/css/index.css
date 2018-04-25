@@ -403,6 +403,23 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-weight: 600;
 }
 /* line 12, ../scss/Product.scss */
+.Product-wrapImg {
+  width: 100%;
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+}
+/* line 18, ../scss/Product.scss */
+.Product-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  object-fit: cover;
+  -o-object-fit: cover;
+}
+/* line 23, ../scss/Product.scss */
 .Product-name {
   display: -webkit-box;
   line-height: 1.5;
@@ -415,11 +432,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   -webkit-box-orient: vertical;
   box-orient: vertical;
 }
-/* line 25, ../scss/Product.scss */
+/* line 36, ../scss/Product.scss */
 .Product-content {
   text-align: center;
 }
-/* line 28, ../scss/Product.scss */
+/* line 39, ../scss/Product.scss */
 .Product-add {
   cursor: pointer;
   display: inline-block;
@@ -431,7 +448,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin: 1em 0;
   padding: 0.5em 1em;
 }
-/* line 36, ../scss/Product.scss */
+/* line 47, ../scss/Product.scss */
 .Product-add:hover {
   background-color: #e62739;
   color: white;
