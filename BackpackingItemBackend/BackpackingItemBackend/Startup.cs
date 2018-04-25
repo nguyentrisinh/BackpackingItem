@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+#region 
+// Using for Paging services
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
+#endregion
 using BackpackingItemBackend.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -18,6 +24,7 @@ using BackpackingItemBackend.Models;
 using BackpackingItemBackend.DataContext;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using BackpackingItemBackend.Services;
 
 namespace BackpackingItemBackend
 {
@@ -33,6 +40,17 @@ namespace BackpackingItemBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //#region Config for Paginated
+            //// Config to for paging 
+            //services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            //services.AddScoped<IUrlHelper>(factory =>
+            //{
+            //    var actionContext = factory.GetService<IActionContextAccessor>()
+            //                               .ActionContext;
+            //    return new UrlHelper(actionContext);
+            //});
+            //#endregion
 
             #region Database and Migration 
             // Add framework services.
@@ -117,6 +135,9 @@ namespace BackpackingItemBackend
             services.AddScoped<IDbinitializer, Dbinitializer>();
 
             services.AddTransient<IThrowService, ThrowService>();
+
+            // Add Services
+            services.AddTransient<IProductService, ProductService>();
         }
         #endregion
 
@@ -128,6 +149,11 @@ namespace BackpackingItemBackend
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //#region config for paging
+            //// test
+            //app.UseDeveloperExceptionPage();
+            //#endregion
 
             #region User JWT Authentication
             app.UseAuthentication();

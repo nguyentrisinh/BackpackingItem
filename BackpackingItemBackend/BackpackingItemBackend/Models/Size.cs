@@ -12,11 +12,7 @@ namespace BackpackingItemBackend.Models
         #endregion
 
         #region Name
-        public long Name { get; set; }
-        #endregion
-
-        #region Weight 
-        public string Weight { get; set; }
+        public string Name { get; set; }
         #endregion
 
         #region Variants

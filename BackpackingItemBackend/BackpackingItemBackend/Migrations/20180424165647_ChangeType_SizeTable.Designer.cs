@@ -12,9 +12,10 @@ using System;
 namespace BackpackingItemBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180424165647_ChangeType_SizeTable")]
+    partial class ChangeType_SizeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -278,6 +279,8 @@ namespace BackpackingItemBackend.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<long>("Weight");
+
                     b.HasKey("Id");
 
                     b.ToTable("Sizes");
@@ -331,8 +334,6 @@ namespace BackpackingItemBackend.Migrations
                     b.Property<long>("SizeId");
 
                     b.Property<int>("VariantStatus");
-
-                    b.Property<long>("Weight");
 
                     b.HasKey("Id");
 
