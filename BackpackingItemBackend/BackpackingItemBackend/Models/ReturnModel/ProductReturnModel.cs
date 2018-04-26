@@ -72,11 +72,26 @@ namespace BackpackingItemBackend.Models.ReturnModel
                 WarrantyInfomation = product.WarrantyInfomation,
                 ReturnInformation = product.ReturnInformation,
                 BasePrice = product.BasePrice,
+
                 SubCategoryId = product.SubCategoryId,
+
                 SupplierId = product.SupplierId,
 
                 Variants = product.Variants == null ? null : variants,
             };
+        }
+
+        public static List<ProductReturnModel> Create(List<Product> products)
+        {
+            List<ProductReturnModel> productsReturnModel = new List<ProductReturnModel>();
+
+            foreach (var product in products)
+            {
+                ProductReturnModel productReturnModel = ProductReturnModel.Create(product);
+                productsReturnModel.Add(productReturnModel);
+            }
+
+            return productsReturnModel;
         }
     }
 }
