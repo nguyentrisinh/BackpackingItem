@@ -10,7 +10,7 @@ class MainMenu extends React.Component {
     renderMenu = () => {
         return MAP_CATEGORY.map(item => {
             return (
-                <Link to={`/${item.link}`} onClick={this.onClickMainMenu.bind(this, item)} id={"category" + item.id}
+                <div onClick={this.onClickMainMenu.bind(this, item)} id={"category" + item.id}
                      className={classNames("MainMenu-item", {"is-active": (this.props.currentCategory?(this.props.currentCategory.id == item.id?true:false):false)})}>
                     <div className="MainMenu-icon">
                         <img src={getStaticImage(item.imageName)} alt=""/>
@@ -21,7 +21,7 @@ class MainMenu extends React.Component {
                         }
                     </div>
 
-                </Link>
+                </div>
             )
         })
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {DOMAIN} from "../../server/serverConfig";
+import {Link} from 'react-router-dom';
 import {Card, Icon, Meta} from 'antd';
 import {numberFormat} from "../../utils/utils";
 
@@ -36,9 +37,9 @@ export default class Product extends React.Component {
                     // avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                     title={'VND ' + numberFormat(data.basePrice.toString(), ',')}
                     description={
-                        <div className="Product-name">
+                        <Link to={'/product/'+data.id} className="Product-name">
                             {data.name}
-                        </div>
+                        </Link>
                     }
                 />
             </Card>

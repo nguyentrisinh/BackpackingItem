@@ -1,38 +1,53 @@
 import React from 'react';
 import {Card,Radio,Acnhor,Slider,Anchor} from'antd';
 
+import {ORDER_CHOICES} from "../../server/serverConfig";
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {numberFormat} from "../../utils/utils";
+
 const radioStyle = {
     display: 'block',
     height: '30px',
     lineHeight: '30px',
 };
 
-export default class SideBar extends React.Component{
+class SideBar extends React.Component{
     constructor(props){
         super(props);
-        this.state={};
+    }
+    onChange = e =>{
+        this.props.onChangeOrder(e.target.value)
+    }
+
+    onChangePrice = value =>{
+        this.props.onChangePrice(value[0],value[1]);
     }
     render(){
         return (
             <Anchor offsetTop={172}>
                 <Card title="Sắp xếp" className={'mb-2'}>
-                    <Radio.Group>
-                        <Radio style={radioStyle} value={1}>Nổi bật</Radio>
-                        <Radio style={radioStyle} value={2}>Mới</Radio>
-                        <Radio style={radioStyle} value={3}>Bán chạy</Radio>
-                        <Radio style={radioStyle} value={4}>Khuyến mãi</Radio>
-                        <Radio style={radioStyle} value={5}>Giá từ thấp đến cao</Radio>
-                        <Radio style={radioStyle} value={6}>Giá từ cao đến thấp</Radio>
-                        <Radio style={radioStyle} value={7}>Tên từ A-Z</Radio>
-                        <Radio style={radioStyle} value={8}>Tên từ Z-A</Radio>
-                    </Radio.Group>
+                    <Radio.Group value={this.props.listProducts.order} onChange={this.onChange} options={ORDER_CHOICES}/>
 
                 </Card>
                 <Card title="Lọc theo giá">
-                    <Slider range defaultValue={[20, 50]}/>
+                    <Slider tipFormatter={(value)=>numberFormat(value.toString(),',')+' đ'} min={0} max={10000000} step={100000} range defaultValue={[0,10000000]} onChange={this.onChangePrice}/>
 
                 </Card>
             </Anchor>
         )
     }
 }
+
+const mapStateToProps = state =>    {
+    return {
+        listProducts:state.listData.listProducts
+    }
+}
+
+SideBar.propTypes = {
+    onChangeOrder:PropTypes.func.isRequired,
+    onChangePrice:PropTypes.func.isRequired
+}
+
+export default connect(mapStateToProps)(SideBar)

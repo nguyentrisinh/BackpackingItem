@@ -41,3 +41,13 @@ export const getProductBySubCategory = (subCategoryId,pageNumber,orderChoices,mi
             return err.response
         })
 }
+
+export const getProduct = (productId) => {
+    return AXIOS.get(SERVER_PATHS.getProduct(productId))
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}

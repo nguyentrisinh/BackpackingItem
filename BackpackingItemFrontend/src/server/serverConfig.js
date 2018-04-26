@@ -10,6 +10,11 @@ export const MAP_CATEGORY = [
         imageName: 'helmets.png',
         children: [
             {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
+            {
                 id: 1,
                 link: 'mu-bh-34',
                 name: "Mũ bảo hiểm 3/4"
@@ -37,6 +42,11 @@ export const MAP_CATEGORY = [
         name: "Quần áo phượt",
         imageName: 'clothes.png',
         children: [
+            {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
             {
                 id: 27,
                 link: 'ao-bao-ho',
@@ -70,6 +80,11 @@ export const MAP_CATEGORY = [
         name: 'Phụ kiện phượt',
         imageName: 'others.png',
         children: [
+            {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
             {
                 id: 33,
                 link: 'giap-tay-chan',
@@ -113,6 +128,11 @@ export const MAP_CATEGORY = [
         name: 'Công cụ phượt',
         imageName: 'sneakers.png',
         children: [
+            {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
             {
                 id: 2,
                 link: 'dao-da-nang',
@@ -167,6 +187,11 @@ export const MAP_CATEGORY = [
         imageName: 'sneakers.png',
         children: [
             {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
+            {
                 id: 4,
                 link: 'giay-di-phuot',
                 name: "Giày đi phượt"
@@ -204,6 +229,11 @@ export const MAP_CATEGORY = [
         name: 'Balo - Túi',
         imageName: 'bags.png',
         children: [
+            {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
             {
                 id: 11,
                 link: 'balo-laptop',
@@ -249,6 +279,11 @@ export const MAP_CATEGORY = [
         imageName: 'devices.png',
         children: [
             {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
+            {
                 id: 17,
                 link: 'camera-hanh-trinh',
                 name: "Camera hành trình"
@@ -284,13 +319,38 @@ export const AXIOS = axios.create({
     // headers: {'X-Custom-Header': 'foobar'}
 });
 
-export const ORDER_CHOICES = {
-    NoOrder : 0,
-    IsNew : 1,
-    PriceOrder : 2,
-    PriceDescOrder : 3,
-    NameOrder : 4,
-    NameDescOrder : 5,
-}
+export const ORDER_CHOICES =[{
+    label:'Không sắp xếp',
+    value:0,
+    id:'NoOrder'
+},
+    {
+        label:'Mới nhất',
+        value:1,
+        id:'IsNew'
+    },
+    {
+        label:'Gía tăng dần',
+        value:2,
+        id:'PriceOrder'
+    },
+    {
+        label:'Giá giảm dần',
+        value:3,
+        id:'PriceDescOrder'
+    },
+    {
+        label:'Từ A-Z',
+        value:4,
+        id:'NameOrder'
+    },
+    {
+        label:'Từ Z-A',
+        value:5,
+        id:'NameDescOrder'
+    },
 
-export const ITEM_PER_PAGE= 5;
+
+]
+
+export const ITEM_PER_PAGE= 4;

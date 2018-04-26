@@ -27,9 +27,8 @@ class SubMenu extends React.Component {
         const {indexCategory} = this.props;
         if (indexCategory != -1) {
             return MAP_CATEGORY[indexCategory].children.map(item => {
-                console.log(this.props.currentCategory)
                 return (
-                    <Link to={`${this.props.currentCategory.link}/${item.link}`} className="SubMenu-item">
+                    <Link onClick={this.handleClickOutside} to={`/${this.props.currentCategory.link}/${item.link}`} className="SubMenu-item">
                         {
                             item.name
                         }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BackgroundSlider, Footer, Menu,Loading} from '../../components/components.layouts';
 import Home from '../../pages/pages.home/Home';
-import DetailPage from '../../pages/pages.detail/DetailPage';
+import DetailPageContainer from '../pages.detail/DetailPageContainer';
 import ListPageContainer from '../pages.list/ListPageContainer';
 // import '../../App.css';
 import {Route, Switch} from 'react-router-dom';
@@ -11,8 +11,8 @@ class App extends Component {
         return (
             <Switch>
                 <Route exact path={'/'} component={Home}/>
-                <Route exact path={'/:categorySlug/:subCategorySlug'} component={ListPageContainer}/>
-                <Route exact path={'/detail'} component={DetailPage}/>
+                <Route exact path={'/product/:productId'} component={DetailPageContainer}/>
+                <Route exact path={'/:categorySlug/:subCategorySlug?'} component={ListPageContainer}/>
                 <Route exact path={'/loading'} component={Loading}/>
 
 

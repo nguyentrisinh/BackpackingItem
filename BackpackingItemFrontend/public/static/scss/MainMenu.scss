@@ -45,6 +45,9 @@
     position: relative;
     cursor: pointer;
     @include padding(1em 0);
+    &:focus{
+      text-decoration: none;
+    }
     &:hover{
       color: #a1c900;
     }
