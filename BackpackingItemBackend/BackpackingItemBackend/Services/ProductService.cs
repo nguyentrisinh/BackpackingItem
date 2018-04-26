@@ -23,7 +23,8 @@ namespace BackpackingItemBackend.Services
         PagedList<Product> getProducts(ProductPagingParams pagingParams);
 
         // Get Products Paging List for SubCategoryId
-        PagedList<Product> getProductsBySubCategory(ProductPagingParams pagingParams, long subCategoryId);
+        //PagedList<Product> getProductsBySubCategory(ProductPagingParams pagingParams, long subCategoryId);
+        PagedList<ProductReturnModel> getProductsBySubCategory(ProductPagingParams pagingParams, long subCategoryId);
 
         // Get Products Paging List for CategoryId
         PagedList<Product> getProductsByCategory(ProductPagingParams pagingParams, long categoryId);
@@ -102,7 +103,8 @@ namespace BackpackingItemBackend.Services
             return new PagedList<Product>(query, pagingParams.PageNumber, pagingParams.PageSize);
         }
 
-        public PagedList<Product> getProductsBySubCategory(ProductPagingParams pagingParams, long subCategoryId)
+        //public PagedList<Product> getProductsBySubCategory(ProductPagingParams pagingParams, long subCategoryId)
+        public PagedList<ProductReturnModel> getProductsBySubCategory(ProductPagingParams pagingParams, long subCategoryId)
         {
             try
             {
@@ -110,7 +112,7 @@ namespace BackpackingItemBackend.Services
                 var subCategory = _context.SubCategories.First(ent => ent.Id == subCategoryId);
                                     
 
-                var query = _context.Products.AsQueryable().Where(ent => ent.SubCategoryId == subCategoryId);
+                var query = _context.Products.Where(ent => ent.SubCategoryId == subCategoryId).AsQueryable();
 
                 #region Order
                 // Order 
@@ -140,12 +142,19 @@ namespace BackpackingItemBackend.Services
                 query = query.Where(ent => ent.BasePrice >= pagingParams.PriceMin && ent.BasePrice <= pagingParams.PriceMax);
                 #endregion
 
-                return new PagedList<Product>(query, pagingParams.PageNumber, pagingParams.PageSize);
+                #region GET paging for ProductReturnModel
+                List<Product> products = query.Skip(pagingParams.PageSize * (pagingParams.PageNumber - 1))
+                    .Take(pagingParams.PageSize)
+                    .ToList();
+                #endregion
+
+                //return new PagedList<Product>(query, pagingParams.PageNumber, pagingParams.PageSize);
+                return new PagedList<ProductReturnModel>(ProductReturnModel.Create(products), pagingParams.PageNumber, pagingParams.PageSize, query.Count());
             }
             catch (InvalidOperationException)
             {
                 throwService.ThrowApiException(ErrorsDefine.Find(2000), HttpStatusCode.BadRequest);
-                return new PagedList<Product>();
+                return new PagedList<ProductReturnModel>();
             }
         }
 
