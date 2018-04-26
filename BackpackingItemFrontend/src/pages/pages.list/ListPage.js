@@ -1,6 +1,6 @@
 import React from 'react';
-import {Anchor, Breadcrumb, Card, Col, Radio, Row, Slider} from 'antd';
-import {Product,Path,SideBar} from '../../components/components.layouts/index'
+import {Col,Row} from 'antd';
+import {Product} from '../../components/components.layouts/index'
 
 const product = {
     basePrice: 2300000,
@@ -14,7 +14,12 @@ const product = {
     warrantyInfomation: "12 Tháng"
 }
 
-export default class ListPage extends React.Component {
+export default class ListPage extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={};
+    }
+
     renderProduct = () => {
         return new Array(20).fill(product).map(item => {
             return (
@@ -25,35 +30,13 @@ export default class ListPage extends React.Component {
         });
     }
 
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
-    render() {
+    render(){
         return (
-            <div className="ListPage container">
-                <Row gutter={10}>
-                   <Path/>
-
-                    <Col span={5}>
-                       <SideBar/>
-                    </Col>
-
-
-                    <Col span={19}>
-                        <Row gutter={10}>
-                            {
-                                this.renderProduct()
-                            }
-                        </Row>
-
-                    </Col>
-
-                </Row>
-
-
-            </div>
+            <Row gutter={10}>
+                {
+                    this.renderProduct()
+                }
+            </Row>
         )
     }
 }

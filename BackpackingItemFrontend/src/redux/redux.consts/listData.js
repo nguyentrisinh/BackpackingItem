@@ -1,0 +1,1 @@
+export const GET_LIST_PRODUCTS = "GET_LIST_PRODUCTS";

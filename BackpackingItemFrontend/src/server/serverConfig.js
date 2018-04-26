@@ -283,3 +283,14 @@ export const AXIOS = axios.create({
     // timeout: 1000,
     // headers: {'X-Custom-Header': 'foobar'}
 });
+
+export const ORDER_CHOICES = {
+    NoOrder : 0,
+    IsNew : 1,
+    PriceOrder : 2,
+    PriceDescOrder : 3,
+    NameOrder : 4,
+    NameDescOrder : 5,
+}
+
+export const ITEM_PER_PAGE= 5;

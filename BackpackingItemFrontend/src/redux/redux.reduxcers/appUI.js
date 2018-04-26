@@ -11,7 +11,7 @@ export default function appUI(state = initialState, action) {
         case Types.CLICK_MENU:
             return update(state, {
                 currentCategory: {
-                    $set: action.id
+                    $set: action.item
                 }
             })
         // case Types.GET_USER_INFO:
