@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using BackpackingItemBackend.DataContext;
 using BackpackingItemBackend.Models.ReturnModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace BackpackingItemBackend.Controllers
 {
@@ -51,7 +52,9 @@ namespace BackpackingItemBackend.Controllers
             return await this.AsSuccessResponse(categories, HttpStatusCode.OK);
         }
 
-        [HttpGet, Authorize]
+        //[HttpGet, Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             var currentUser = HttpContext.User;
