@@ -23,6 +23,10 @@ namespace BackpackingItemBackend.Constants
             //21xx: Product Error
             {2100, "Product not found" },
 
+            //22xx: User Error
+            {2200, "User not found" },
+            {2201, "Username or password is not correct" }
+
         };
 
         #region Methods 

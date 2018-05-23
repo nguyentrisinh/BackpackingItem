@@ -138,6 +138,7 @@ namespace BackpackingItemBackend
 
             // Add Services
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IAccountService, AccountService>();
         }
         #endregion
 

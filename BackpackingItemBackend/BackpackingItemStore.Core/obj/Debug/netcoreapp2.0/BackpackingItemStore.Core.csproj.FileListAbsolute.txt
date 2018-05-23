@@ -6,4 +6,4 @@ F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingIte
 F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemStore.Core\obj\Debug\netcoreapp2.0\BackpackingItemStore.Core.AssemblyInfo.cs
 F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemStore.Core\obj\Debug\netcoreapp2.0\BackpackingItemStore.Core.dll
 F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemStore.Core\obj\Debug\netcoreapp2.0\BackpackingItemStore.Core.pdb
-F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemStore.Core\obj\Debug\netcoreapp2.0\BackpackingItemStore.Core.csprojResolveAssemblyReference.cache
+F:\Sinh\Hoc tap\Nam 4\HK2\.NET Technology\project\BackpackingItem\BackpackingItemBackend\BackpackingItemStore.Core\obj\Debug\netcoreapp2.0\BackpackingItemStore.Core.csprojAssemblyReference.cache
