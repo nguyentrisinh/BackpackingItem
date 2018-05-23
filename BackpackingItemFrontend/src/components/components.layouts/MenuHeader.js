@@ -1,6 +1,7 @@
 import React from 'react';
 import {getStaticImage, numberFormat} from '../../utils/utils';
 import {Divider, Input,Popover,Button,List,Avatar,Icon,Select,InputNumber,Card} from 'antd';
+import {Link} from 'react-router-dom';
 
 export default class MenuHeader extends React.Component {
     constructor(props) {
@@ -12,9 +13,9 @@ export default class MenuHeader extends React.Component {
         return (
             <div className="MenuHeader">
                 <div className="MenuHeader-wrap container">
-                    <div className="MenuHeader-logo">
+                    <Link to={'/'} className="MenuHeader-logo">
                         <img src={getStaticImage("logo.png")} alt=""/>
-                    </div>
+                    </Link>
                     <div className="MenuHeader-search">
                         <Input.Search
                             className="MenuHeader-searchInput"

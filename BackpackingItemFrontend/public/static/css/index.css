@@ -502,40 +502,40 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 4, ../scss/Footer.scss */
 .Footer {
-  height: 300px;
+  height: 400px;
   background-color: black;
 }
 
-/* line 6, ../scss/DetailPageContainer.scss */
+/* line 6, ../scss/DetailPage.scss */
 .DetailPage-productName {
   font-size: 1.5em;
 }
-/* line 10, ../scss/DetailPageContainer.scss */
+/* line 10, ../scss/DetailPage.scss */
 .DetailPage-productDescription {
   line-height: 1.5;
 }
-/* line 13, ../scss/DetailPageContainer.scss */
+/* line 13, ../scss/DetailPage.scss */
 .DetailPage-actionLabel {
   min-width: 80px;
 }
-/* line 16, ../scss/DetailPageContainer.scss */
+/* line 16, ../scss/DetailPage.scss */
 .DetailPage-actionItem {
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
   align-items: center;
 }
-/* line 20, ../scss/DetailPageContainer.scss */
+/* line 20, ../scss/DetailPage.scss */
 .DetailPage-price {
   font-size: 1.2em;
   color: #51b748;
 }
-/* line 24, ../scss/DetailPageContainer.scss */
+/* line 24, ../scss/DetailPage.scss */
 .DetailPage-addButton {
   background-color: #51b748;
   color: white;
 }
-/* line 27, ../scss/DetailPageContainer.scss */
+/* line 27, ../scss/DetailPage.scss */
 .DetailPage-addButton:hover {
   background-color: white;
   color: #51b748;
