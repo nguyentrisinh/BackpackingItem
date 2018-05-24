@@ -9,5 +9,7 @@ namespace BackpackingItemBackend.Constants
     {
         public const decimal PriceMin = 0;
         public const decimal PriceMax = decimal.MaxValue;
+
+        public const long TokenLastingTime = 1000000; // minutes
     }
 }

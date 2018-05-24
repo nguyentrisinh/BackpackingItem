@@ -25,6 +25,10 @@ namespace BackpackingItemBackend.Services
         ApplicationUser GetById(Guid applicationUserId);
 
         Task<string> Login(LoginBindingModel model);
+
+        ApplicationUser GetCurrent(string username);
+
+        ApplicationUser UpdateUser(RegisterBindingModel model, string applicationUserId);
     }
 
 
@@ -118,7 +122,7 @@ namespace BackpackingItemBackend.Services
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
               claims,
-              expires: DateTime.Now.AddMinutes(30),
+              expires: DateTime.Now.AddMinutes(Constant.TokenLastingTime),
               signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -151,6 +155,51 @@ namespace BackpackingItemBackend.Services
             }
         }
 
+        #endregion
+
+        #region GetCurrent 
+        public ApplicationUser GetCurrent(string username)
+        {
+            try
+            {
+                ApplicationUser user = _context.ApplicationUsers.First(ent => ent.UserName == username);
+
+                return user;
+            }
+            catch (InvalidOperationException)
+            {
+                throwService.ThrowApiException(ErrorsDefine.Find(2200), HttpStatusCode.BadRequest);
+                return new ApplicationUser();
+            }
+        }
+        #endregion
+
+        #region UpdateUser
+        public ApplicationUser UpdateUser(RegisterBindingModel model, string applicationUserId)
+        {
+            try
+            {
+                var applicationUser = _context.ApplicationUsers
+                    .First(ent => ent.Id == applicationUserId.ToString());
+
+                #region update User Profile
+                applicationUser.Birthday = model.Birthday;
+                applicationUser.FirstName = model.FirstName;
+                applicationUser.LastName = model.LastName;
+                applicationUser.Gender = model.Gender;
+
+                _context.ApplicationUsers.Update(applicationUser);
+                _context.SaveChanges();
+                #endregion
+
+                return applicationUser;
+            }
+            catch (InvalidOperationException)
+            {
+                throwService.ThrowApiException(ErrorsDefine.Find(2200), HttpStatusCode.BadRequest);
+                return new ApplicationUser();
+            }
+        }
         #endregion
     }
 }
