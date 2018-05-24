@@ -10,6 +10,7 @@ import Product from './Product';
 import ListProduct from './ListProduct';
 import SelfIntro from './SeftIntro';
 import Footer from './Footer';
+// import Profile from './ProF'
 import Path from './Path';
 import SideBar from './SideBar';
 import Loading from './Loading'

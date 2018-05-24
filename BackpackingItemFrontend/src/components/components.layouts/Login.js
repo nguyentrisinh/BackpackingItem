@@ -1,5 +1,5 @@
 import React from 'react';
-import {postAccountLogin} from "../../server/serverActions";
+import {postAccountLogin,getAccountCurrent} from "../../server/serverActions";
 
 import { Modal, Button, Tabs,Icon,Input } from 'antd';
 import {withCookies} from 'react-cookie';
@@ -28,6 +28,7 @@ class Login extends React.Component{
             if (res.status==200){
                 this.setState(initialState);
                 const {cookies}= this.props;
+                getAccountCurrent(res.data.data).then(res=>console.log('info',res))
                 cookies.set('token',res.data.data);
             }
             else{

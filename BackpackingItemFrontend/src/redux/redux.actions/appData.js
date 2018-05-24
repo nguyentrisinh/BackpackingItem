@@ -1,26 +1,19 @@
-// import * as Types from "../constants/app";
+import * as Types from "../redux.consts/appData";
 // import * as Api from "../actions/api";
 // import {MAX_PAGE} from "../constants/apiPath";
-//
-//
-// export const getUserInfo = (token) => {
-//     return function (dispatch) {
-//         Api.getUserInfo(token).then(res => {
-//             if (res.data.errors === null) {
-//                 dispatch({
-//                     type: Types.GET_USER_INFO,
-//                     serverData: res
-//                 })
-//                 dispatch(doLogin(true));
-//             }
-//             else {
-//                 dispatch(doLogin(false));
-//
-//             }
-//         })
-//     }
-//
-// }
-//
-//
-//
+
+
+export const getUserInfo = (data) => {
+    return function (dispatch) {
+        dispatch({
+            type: Types.GET_USER_INFO,
+            data
+        })
+
+
+    }
+
+}
+
+
+

@@ -1,4 +1,5 @@
 // update(state, {$merge: {userInfo: res}})
+import * as Types from '../redux.consts/appData'
 const initialState = {
     userInfo: null,
     isOpenModalLogin: false,
@@ -11,13 +12,11 @@ const initialState = {
     }
 }
 
-export default function index(state = initialState, action) {
-
+export default function appData(state = initialState, action) {
     switch (action.type) {
-        // case Types.GET_USER_INFO:
-        //
-        //     return Object.assign({}, state, {userInfo: action.serverData})
-        // // Object.assign({},state,{userInfo:action.serverData})
+        case Types.GET_USER_INFO:
+            return Object.assign({}, state, {userInfo: action.data})
+        // Object.assign({},state,{userInfo:action.serverData})
         // case Types.TOGGLE_MODAL_LOGIN:
         //     return Object.assign({}, state, {isOpenModalLogin: !state.isOpenModalLogin})
         //

@@ -13,5 +13,6 @@ export const SERVER_PATHS = {
     getProduct:(productId)=>`${SERVER_PATHS.api}/${SERVER_PATHS.product}/${productId}`,
     postAccountRegister: ()=>`${SERVER_PATHS.api}/${SERVER_PATHS.account}/customerregister`,
     postAccountLogin:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.account}/login`,
-    postAccount
+    getAccountCurrent:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.account}/getcurrent`,
+    putAccountUpdateCurrent:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.account}/updatecurrent`
 }

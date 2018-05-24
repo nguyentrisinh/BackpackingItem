@@ -83,3 +83,16 @@ export const postAccountLogin = (username,password) => {
             return err.response
         })
 }
+
+export const getAccountCurrent = (token)=>{
+    return AXIOS.get(SERVER_PATHS.getAccountCurrent(),
+        {
+            headers: {'Authorization': `Bearer ${token}`},
+        })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}

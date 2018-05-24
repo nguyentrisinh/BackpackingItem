@@ -80,9 +80,13 @@ class MenuHeader extends React.Component {
                     </div>
 
                     <div className="MenuHeader-user">
-                        <div onClick={this.onClickLogin} className="MenuHeader-link">
-                            Đăng nhâp
-                        </div>
+                        {
+                            this.props.userInfo?<Link to="/profile">
+                                {this.props.userInfo.firstName}
+                            </Link>: <div onClick={this.onClickLogin} className="MenuHeader-link">
+                                Đăng nhâp
+                            </div>
+                        }
                     </div>
 
                 </div>
@@ -95,5 +99,9 @@ class MenuHeader extends React.Component {
         )
     }
 }
-
-export default connect(null,{clickModalUser})(MenuHeader)
+const mapStateToProps = state =>    {
+    return {
+        userInfo:state.app.userInfo
+    }
+}
+export default connect(mapStateToProps,{clickModalUser})(MenuHeader)
