@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BackpackingItemBackend.DataContext;
 using BackpackingItemBackend.Models;
@@ -11,6 +12,8 @@ using BackpackingItemBackend.Models.ReturnModel;
 using BackpackingItemBackend.Services;
 using Lib.Web.Controllers;
 using Lib.Web.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -75,6 +78,47 @@ namespace BackpackingItemBackend.Controllers
         {
             string token = await this.accountService.Login(model);
             return await this.AsSuccessResponse(token, HttpStatusCode.OK);
+        }
+        #endregion
+
+        #region GetCurrent
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> GetCurrent()
+        {
+            var currentUser = HttpContext.User;
+
+            if (currentUser.HasClaim(c => c.Type == ClaimTypes.Email))
+            {
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+                ApplicationUser user = this.accountService.GetCurrent(username);
+                return await this.AsSuccessResponse(ApplicationUserReturnModel.Create(user), HttpStatusCode.OK);
+            }
+
+            return await this.AsSuccessResponse("test", HttpStatusCode.OK);
+        }
+        #endregion
+
+        #region UpdateCurrent
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPut]
+        [Route("[action]")]
+        public async Task<IActionResult> UpdateCurrent([FromBody] RegisterBindingModel model)
+        {
+            var currentUser = HttpContext.User;
+
+            if (currentUser.HasClaim(c => c.Type == ClaimTypes.Email))
+            {
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+                ApplicationUser user = this.accountService.GetCurrent(username);
+
+                user = this.accountService.UpdateUser(model, user.Id);
+
+                return await this.AsSuccessResponse(ApplicationUserReturnModel.Create(user), HttpStatusCode.OK);
+            }
+
+            return await this.AsSuccessResponse("test", HttpStatusCode.OK);
         }
         #endregion
 

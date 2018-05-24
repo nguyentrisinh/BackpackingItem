@@ -60,8 +60,6 @@ namespace BackpackingItemBackend.DataContext
 
                 #region variant
                 var variants = SeedVariant(colors, sizes, products);
-
-                
                 #endregion
 
                 #region images
@@ -69,6 +67,17 @@ namespace BackpackingItemBackend.DataContext
 
                 #endregion
 
+                #region city
+                var cities = SeedCity();
+                #endregion
+
+                #region district
+                var districts = SeedDistrict(cities);
+                #endregion
+
+                #region voucher
+                var vouchers = SeedVoucher();
+                #endregion
 
                 #region IDENTITY_INSERT configuration and SaveChanges
                 mDataContext.Database.OpenConnection();
@@ -1691,6 +1700,97 @@ namespace BackpackingItemBackend.DataContext
             {
                 var products = mDataContext.Set<Product>().ToList();
                 return products;
+            }
+        }
+        #endregion
+
+
+        #region Seed City
+        public List<City> SeedCity()
+        {
+            if (!mDataContext.Set<City>().Any())
+            {
+                var cities = new List<City>()
+                {
+                    new City() { Name = "Hồ Chí Minh" },
+                    new City() { Name = "Hà Nội" },
+                };
+
+                mDataContext.Set<City>().AddRange(cities);
+                return cities;
+
+            }
+            else
+            {
+                var cities = mDataContext.Cities.ToList();
+                return cities;
+            }
+        }
+        #endregion
+
+        #region Seed District
+        public List<District> SeedDistrict(List<City> cities)
+        {
+            if (!mDataContext.Set<District>().Any())
+            {
+                var districts = new List<District>()
+                {
+                    new District() { Name = "Quận 1", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận 2", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận 3", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận 4", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận 5", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận 6", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận 7", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận 8", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận 9", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận 10", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận 11", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận 12", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận Phú Nhuận", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận Gò Vấp", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận Bình Thạnh", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận Tân Bình", ShippingFee = 25000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận Tân Phú", ShippingFee = 30000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận Thủ Đức", ShippingFee = 30000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Quận Bình Tân", ShippingFee = 30000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Huyện Củ Chi", ShippingFee = 30000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Huyện Hóc Môn", ShippingFee = 30000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Huyện Bình Chánh", ShippingFee = 30000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Huyện Nhà Bè", ShippingFee = 30000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                    new District() { Name = "Huyện Cần Giờ", ShippingFee = 30000, CityId = cities.Single(ent => ent.Name == "Hồ Chí Minh").Id },
+                };
+
+                mDataContext.Set<District>().AddRange(districts);
+                return districts;
+
+            }
+            else
+            {
+                var districts = mDataContext.Districts.ToList();
+                return districts;
+            }
+        }
+        #endregion
+
+        #region Seed Voucher
+        public List<Voucher> SeedVoucher()
+        {
+            if (!mDataContext.Set<Voucher>().Any())
+            {
+                var vouchers = new List<Voucher>()
+                {
+                    new Voucher() { Method = "Giảm giá", Code = "GIAMGIA10", Quantity = 1000, RemainQuantity = 1000, Value = 10},
+                    new Voucher() { Method = "Giảm giá", Code = "MAGIAMGIA5", Quantity = 1000, RemainQuantity = 1000, Value = 5}
+                };
+
+                mDataContext.Set<Voucher>().AddRange(vouchers);
+                return vouchers;
+            }
+            else
+            {
+                var vouchers = mDataContext.Vouchers.ToList();
+                return vouchers;
             }
         }
         #endregion
