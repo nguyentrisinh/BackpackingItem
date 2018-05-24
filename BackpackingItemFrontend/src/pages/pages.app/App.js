@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BackgroundSlider, Footer, Menu,Loading} from '../../components/components.layouts';
+import {BackgroundSlider, Footer, Menu,Loading,ModalUser} from '../../components/components.layouts';
 import Home from '../../pages/pages.home/Home';
 import DetailPageContainer from '../pages.detail/DetailPageContainer';
 import ListPageContainer from '../pages.list/ListPageContainer';
@@ -35,6 +35,8 @@ class App extends Component {
 
                     </div>
                 </div>
+                <ModalUser/>
+
                 <Footer/>
                 <BackgroundSlider/>
             </div>

@@ -1,0 +1,9 @@
+/* line 1, ../scss/react-datepicker.scss */
+.react-datepicker-wrapper {
+  width: 75% !important;
+}
+
+/* line 5, ../scss/react-datepicker.scss */
+.react-datepicker__input-container {
+  width: 100% !important;
+}

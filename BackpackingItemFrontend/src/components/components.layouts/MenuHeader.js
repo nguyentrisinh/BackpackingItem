@@ -2,11 +2,17 @@ import React from 'react';
 import {getStaticImage, numberFormat} from '../../utils/utils';
 import {Divider, Input,Popover,Button,List,Avatar,Icon,Select,InputNumber,Card} from 'antd';
 import {Link} from 'react-router-dom';
+import {clickModalUser} from "../../redux/redux.actions/appUI";
+import {connect} from 'react-redux';
 
-export default class MenuHeader extends React.Component {
+class MenuHeader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+    }
+
+    onClickLogin = () =>{
+        this.props.clickModalUser(true)
     }
 
     render() {
@@ -74,14 +80,9 @@ export default class MenuHeader extends React.Component {
                     </div>
 
                     <div className="MenuHeader-user">
-                        <a href={"/"} className="MenuHeader-link">
+                        <div onClick={this.onClickLogin} className="MenuHeader-link">
                             Đăng nhâp
-                        </a>
-                        <div>&nbsp;/&nbsp;</div>
-                        <a href={"/"} className="MenuHeader-link">
-                            Đăng kí
-                        </a>
-
+                        </div>
                     </div>
 
                 </div>
@@ -94,3 +95,5 @@ export default class MenuHeader extends React.Component {
         )
     }
 }
+
+export default connect(null,{clickModalUser})(MenuHeader)

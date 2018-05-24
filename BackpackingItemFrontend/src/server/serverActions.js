@@ -51,3 +51,35 @@ export const getProduct = (productId) => {
             return err.response
         })
 }
+
+export const postAccountRegister = (email,password,firstName,lastName,gender,birthday) => {
+    return AXIOS.post(SERVER_PATHS.postAccountRegister(),
+        {
+            email,
+            password,
+            firstName,
+            lastName,
+            gender,
+            birthday
+        })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const postAccountLogin = (username,password) => {
+    return AXIOS.post(SERVER_PATHS.postAccountLogin(),
+        {
+            username,
+            password,
+        })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}
