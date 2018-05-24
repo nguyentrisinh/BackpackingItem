@@ -12,5 +12,6 @@ export const SERVER_PATHS = {
     getProductsBySubCategory: (subCategoryId,pageNumber,orderChoices,minPrice,maxPrice,pageSize) => `${SERVER_PATHS.api}/${SERVER_PATHS.product}/GetProductsBySubCategory/${subCategoryId}?OrderChoice=${orderChoices}&PriceMin=${minPrice}&PriceMax=${maxPrice}&PageNumber=${pageNumber}&PageSize=${pageSize}`,
     getProduct:(productId)=>`${SERVER_PATHS.api}/${SERVER_PATHS.product}/${productId}`,
     postAccountRegister: ()=>`${SERVER_PATHS.api}/${SERVER_PATHS.account}/customerregister`,
-    postAccountLogin:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.account}/login`
+    postAccountLogin:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.account}/login`,
+    postAccount
 }

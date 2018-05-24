@@ -3,6 +3,7 @@ import {BackgroundSlider, Footer, Menu,Loading,ModalUser} from '../../components
 import Home from '../../pages/pages.home/Home';
 import DetailPageContainer from '../pages.detail/DetailPageContainer';
 import ListPageContainer from '../pages.list/ListPageContainer';
+import ProfileContainer from '../pages.profile/ProfileContainer'
 // import '../../App.css';
 import {Route, Switch} from 'react-router-dom';
 
@@ -12,6 +13,7 @@ class App extends Component {
             <Switch>
                 <Route exact path={'/'} component={Home}/>
                 <Route exact path={'/product/:productId'} component={DetailPageContainer}/>
+                <Route exact path={'/profile'} component={ProfileContainer}/>
                 <Route exact path={'/:categorySlug/:subCategorySlug?'} component={ListPageContainer}/>
                 <Route exact path={'/loading'} component={Loading}/>
 
