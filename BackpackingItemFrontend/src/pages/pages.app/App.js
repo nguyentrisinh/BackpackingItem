@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BackgroundSlider, Footer, Menu,Loading,ModalUser} from '../../components/components.layouts';
+import {BackgroundSlider, Footer, Menu,Loading,ModalUser,Route} from '../../components/components.layouts';
 import Home from '../../pages/pages.home/Home';
 import DetailPageContainer from '../pages.detail/DetailPageContainer';
 import ListPageContainer from '../pages.list/ListPageContainer';
@@ -8,32 +8,22 @@ import {withCookies} from 'react-cookie';
 import {getAccountCurrent} from "../../server/serverActions";
 import {getUserInfo} from "../../redux/redux.actions/appData";
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 // import '../../App.css';
-import {Route, Switch} from 'react-router-dom';
 
 class App extends Component {
-    // componentWillMount = () =>{
-    //     const {cookies} = this.props;
-    //     if (cookies.get("token")){
-    //         getAccountCurrent(cookies.get("token")).then(res=>{
-    //             console.log(res)
-    //             if (res.status==200){
-    //                 this.props.getUserInfo(res.data.data);
-    //             }
-    //         });
-    //     }
-    // }
-    renderRoute = () => {
-        return (
-            <Switch>
-                <Route exact path={'/'} component={Home}/>
-                <Route exact path={'/:categorySlug/:subCategorySlug?'} component={ListPageContainer}/>\
-                {/*<Route exact path={'/product/:productId'} component={DetailPageContainer}/>*/}
-                {/*<Route exact path={'/profile'} component={ProfileContainer}/>*/}
-                <Route exact path={'/loading'} component={Loading}/>
-            </Switch>
-        )
+    componentWillMount = () =>{
+        const {cookies} = this.props;
+        if (cookies.get("token")){
+            getAccountCurrent(cookies.get("token")).then(res=>{
+                console.log(res)
+                if (res.status==200){
+                    this.props.getUserInfo(res.data.data);
+                }
+            });
+        }
     }
+
 
     render() {
         return (
@@ -43,15 +33,12 @@ class App extends Component {
                     <div className="Home">
                         {/*<img className="Home-coverImg" src={getStaticImage("Artboard.png")} alt=""/>*/}
                         <div className="Home-content">
-                            {
-                                this.renderRoute()
-                            }
+                            <Route/>
                         </div>
 
                     </div>
                 </div>
                 <ModalUser/>
-
                 <Footer/>
                 <BackgroundSlider/>
             </div>
@@ -59,4 +46,8 @@ class App extends Component {
     }
 }
 
-export default connect(null,{getUserInfo})(App);
+export default withRouter(
+    connect(null,{getUserInfo})(withCookies(App))
+);
+// export default App
+

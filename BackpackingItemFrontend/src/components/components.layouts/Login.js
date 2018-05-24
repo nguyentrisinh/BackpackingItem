@@ -1,6 +1,7 @@
 import React from 'react';
-import {postAccountLogin,getAccountCurrent} from "../../server/serverActions";
-
+import {postAccountLogin} from "../../server/serverActions";
+import {getUserInfo} from "../../redux/redux.actions/appData";
+import {connect} from 'react-redux';
 import { Modal, Button, Tabs,Icon,Input } from 'antd';
 import {withCookies} from 'react-cookie';
 const initialState={username: null,password:null,errors:null}
@@ -28,8 +29,13 @@ class Login extends React.Component{
             if (res.status==200){
                 this.setState(initialState);
                 const {cookies}= this.props;
-                getAccountCurrent(res.data.data).then(res=>console.log('info',res))
-                cookies.set('token',res.data.data);
+                this.props.getUserInfo(res.data.data);
+                var date= new Date();
+                date.setMonth(date.getMonth()+1);
+                cookies.set('token',res.data.data,{
+                    expires: date,
+                    path:'/'
+                });
             }
             else{
                 this.setState({
@@ -97,4 +103,4 @@ class Login extends React.Component{
     }
 }
 
-export default  withCookies(Login);
+export default  connect(null,{getUserInfo})(withCookies(Login));

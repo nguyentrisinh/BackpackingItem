@@ -16,6 +16,7 @@ import SideBar from './SideBar';
 import Loading from './Loading'
 import Login from './Login';
 import Register from './Register';
+import Route from './Route'
 
 export {
     Register,
@@ -34,5 +35,6 @@ export {
     Footer,
     Path,
     SideBar,
-    Loading
+    Loading,
+    Route
 }
