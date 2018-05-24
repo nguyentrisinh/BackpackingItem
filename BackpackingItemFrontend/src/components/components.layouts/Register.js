@@ -37,7 +37,7 @@ export default class Register extends React.Component {
             birthday: date
         });
     }
-    onClickRegister = () => {
+    onClickSave = () => {
         if (this.state.birthday == null) {
             this.setState({
                 errors: [
@@ -155,7 +155,7 @@ export default class Register extends React.Component {
                 {
                     this.renderErrors()
                 }
-                <Button onClick={this.onClickRegister} className="mt-3" type="primary">Đăng kí</Button>
+                <Button onClick={this.onClickSave} className="mt-3" type="primary">Đăng kí</Button>
 
 
             </div>

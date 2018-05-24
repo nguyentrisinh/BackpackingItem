@@ -82,7 +82,7 @@ class MenuHeader extends React.Component {
                     <div className="MenuHeader-user">
                         {
                             this.props.userInfo?<Link to="/profile">
-                                {this.props.userInfo.firstName}
+                                {(this.props.userInfo.firstName + this.props.userInfo.lastName) || this.props.userInfo.username}
                             </Link>: <div onClick={this.onClickLogin} className="MenuHeader-link">
                                 Đăng nhâp
                             </div>

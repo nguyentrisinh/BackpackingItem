@@ -96,3 +96,25 @@ export const getAccountCurrent = (token)=>{
             return err.response
         })
 }
+
+export const putAccountUpdateCurrent = (token,email,password,firstName,lastName,gender,birthday)=>{
+    return AXIOS.put(SERVER_PATHS.putAccountUpdateCurrent(),
+        {
+            email,
+            password,
+            firstName,
+            lastName,
+            gender,
+            birthday
+        },{
+        headers:{
+            'Authorization':`Bearer ${token}`
+        }
+        })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}

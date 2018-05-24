@@ -1,5 +1,6 @@
 import React from 'react';
-import {postAccountLogin} from "../../server/serverActions";
+import {postAccountLogin,getAccountCurrent} from "../../server/serverActions";
+import {clickModalUser} from "../../redux/redux.actions/appUI";
 import {getUserInfo} from "../../redux/redux.actions/appData";
 import {connect} from 'react-redux';
 import { Modal, Button, Tabs,Icon,Input } from 'antd';
@@ -29,13 +30,19 @@ class Login extends React.Component{
             if (res.status==200){
                 this.setState(initialState);
                 const {cookies}= this.props;
-                this.props.getUserInfo(res.data.data);
+                getAccountCurrent(res.data.data).then(res=>{
+                    console.log(res)
+                    if (res.status==200){
+                        this.props.getUserInfo(res.data.data);
+                    }
+                });
                 var date= new Date();
                 date.setMonth(date.getMonth()+1);
                 cookies.set('token',res.data.data,{
                     expires: date,
                     path:'/'
                 });
+                this.props.clickModalUser(false);
             }
             else{
                 this.setState({
@@ -103,4 +110,4 @@ class Login extends React.Component{
     }
 }
 
-export default  connect(null,{getUserInfo})(withCookies(Login));
+export default  connect(null,{getUserInfo,clickModalUser})(withCookies(Login));
