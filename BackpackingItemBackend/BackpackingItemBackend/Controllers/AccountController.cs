@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
@@ -89,10 +90,13 @@ namespace BackpackingItemBackend.Controllers
         {
             var currentUser = HttpContext.User;
 
-            if (currentUser.HasClaim(c => c.Type == ClaimTypes.Email))
+            //if (currentUser.HasClaim(c => c.Type == ClaimTypes.Email))
+            if (currentUser.HasClaim(c => c.Type == JwtRegisteredClaimNames.Jti))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
-                ApplicationUser user = this.accountService.GetCurrent(username);
+                //var username = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value;
+                //ApplicationUser user = this.accountService.GetCurrent(username);
+                ApplicationUser user = this.accountService.GetById(new Guid(username));
                 return await this.AsSuccessResponse(ApplicationUserReturnModel.Create(user), HttpStatusCode.OK);
             }
 
