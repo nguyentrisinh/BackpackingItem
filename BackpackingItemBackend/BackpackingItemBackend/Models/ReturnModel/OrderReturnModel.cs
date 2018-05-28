@@ -11,6 +11,10 @@ namespace BackpackingItemBackend.Models.ReturnModel
         public long Id { get; set; }
         #endregion
 
+        #region TransactionNumber
+        public Guid TransactionNumber { get; set; }
+        #endregion
+
         #region DateTime
         public DateTime Datetime { get; set; }
         #endregion
@@ -59,6 +63,7 @@ namespace BackpackingItemBackend.Models.ReturnModel
             return new OrderReturnModel()
             {
                 Id = order.Id,
+                TransactionNumber = order.TransactionNumber,
                 Datetime = order.Datetime,
                 TotalPrice = order.TotalPrice,
                 Address = order.Address,

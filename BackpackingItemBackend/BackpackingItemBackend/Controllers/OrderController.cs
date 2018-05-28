@@ -50,6 +50,17 @@ namespace BackpackingItemBackend.Controllers
         }
         #endregion
 
+        #region GetByTransactionNumber
+        [HttpGet]
+        [Route("[action]/{TransactionNumber:Guid}")]
+        public async Task<IActionResult> GetById(Guid TransactionNumber)
+        {
+            Order order = this.orderService.GetByTransactionNumber(TransactionNumber);
+            OrderReturnModel productReturnModel = OrderReturnModel.Create(order);
+            return await this.AsSuccessResponse(productReturnModel, HttpStatusCode.OK);
+        }
+        #endregion
+
         #region PostOrder
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -62,11 +73,20 @@ namespace BackpackingItemBackend.Controllers
             //if (currentUser.HasClaim(c => c.Type == ClaimTypes.Email))
             if (currentUser.HasClaim(c => c.Type == JwtRegisteredClaimNames.Jti))
             {
-                //var username = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+                #region getUser
                 var username = currentUser.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value;
-                //ApplicationUser user = this.accountService.GetCurrent(username);
                 ApplicationUser user = this.accountService.GetById(new Guid(username));
-                return await this.AsSuccessResponse(ApplicationUserReturnModel.Create(user), HttpStatusCode.OK);
+                #endregion
+
+                #region create Order
+                Order order = model.CustomerCreateOrder(user);
+                #endregion
+
+                #region SaveOrder
+                Order savedOrder = this.orderService.SaveOrder(order);
+                #endregion
+
+                return await this.AsSuccessResponse(OrderReturnModel.Create(savedOrder), HttpStatusCode.OK);
             }
 
             return await this.AsSuccessResponse("test", HttpStatusCode.OK);

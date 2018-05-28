@@ -17,7 +17,11 @@ namespace BackpackingItemBackend.Services
     {
         Order GetById(long id);
 
+        Order GetByTransactionNumber(Guid TransactionNumber);
+
         PagedList<Order> GetByUserId(OrderPagingParams pagingParams, string userId);
+
+        Order SaveOrder(Order order);
     }
 
     public class OrderService : IOrderService
@@ -50,7 +54,29 @@ namespace BackpackingItemBackend.Services
             }
             catch (InvalidOperationException)
             {
-                throwService.ThrowApiException(ErrorsDefine.Find(2300), HttpStatusCode.BadRequest);
+                throwService.ThrowApiException(ErrorsDefine.Find(2400), HttpStatusCode.BadRequest);
+                return new Order();
+            }
+        }
+        #endregion
+
+        #region GetByTransactionNumber
+        public Order GetByTransactionNumber(Guid TransactionNumber)
+        {
+            try
+            {
+                var order = _context.Orders
+                    .Include(ent => ent.OrderDetails)
+                    .Include(ent => ent.Voucher)
+                    .Include(ent => ent.Customer)
+                    .Include(ent => ent.District)
+                    .First(ent => ent.TransactionNumber == TransactionNumber);
+
+                return order;
+            }
+            catch (InvalidOperationException)
+            {
+                throwService.ThrowApiException(ErrorsDefine.Find(2400), HttpStatusCode.BadRequest);
                 return new Order();
             }
         }
@@ -76,6 +102,15 @@ namespace BackpackingItemBackend.Services
                 throwService.ThrowApiException(ErrorsDefine.Find(2300), HttpStatusCode.BadRequest);
                 return new PagedList<Order>();
             }
+        }
+        #endregion
+
+        #region SaveOrder
+        public Order SaveOrder(Order order)
+        {
+            _context.Orders.Add(order);
+            _context.SaveChanges();
+            return order;
         }
         #endregion
     }
