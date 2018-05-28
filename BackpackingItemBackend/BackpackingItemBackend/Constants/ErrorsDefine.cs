@@ -25,7 +25,13 @@ namespace BackpackingItemBackend.Constants
 
             //22xx: User Error
             {2200, "User not found" },
-            {2201, "Username or password is not correct" }
+            {2201, "Username or password is not correct" },
+
+            //23xx: Variant Error
+            {2300, "Variant not found" },
+
+            //24xx: Order Error
+            {2400, "Order not found" }
 
         };
 

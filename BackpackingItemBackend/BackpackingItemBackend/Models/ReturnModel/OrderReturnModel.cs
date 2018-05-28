@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BackpackingItemBackend.Models
+namespace BackpackingItemBackend.Models.ReturnModel
 {
-    public class Order
+    public class OrderReturnModel
     {
         #region Id
         public long Id { get; set; }
@@ -36,31 +36,39 @@ namespace BackpackingItemBackend.Models
         #endregion
 
         #region Voucher
-        public virtual Voucher Voucher { get; set; }
-        public long ? VoucherId { get; set; }
+        //public virtual Voucher Voucher { get; set; }
+        public long? VoucherId { get; set; }
         #endregion
 
         #region Customer
-        public ApplicationUser Customer { get; set; }
+        //public ApplicationUser Customer { get; set; }
         public string CustomerId { get; set; }
         #endregion
 
         #region District
-        public District District { get; set; }
+        //public District District { get; set; }
         public long DistrictId { get; set; }
         #endregion
 
         #region OrderDetails
-        public List<OrderDetail> OrderDetails { get; set; }
+        //public List<OrderDetail> OrderDetails { get; set; }
         #endregion
 
-    }
-    public enum OrderStatus
-    {
-        InProccess = 1,
-        Approved = 2,
-        InTransit = 3,
-        Paid = 4,
-        Received = 5
+        public static OrderReturnModel Create(Order order)
+        {
+            return new OrderReturnModel()
+            {
+                Id = order.Id,
+                Datetime = order.Datetime,
+                TotalPrice = order.TotalPrice,
+                Address = order.Address,
+                ReceivePersonName = order.ReceivePersonName,
+                Phone = order.Phone,
+                Status = order.Status,
+                VoucherId = order.VoucherId,
+                CustomerId = order.CustomerId,
+                DistrictId = order.DistrictId,
+            };
+        }
     }
 }

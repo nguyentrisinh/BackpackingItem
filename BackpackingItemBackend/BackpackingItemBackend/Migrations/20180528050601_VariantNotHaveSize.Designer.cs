@@ -12,9 +12,10 @@ using System;
 namespace BackpackingItemBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180528050601_VariantNotHaveSize")]
+    partial class VariantNotHaveSize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,7 +178,7 @@ namespace BackpackingItemBackend.Migrations
 
                     b.Property<decimal>("TotalPrice");
 
-                    b.Property<long?>("VoucherId");
+                    b.Property<long>("VoucherId");
 
                     b.HasKey("Id");
 

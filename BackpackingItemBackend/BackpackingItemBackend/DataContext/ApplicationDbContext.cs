@@ -81,7 +81,7 @@ namespace BackpackingItemBackend.DataContext
 
             // Test Without SizeId such as item like camera
             builder.Entity<Variant>().HasOne(ent => ent.Size).WithMany(ent => ent.Variants).HasForeignKey(ent => ent.SizeId)
-                .OnDelete(DeleteBehavior.Cascade);
+               .IsRequired(false).OnDelete(DeleteBehavior.Cascade);
             #endregion
 
             #region Image Configuration
@@ -112,9 +112,9 @@ namespace BackpackingItemBackend.DataContext
             builder.Entity<Order>().HasOne(ent => ent.District).WithMany(ent => ent.Orders).HasForeignKey(ent => ent.DistrictId)
                 .IsRequired().OnDelete(DeleteBehavior.Cascade);
             builder.Entity<Order>().HasOne(ent => ent.Customer).WithMany(ent => ent.CustomerOrders).HasForeignKey(ent => ent.CustomerId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .IsRequired(false).OnDelete(DeleteBehavior.Cascade);
             builder.Entity<Order>().HasOne(ent => ent.Voucher).WithMany(ent => ent.Orders).HasForeignKey(ent => ent.VoucherId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .IsRequired(false).OnDelete(DeleteBehavior.Cascade);
             #endregion
 
             #region OrderDetail Configuration
