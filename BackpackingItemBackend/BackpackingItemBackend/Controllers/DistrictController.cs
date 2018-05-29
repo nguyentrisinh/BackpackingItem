@@ -17,17 +17,15 @@ namespace BackpackingItemBackend.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        protected IOrderService orderService;
+        protected IDistrictService districtService;
 
-        protected IAccountService accountService;
 
         #region Contructor
 
-        public DistrictController(ApplicationDbContext context, IOrderService services, IThrowService throwService, IAccountService accountService) : base(throwService)
+        public DistrictController(ApplicationDbContext context, IDistrictService services, IThrowService throwService) : base(throwService)
         {
             _context = context;
-            orderService = services;
-            this.accountService = accountService;
+            districtService = services;
         }
         #endregion
     }

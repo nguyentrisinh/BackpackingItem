@@ -31,7 +31,13 @@ namespace BackpackingItemBackend.Constants
             {2300, "Variant not found" },
 
             //24xx: Order Error
-            {2400, "Order not found" }
+            {2400, "Order not found" },
+
+            //25xx: City Error
+            {2500, "City not found" },
+
+            //26xx: District Error
+            {2600, "District not found" },
 
         };
 

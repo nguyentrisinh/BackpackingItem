@@ -53,7 +53,7 @@ namespace BackpackingItemBackend.Controllers
         #region GetByTransactionNumber
         [HttpGet]
         [Route("[action]/{TransactionNumber:Guid}")]
-        public async Task<IActionResult> GetById(Guid TransactionNumber)
+        public async Task<IActionResult> GetByTransactionNumber(Guid TransactionNumber)
         {
             Order order = this.orderService.GetByTransactionNumber(TransactionNumber);
             OrderReturnModel productReturnModel = OrderReturnModel.Create(order);
