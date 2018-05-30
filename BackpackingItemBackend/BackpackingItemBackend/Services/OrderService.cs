@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BackpackingItemBackend.Constants;
 using BackpackingItemBackend.DataContext;
 using BackpackingItemBackend.Models;
+using BackpackingItemBackend.Models.ReturnModel;
 using BackpackingItemBackend.PagingParam;
 using Lib.Web.Models;
 using Lib.Web.Services;
@@ -17,7 +18,11 @@ namespace BackpackingItemBackend.Services
     {
         Order GetById(long id);
 
-        PagedList<Order> GetByUserId(OrderPagingParams pagingParams, string userId);
+        Order GetByTransactionNumber(Guid TransactionNumber);
+
+        PagedList<OrderReturnModel> GetByUserId(OrderPagingParams pagingParams, string userId);
+
+        Task<Order> SaveOrder(Order order);
     }
 
     public class OrderService : IOrderService
@@ -50,14 +55,36 @@ namespace BackpackingItemBackend.Services
             }
             catch (InvalidOperationException)
             {
-                throwService.ThrowApiException(ErrorsDefine.Find(2300), HttpStatusCode.BadRequest);
+                throwService.ThrowApiException(ErrorsDefine.Find(2400), HttpStatusCode.BadRequest);
+                return new Order();
+            }
+        }
+        #endregion
+
+        #region GetByTransactionNumber
+        public Order GetByTransactionNumber(Guid TransactionNumber)
+        {
+            try
+            {
+                var order = _context.Orders
+                    .Include(ent => ent.OrderDetails)
+                    .Include(ent => ent.Voucher)
+                    .Include(ent => ent.Customer)
+                    .Include(ent => ent.District)
+                    .First(ent => ent.TransactionNumber == TransactionNumber);
+
+                return order;
+            }
+            catch (InvalidOperationException)
+            {
+                throwService.ThrowApiException(ErrorsDefine.Find(2400), HttpStatusCode.BadRequest);
                 return new Order();
             }
         }
         #endregion
 
         #region GetListByUserId
-        public PagedList<Order> GetByUserId(OrderPagingParams pagingParams,string userId)
+        public PagedList<OrderReturnModel> GetByUserId(OrderPagingParams pagingParams,string userId)
         {
             try
             {
@@ -69,13 +96,28 @@ namespace BackpackingItemBackend.Services
                     .Where(ent => ent.CustomerId == userId)
                     .AsQueryable();
 
-                return new PagedList<Order>(query, pagingParams.PageNumber, pagingParams.PageSize);
+                #region GET paging for ProductReturnModel
+                List<Order> orders = query.Skip(pagingParams.PageSize * (pagingParams.PageNumber - 1))
+                    .Take(pagingParams.PageSize)
+                    .ToList();
+                #endregion
+
+                return new PagedList<OrderReturnModel>(OrderReturnModel.Create(orders), pagingParams.PageNumber, pagingParams.PageSize, query.Count());
             }
             catch (InvalidOperationException)
             {
                 throwService.ThrowApiException(ErrorsDefine.Find(2300), HttpStatusCode.BadRequest);
-                return new PagedList<Order>();
+                return new PagedList<OrderReturnModel>();
             }
+        }
+        #endregion
+
+        #region SaveOrder
+        public async Task<Order> SaveOrder(Order order)
+        {
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+            return order;
         }
         #endregion
     }

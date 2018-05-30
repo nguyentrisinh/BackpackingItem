@@ -141,6 +141,10 @@ namespace BackpackingItemBackend
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IVariantService, VariantService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IDistrictService, DistrictService>();
+            services.AddTransient<ICityService, CityService>();
+            services.AddTransient<IOrderDetailService, OrderDetailService>();
+            services.AddTransient<IShipmentInfoService, ShipmentInfoService>();
         }
         #endregion
 
