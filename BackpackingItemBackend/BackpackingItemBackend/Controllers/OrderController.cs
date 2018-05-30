@@ -8,6 +8,7 @@ using BackpackingItemBackend.DataContext;
 using BackpackingItemBackend.Models;
 using BackpackingItemBackend.Models.BindingModel.OrderBindingModel;
 using BackpackingItemBackend.Models.ReturnModel;
+using BackpackingItemBackend.PagingParam;
 using BackpackingItemBackend.Services;
 using Lib.Web.Controllers;
 using Lib.Web.Services;
@@ -28,13 +29,22 @@ namespace BackpackingItemBackend.Controllers
 
         protected IAccountService accountService;
 
+        protected IOrderDetailService orderDetailService;
+
         #region Contructor
 
-        public OrderController(ApplicationDbContext context, IOrderService services, IThrowService throwService, IAccountService accountService) : base(throwService)
+        public OrderController(
+            ApplicationDbContext context, 
+            IOrderService services,
+            IThrowService throwService, 
+            IAccountService accountService,
+            IOrderDetailService orderDetailService
+        ) : base(throwService)
         {
             _context = context;
             orderService = services;
             this.accountService = accountService;
+            this.orderDetailService = orderDetailService;
         }
 
         #endregion
@@ -61,6 +71,34 @@ namespace BackpackingItemBackend.Controllers
         }
         #endregion
 
+        #region GetOrdersByCurrent
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("[action]")]
+        public async Task<IActionResult> GetOrderCurrent(OrderPagingParams orderPagingParams)
+        {
+            var currentUser = HttpContext.User;
+
+            if (currentUser.HasClaim(c => c.Type == JwtRegisteredClaimNames.Jti))
+            {
+                #region getUser
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value;
+                ApplicationUser user = this.accountService.GetById(new Guid(username));
+                #endregion
+
+                #region GetOrderByUserId
+                var pagedListOrderReturnModel = this.orderService.GetByUserId(orderPagingParams, user.Id);
+                #endregion
+
+                return await this.AsSuccessResponse(pagedListOrderReturnModel, HttpStatusCode.OK);
+
+
+            }
+
+            return await this.AsSuccessResponse("Test", HttpStatusCode.OK);
+        }
+        #endregion
+
         #region PostOrder
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -79,14 +117,24 @@ namespace BackpackingItemBackend.Controllers
                 #endregion
 
                 #region create Order
-                Order order = model.CustomerCreateOrder(user);
+                Order order = model.Create(user);
                 #endregion
 
                 #region SaveOrder
-                Order savedOrder = this.orderService.SaveOrder(order);
+                Order savedOrder = await this.orderService.SaveOrder(order);
                 #endregion
 
-                return await this.AsSuccessResponse(OrderReturnModel.Create(savedOrder), HttpStatusCode.OK);
+                #region Save OrderDetailBindingModel List
+                List<OrderDetailBindingModel> orderDetailBindingModelList = model.OrderDetails;
+
+                List<OrderDetail> orderDetails = await this.orderDetailService.CreateListOrderDetail(order, orderDetailBindingModelList);
+                #endregion
+
+                #region GetReturnOrder 
+                Order orderReturn = this.orderService.GetById(order.Id);
+                #endregion
+
+                return await this.AsSuccessResponse(OrderReturnModel.Create(orderReturn), HttpStatusCode.OK);
             }
 
             return await this.AsSuccessResponse("test", HttpStatusCode.OK);

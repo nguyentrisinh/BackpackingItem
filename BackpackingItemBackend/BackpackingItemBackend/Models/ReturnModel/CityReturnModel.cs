@@ -39,7 +39,17 @@ namespace BackpackingItemBackend.Models.ReturnModel
                 Districts = city.Districts == null ? null : districts,
             };
         }
-        
+
+        public static CityReturnModel CreateNoDistrict(City city)
+        {
+            return new CityReturnModel()
+            {
+                Id = city.Id,
+                Name = city.Name,
+                Districts = null,
+            };
+        }
+
         public static List<CityReturnModel> Create(List<City> cities)
         {
             List<CityReturnModel> citiesReturnModel = new List<CityReturnModel>();

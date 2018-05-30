@@ -38,8 +38,12 @@ namespace BackpackingItemBackend.Models.BindingModel.OrderBindingModel
         #region DistrictId
         public long DistrictId { get; set; }
         #endregion
-    
-        public Order CustomerCreateOrder(ApplicationUser user)
+
+        #region List OrderDetailBindingModel
+        public List<OrderDetailBindingModel> OrderDetails { get; set; }
+        #endregion
+
+        public Order Create(ApplicationUser user)
         {
             return new Order()
             {

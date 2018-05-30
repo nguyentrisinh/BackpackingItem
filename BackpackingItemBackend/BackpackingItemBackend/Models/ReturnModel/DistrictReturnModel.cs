@@ -20,7 +20,7 @@ namespace BackpackingItemBackend.Models.ReturnModel
         #endregion
 
         #region City
-        //public City City { get; set; }
+        public CityReturnModel City { get; set; }
         public long CityId { get; set; }
         #endregion
 
@@ -39,6 +39,19 @@ namespace BackpackingItemBackend.Models.ReturnModel
                 Id = district.Id,
                 Name = district.Name,
                 ShippingFee = district.ShippingFee,
+                City = null,
+                CityId = district.CityId,
+            };
+        }
+
+        public static DistrictReturnModel CreateWithCity(District district)
+        {
+            return new DistrictReturnModel()
+            {
+                Id = district.Id,
+                Name = district.Name,
+                ShippingFee = district.ShippingFee,
+                City = district.City == null ? null : CityReturnModel.CreateNoDistrict(district.City),
                 CityId = district.CityId,
             };
         }
