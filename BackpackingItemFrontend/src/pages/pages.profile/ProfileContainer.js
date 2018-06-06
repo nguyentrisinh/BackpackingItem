@@ -25,7 +25,7 @@ class ProfileContainer extends React.Component{
         return (
             <div className="pt-5">
                 <div className="container">
-                    <Tabs tabPosition="left">
+                    <Tabs style={{paddingBottom:200}} tabPosition="left">
                         <Tabs.TabPane tab="Thông tin cá nhân" key="1">
                             {
                                 this.renderProfile()
