@@ -437,7 +437,7 @@ namespace BackpackingItemBackend.DataContext
         {
             if (!mDataContext.Set<Variant>().Any())
             {
-                #region Products
+                #region Variants
                
 
                 var variant1 = new Variant()
@@ -1367,6 +1367,18 @@ namespace BackpackingItemBackend.DataContext
                     VariantStatus = VariantStatus.Instock,
                 };
 
+                var variant69 = new Variant()
+                {
+                    Id = 69,
+                    Name = "",
+                    Weight = 0,
+                    OfficialPrice = 280000,
+                    OldPrice = 0,
+                    ProductId = products.Find(ent => ent.Name == "QUẦN SHORTS NAM NHANH KHÔ COLUMBIA").Id,
+                    ColorId = colors.Find(ent => ent.Name == "Xám ghi").Id,
+                    SizeId = null,
+                    VariantStatus = VariantStatus.Instock,
+                };
 
 
 
@@ -1442,6 +1454,7 @@ namespace BackpackingItemBackend.DataContext
                     variant66,
                     variant67,
                     variant68,
+                    variant69,
                 };
 
                 mDataContext.Set<Variant>().AddRange(variants);

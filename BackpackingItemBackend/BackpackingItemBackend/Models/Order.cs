@@ -11,6 +11,10 @@ namespace BackpackingItemBackend.Models
         public long Id { get; set; }
         #endregion
 
+        #region TransactionNumber
+        public Guid TransactionNumber { get; set; }
+        #endregion
+
         #region DateTime
         public DateTime Datetime { get; set; }
         #endregion
@@ -37,7 +41,7 @@ namespace BackpackingItemBackend.Models
 
         #region Voucher
         public virtual Voucher Voucher { get; set; }
-        public long VoucherId { get; set; }
+        public long ? VoucherId { get; set; }
         #endregion
 
         #region Customer
@@ -52,6 +56,13 @@ namespace BackpackingItemBackend.Models
 
         #region OrderDetails
         public List<OrderDetail> OrderDetails { get; set; }
+        #endregion
+
+        #region Contructor
+        public Order()
+        {
+            this.TransactionNumber = Guid.NewGuid();
+        }
         #endregion
 
     }

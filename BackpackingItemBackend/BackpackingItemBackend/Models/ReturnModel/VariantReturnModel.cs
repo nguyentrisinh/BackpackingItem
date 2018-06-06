@@ -37,7 +37,7 @@ namespace BackpackingItemBackend.Models.ReturnModel
 
         #region Size 
         public SizeReturnModel Size { get; set; }
-        public long SizeId { get; set; }
+        public long ? SizeId { get; set; }
         #endregion
 
         #region Color

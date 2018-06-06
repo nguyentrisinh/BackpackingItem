@@ -38,7 +38,7 @@ namespace BackpackingItemBackend.Models
 
         #region Size 
         public virtual Size Size { get; set; }
-        public long SizeId { get; set; }
+        public long ? SizeId { get; set; }
         #endregion
 
         #region Color

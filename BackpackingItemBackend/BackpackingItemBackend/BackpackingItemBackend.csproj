@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180528142246_OrderForeignKeyNull.cs" />
+    <Compile Remove="Migrations\20180528142246_OrderForeignKeyNull.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
