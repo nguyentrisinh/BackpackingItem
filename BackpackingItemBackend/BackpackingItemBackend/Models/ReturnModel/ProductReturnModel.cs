@@ -47,6 +47,7 @@ namespace BackpackingItemBackend.Models.ReturnModel
         public List<VariantReturnModel> Variants { get; set; }
         #endregion
 
+        #region Create with Variants
         public static ProductReturnModel Create(Product product)
         {
             #region VariantReturnModel variants
@@ -80,18 +81,44 @@ namespace BackpackingItemBackend.Models.ReturnModel
                 Variants = product.Variants == null ? null : variants,
             };
         }
+        #endregion
 
+        #region Create without Variants
+        public static ProductReturnModel CreateWithoutVariants(Product product)
+        {
+            return new ProductReturnModel()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                ImageUrl = product.ImageUrl,
+                Description = product.Description,
+                WarrantyInfomation = product.WarrantyInfomation,
+                ReturnInformation = product.ReturnInformation,
+                BasePrice = product.BasePrice,
+
+                SubCategoryId = product.SubCategoryId,
+
+                SupplierId = product.SupplierId,
+
+                Variants = null,
+            };
+        }
+        #endregion
+
+        #region Create List without variants
         public static List<ProductReturnModel> Create(List<Product> products)
         {
             List<ProductReturnModel> productsReturnModel = new List<ProductReturnModel>();
 
             foreach (var product in products)
             {
-                ProductReturnModel productReturnModel = ProductReturnModel.Create(product);
+                //ProductReturnModel productReturnModel = ProductReturnModel.Create(product);
+                ProductReturnModel productReturnModel = ProductReturnModel.CreateWithoutVariants(product);
                 productsReturnModel.Add(productReturnModel);
             }
 
             return productsReturnModel;
         }
+        #endregion
     }
 }

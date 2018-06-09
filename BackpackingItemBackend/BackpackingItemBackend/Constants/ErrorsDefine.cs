@@ -39,6 +39,12 @@ namespace BackpackingItemBackend.Constants
             //26xx: District Error
             {2600, "District not found" },
 
+            //27xx: Shipment Info Error
+            {2700, "Shipment Info not found" },
+            {2701, "You don't have policy to see this shipment info" },
+            {2702, "You got a problem when delete shipment info" },
+            {2703, "You got a problem when update shipment info" },
+
         };
 
         #region Methods 
