@@ -70,7 +70,7 @@ namespace BackpackingItemBackend.Controllers
         [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("[action]")]
-        public async Task<IActionResult> GetOrderCurrent(ShipmentInfoPagingParams shipmentInfoPagingParams)
+        public async Task<IActionResult> GetShipmentInfosCurrent(ShipmentInfoPagingParams shipmentInfoPagingParams)
         {
             var currentUser = HttpContext.User;
 
@@ -90,6 +90,87 @@ namespace BackpackingItemBackend.Controllers
             }
 
             return await this.AsSuccessResponse("Test", HttpStatusCode.OK);
+        }
+        #endregion
+
+        #region GetShipmentInfoById
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("[action]/{id:long}")]
+        public async Task<IActionResult> GetShipmentInfoByIdCurrent(long id)
+        {
+            var currentUser = HttpContext.User;
+
+            if (currentUser.HasClaim(c => c.Type == JwtRegisteredClaimNames.Jti))
+            {
+                #region getUser
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value;
+                ApplicationUser user = this.accountService.GetById(new Guid(username));
+                #endregion
+
+                ShipmentInfo shipmentInfo = this.shipmentInfoService.GetByIdCurrent(id, user);
+                ShipmentInfoReturnModel shipmentInfoReturnModel = ShipmentInfoReturnModel.Create(shipmentInfo);
+                return await this.AsSuccessResponse(shipmentInfoReturnModel, HttpStatusCode.OK);
+            }
+
+            return await this.AsSuccessResponse("Test", HttpStatusCode.OK);
+        }
+
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("{shipmentInfoId:long}")]
+        public async Task<IActionResult> GetById(long shipmentInfoId)
+        {
+            ShipmentInfo shipmentInfo = this.shipmentInfoService.GetById(shipmentInfoId);
+            ShipmentInfoReturnModel shipmentInfoReturnModel = ShipmentInfoReturnModel.Create(shipmentInfo);
+            return await this.AsSuccessResponse(shipmentInfoReturnModel, HttpStatusCode.OK);
+        }
+        #endregion
+
+        #region DeleteById
+        [HttpDelete]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("[action]/{id:long}")]
+        public async Task<IActionResult> DeleteShipmentInfoByIdCurrent(long id)
+        {
+            var currentUser = HttpContext.User;
+
+            if (currentUser.HasClaim(c => c.Type == JwtRegisteredClaimNames.Jti))
+            {
+                #region getUser
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value;
+                ApplicationUser user = this.accountService.GetById(new Guid(username));
+                #endregion
+
+                this.shipmentInfoService.DeleteByIdCurrent(id, user);
+                return await this.AsSuccessResponse("Delete successfully", HttpStatusCode.OK);
+            }
+
+            return await this.AsSuccessResponse("Test", HttpStatusCode.OK);
+        }
+        #endregion
+
+        #region UpdateById
+        [HttpPut]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("[action]/{id:long}")]
+        public async Task<IActionResult> UpdateByIdCurrent(long id, [FromBody] ShipmentInfoBindingModel model)
+        {
+            var currentUser = HttpContext.User;
+
+            if (currentUser.HasClaim(c => c.Type == JwtRegisteredClaimNames.Jti))
+            {
+                #region getUser
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value;
+                ApplicationUser user = this.accountService.GetById(new Guid(username));
+                #endregion
+
+                ShipmentInfo shipmentInfo = this.shipmentInfoService.UpdateByIdCurrent(id, model, user);
+                return await this.AsSuccessResponse(ShipmentInfoReturnModel.Create(shipmentInfo), HttpStatusCode.OK);
+            }
+
+            return await this.AsSuccessResponse("Test", HttpStatusCode.OK);
+
         }
         #endregion
     }
