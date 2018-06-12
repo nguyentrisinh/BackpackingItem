@@ -1,5 +1,7 @@
 // update(state, {$merge: {userInfo: res}})
+import update from 'react-addons-update';
 import * as Types from '../redux.consts/appData'
+import {REMOVE_FROM_CART} from "../redux.consts/appData";
 const initialState = {
     userInfo: null,
     isOpenModalLogin: false,
@@ -9,13 +11,27 @@ const initialState = {
         nextPage: 1,
         data: [],
         isLoading: false
-    }
+    },
+    cart:[]
 }
 
 export default function appData(state = initialState, action) {
     switch (action.type) {
         case Types.GET_USER_INFO:
-            return Object.assign({}, state, {userInfo: action.data})
+            return Object.assign({}, state, {userInfo: action.data});
+        case Types.ADD_TO_CART:
+            return update(state,{
+                cart:{
+                    $push:[{...action.data,quantity:action.quantity}]
+                }
+            });
+        case Types.REMOVE_FROM_CART:
+            const variant = state.cart.findIndex(o=>o.id==action.variantId);
+            return update(state,{
+                cart:{
+                    $splice:[[variant,1]]
+                }
+            })
         // Object.assign({},state,{userInfo:action.serverData})
         // case Types.TOGGLE_MODAL_LOGIN:
         //     return Object.assign({}, state, {isOpenModalLogin: !state.isOpenModalLogin})

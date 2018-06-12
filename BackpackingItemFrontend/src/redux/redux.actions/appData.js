@@ -9,10 +9,26 @@ export const getUserInfo = (data) => {
             type: Types.GET_USER_INFO,
             data
         })
-
-
     }
+}
 
+export const addToCart = (data,quantity)=>{
+    return function(dispatch){
+       dispatch({
+           type: Types.ADD_TO_CART,
+           data,
+           quantity
+       })
+    }
+}
+
+export const removeFromCart = (variantId)=>{
+    return function(dispatch){
+        dispatch({
+            type: Types.REMOVE_FROM_CART,
+            variantId
+        })
+    }
 }
 
 

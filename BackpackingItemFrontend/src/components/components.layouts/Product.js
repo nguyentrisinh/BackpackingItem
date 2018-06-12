@@ -14,6 +14,7 @@ export default class Product extends React.Component {
     render() {
         const {data} = this.props;
         return (
+            <Link style={{display:'block'}} to={'/product/'+data.id}>
             <Card
                 hoverable
                 bordered
@@ -24,25 +25,27 @@ export default class Product extends React.Component {
                    </div>
                 }
 
-                actions={[
-
-                    <Icon lg type={'shopping-cart'}>
-
-                    </Icon>
-
-                ]}
+                // actions={[
+                //
+                //     {/*<Icon lg type={'shopping-cart'}>*/}
+                //
+                //     {/*</Icon>*/}
+                //
+                // ]}
             >
                 <Card.Meta
                     className="Product-content"
                     // avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                     title={'VND ' + numberFormat(data.basePrice.toString(), ',')}
                     description={
-                        <Link to={'/product/'+data.id} className="Product-name">
+                        <div className="Product-name">
                             {data.name}
-                        </Link>
+                        </div>
+
                     }
                 />
             </Card>
+            </Link>
         )
     }
 }

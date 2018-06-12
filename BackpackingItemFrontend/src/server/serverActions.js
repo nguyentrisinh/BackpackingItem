@@ -118,3 +118,63 @@ export const putAccountUpdateCurrent = (token,email,password,firstName,lastName,
             return err.response
         })
 }
+
+export const getVariant = (variantId)=>{
+    return AXIOS.get(SERVER_PATHS.getVariant(variantId))
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const getCityAll = ()=>{
+    return AXIOS.get(SERVER_PATHS.getCityAll())
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+const a= {
+    "datetime": "2018-06-09T12:45:58.344Z",
+    "totalPrice": 0,
+    "address": "string",
+    "receivePersonName": "string",
+    "phone": "string",
+    "status": 1,
+    "voucherId": 0,
+    "districtId": 0,
+    "orderDetails": [
+    {
+        "quantity": 0,
+        "pricePerUnit": 0,
+        "totalPrice": 0,
+        "variantId": 0
+    }
+]
+}
+
+export const getCityId = (cityId)=>{
+    return AXIOS.get(SERVER_PATHS.getCityId(cityId))
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const postOrderCreate = (token,data) =>{
+    return AXIOS.post(SERVER_PATHS.postOrderCreate(),data,{
+        headers: {'Authorization': `Bearer ${token}`},
+    })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}

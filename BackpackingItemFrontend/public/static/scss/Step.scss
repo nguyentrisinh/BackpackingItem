@@ -1,0 +1,9 @@
+@import 'bourbon/bourbon';
+@import 'compass/css3';
+
+.Step{
+  display: none;
+  &.isShow{
+    display: block;
+  }
+}

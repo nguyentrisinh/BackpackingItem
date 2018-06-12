@@ -1,10 +1,12 @@
 import BackgroundSlider from './BackgroundSlider';
 import MenuHeader from './MenuHeader';
+import Cart from './Cart'
 import Menu from './Menu';
 import MainMenu from './MainMenu';
 import SubMenu from './SubMenu';
 import IntroCategory from './IntroCategory';
 import ModalUser from './ModalUser';
+import CartDetail from './CartDetail'
 import Label from './Label';
 import Product from './Product';
 import ListProduct from './ListProduct';
@@ -19,6 +21,8 @@ import Register from './Register';
 import Route from './Route'
 
 export {
+    CartDetail,
+    Cart,
     Register,
     ModalUser,
     Login,

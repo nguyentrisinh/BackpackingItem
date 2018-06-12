@@ -551,3 +551,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .react-datepicker__input-container {
   width: 100% !important;
 }
+
+/* line 4, ../scss/Step.scss */
+.Step {
+  display: none;
+}
+/* line 6, ../scss/Step.scss */
+.Step.isShow {
+  display: block;
+}

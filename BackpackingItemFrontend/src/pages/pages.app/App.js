@@ -30,24 +30,29 @@ class App extends Component {
             <div className="App">
                 <Menu/>
                 <div className="App-content">
-                    <div className="Home">
+                    {/*<div className="Home">*/}
                         {/*<img className="Home-coverImg" src={getStaticImage("Artboard.png")} alt=""/>*/}
-                        <div className="Home-content">
-                            <Route/>
-                        </div>
+                        {/*<div className="Home-content">*/}
+                            <Route userInfo={this.props.userInfo}/>
+                        {/*</div>*/}
 
-                    </div>
+                    {/*</div>*/}
                 </div>
                 <ModalUser/>
-                <Footer/>
-                <BackgroundSlider/>
+                {/*<Footer/>*/}
             </div>
         );
     }
 }
 
+const mapStateToProps = state =>    {
+    return {
+        userInfo:state.app.userInfo
+    }
+}
+
 export default withRouter(
-    connect(null,{getUserInfo})(withCookies(App))
+    connect(mapStateToProps,{getUserInfo})(withCookies(App))
 );
 // export default App
 
