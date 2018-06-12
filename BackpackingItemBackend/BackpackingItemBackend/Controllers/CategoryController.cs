@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Lib.Web.Controllers;
 using Lib.Web.Services;
-using System.Threading.Tasks;
 using BackpackingItemBackend.DataContext;
 using BackpackingItemBackend.Models.ReturnModel;
 using Microsoft.EntityFrameworkCore;

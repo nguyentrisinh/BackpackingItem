@@ -39,6 +39,17 @@ namespace BackpackingItemBackend.Models.BindingModel.ShipmentInfoBindingModel
                 DistrictId = this.DistrictId,
             };
         }
+
+        public ShipmentInfo Create()
+        {
+            return new ShipmentInfo()
+            {
+                Phone = this.Phone,
+                ReceivedPersonName = this.ReceivedPersonName,
+                Address = this.Address,
+                DistrictId = this.DistrictId,
+            };
+        }
         #endregion
     }
 }

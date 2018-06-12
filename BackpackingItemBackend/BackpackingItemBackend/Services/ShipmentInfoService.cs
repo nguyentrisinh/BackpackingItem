@@ -1,6 +1,7 @@
 ﻿using BackpackingItemBackend.Constants;
 using BackpackingItemBackend.DataContext;
 using BackpackingItemBackend.Models;
+using BackpackingItemBackend.Models.BindingModel.ShipmentInfoBindingModel;
 using BackpackingItemBackend.Models.ReturnModel;
 using BackpackingItemBackend.PagingParam;
 using Lib.Web.Models;
@@ -18,6 +19,14 @@ namespace BackpackingItemBackend.Services
         Task<ShipmentInfo> SaveShipmentInfo(ShipmentInfo model);
 
         PagedList<ShipmentInfoReturnModel> GetByUserId(ShipmentInfoPagingParams pagingParams, string userId);
+
+        ShipmentInfo GetById(long shipmentInfoId);
+
+        ShipmentInfo GetByIdCurrent(long shipmentInfoId, ApplicationUser applicationUser);
+
+        void DeleteByIdCurrent(long shipmentInfoId, ApplicationUser applicationUser);
+
+        ShipmentInfo UpdateByIdCurrent(long shipmentInfoId, ShipmentInfoBindingModel model, ApplicationUser applicationUser);
     }
 
     public class ShipmentInfoService : IShipmentInfoService
@@ -66,6 +75,71 @@ namespace BackpackingItemBackend.Services
                 throwService.ThrowApiException(ErrorsDefine.Find(2200), HttpStatusCode.BadRequest);
                 return new PagedList<ShipmentInfoReturnModel>();
             }
+        }
+        #endregion
+
+        #region GetById
+        public ShipmentInfo GetById(long shipmentInfoId)
+        {
+            try
+            {
+                var product = _context.ShipmentInfos
+                    .First(ent => ent.Id == shipmentInfoId);
+
+                return product;
+            }
+            catch (InvalidOperationException)
+            {
+                throwService.ThrowApiException(ErrorsDefine.Find(2700), HttpStatusCode.BadRequest);
+                return new ShipmentInfo();
+            }
+        }
+
+        public ShipmentInfo GetByIdCurrent(long shipmentInfoId, ApplicationUser applicationUser)
+        {
+            try
+            {
+                var shipmentInfo = _context.ShipmentInfos
+                    .First(ent => ent.Id == shipmentInfoId);
+
+                if (applicationUser.Id != shipmentInfo.CustomerId)
+                {
+                    throwService.ThrowApiException(ErrorsDefine.Find(2700), HttpStatusCode.BadRequest);
+                }
+
+                return shipmentInfo;
+            }
+            catch (InvalidOperationException)
+            {
+                throwService.ThrowApiException(ErrorsDefine.Find(2700), HttpStatusCode.BadRequest);
+                return new ShipmentInfo();
+            }
+        }
+        #endregion
+
+        #region DeleteById
+        public void DeleteByIdCurrent(long shipmentInfoId, ApplicationUser applicationUser)
+        {
+            ShipmentInfo shipmentInfo = this.GetByIdCurrent(shipmentInfoId, applicationUser);
+            _context.ShipmentInfos.Remove(shipmentInfo);
+            _context.SaveChanges();
+
+        }
+        #endregion
+
+        #region UpdateShipmentInfo
+        public ShipmentInfo UpdateByIdCurrent(long shipmentInfoId, ShipmentInfoBindingModel model, ApplicationUser applicationUser)
+        {
+            ShipmentInfo shipmentInfo = this.GetByIdCurrent(shipmentInfoId, applicationUser);
+
+            shipmentInfo.Phone = model.Phone;
+            shipmentInfo.ReceivedPersonName = model.ReceivedPersonName;
+            shipmentInfo.Address = model.Address;
+            shipmentInfo.DistrictId = model.DistrictId;
+
+            _context.SaveChanges();
+
+            return shipmentInfo;
         }
         #endregion
 

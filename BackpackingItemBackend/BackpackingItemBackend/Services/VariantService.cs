@@ -36,6 +36,7 @@ namespace BackpackingItemBackend.Services
             try
             {
                 var variant = _context.Variants
+                    .Include(ent => ent.Product)
                     .Include(ent => ent.Size)
                     .Include(ent => ent.Color)
                     .Include(ent => ent.Images)

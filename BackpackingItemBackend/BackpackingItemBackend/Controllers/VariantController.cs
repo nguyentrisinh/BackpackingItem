@@ -38,7 +38,7 @@ namespace BackpackingItemBackend.Controllers
         public async Task<IActionResult> GetById(long variantId)
         {
             Variant variant = this.variantService.GetById(variantId);
-            VariantReturnModel variantReturnModel = VariantReturnModel.Create(variant);
+            VariantReturnModel variantReturnModel = VariantReturnModel.Create(variant, VariantReturnModelType.WithProduct);
             return await this.AsSuccessResponse(variantReturnModel, HttpStatusCode.OK);
         }
         #endregion
