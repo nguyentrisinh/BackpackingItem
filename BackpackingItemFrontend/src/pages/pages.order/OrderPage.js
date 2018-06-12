@@ -3,6 +3,7 @@ import React from 'react';
 import {CartDetail} from '../../components/components.layouts/index'
 import classNames from 'classnames';
 import {getCityAll, getCityId} from "../../server/serverActions";
+import {removeFromCart} from "../../redux/redux.actions/appData";
 import {postOrderCreate} from "../../server/serverActions";
 import {connect} from 'react-redux';
 import {withCookies} from 'react-cookie';
@@ -45,6 +46,7 @@ class OrderPage extends React.Component {
             receivePersonName: null,
             phone: null,
             address: null,
+            orderId:null
 
         };
         getCityAll().then(res => {
@@ -56,6 +58,18 @@ class OrderPage extends React.Component {
                 }
             }
         })
+    }
+
+    clearProducts = () =>{
+        const {cookies} = this.props;
+        const myCookies = cookies.getAll();
+        for (let key in myCookies) {
+            if (key.includes("product_")) {
+                this.props.removeFromCart(key.split("_")[1]);
+                cookies.remove(key);
+            }
+        }
+
     }
 
     nextStep = () => {
@@ -123,8 +137,8 @@ class OrderPage extends React.Component {
             address,
             receivePersonName,
             phone,
-            "status": null,
-            "voucherId": null,
+            status: 1,
+            voucherId: null,
             districtId: parseInt(districtId),
             orderDetails
         }
@@ -155,7 +169,16 @@ class OrderPage extends React.Component {
         const token = this.props.cookies.get('token');
         postOrderCreate(token, this.serializeOrder(this.calcTotalPrice(), this.state.receivePersonName, this.state.phone, this.state.districtId, this.state.address, this.createOrderDetails()))
             .then(res => {
-                console.log(res)
+                if (res.status==200){
+                    this.nextStep();
+                    this.setState({
+                        orderId:res.data.data.id
+                    });
+                    this.clearProducts();
+                }
+                else{
+                    alert("Đặt hàng thất bại")
+                }
             })
     }
 
@@ -168,6 +191,7 @@ class OrderPage extends React.Component {
                     <Step title="Thông tin giỏ hàng"/>
                     <Step title="Địa chỉ giao hàng"/>
                     <Step title="Đặt hàng"/>
+                    <Step title="Hoàn thành"/>
                 </Steps>
                 <div className={classNames("Step", {"isShow": this.state.step == 0})}>
                     <div style={{margin: 'auto'}} className="w-75 pt-5">
@@ -336,6 +360,17 @@ class OrderPage extends React.Component {
 
                     </div>
                 </div>
+                <div className={classNames("Step", {"isShow": this.state.step == 3})}>
+                    <div style={{margin: 'auto'}} className="w-75 pt-5">
+                        <div className="pb-2 text-center font-weight-bold Step-title">
+                            Đặt hàng thành công
+                        </div>
+                        <div className="text-center">
+                            <span>Mã đơn hàng của bạn là: </span>
+                            <span className="text-success">#{this.state.orderId}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -348,5 +383,5 @@ const mapStateToProps = state => {
 }
 
 const OrderPageWrapped = Form.create()(OrderPage);
-export default connect(mapStateToProps)(withCookies(OrderPageWrapped));
+export default connect(mapStateToProps,{removeFromCart})(withCookies(OrderPageWrapped));
 

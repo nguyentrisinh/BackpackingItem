@@ -21,5 +21,6 @@ export const SERVER_PATHS = {
     getVariant:(variantId)=>`${SERVER_PATHS.api}/${SERVER_PATHS.variant}/${variantId}`,
     getCityAll:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.city}/getall`,
     getCityId:(cityId)=>`${SERVER_PATHS.api}/${SERVER_PATHS.city}/${cityId}`,
-    postOrderCreate:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.order}/createorder`
+    postOrderCreate:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.order}/createorder`,
+    getOrderCurrent:(pageNumber,pageSize)=>`${SERVER_PATHS.api}/${SERVER_PATHS.order}/GetOrderCurrent?PageNumber=${pageNumber}&PageSize=${pageSize}`
 }

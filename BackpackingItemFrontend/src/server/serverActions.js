@@ -178,3 +178,15 @@ export const postOrderCreate = (token,data) =>{
             return err.response
         })
 }
+
+export const getOrderCurrent = (token,pageNumber,pageSize) =>{
+    return AXIOS.get(SERVER_PATHS.getOrderCurrent(pageNumber,pageSize),{
+        headers: {'Authorization': `Bearer ${token}`},
+    })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}

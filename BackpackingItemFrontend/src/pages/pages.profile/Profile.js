@@ -4,8 +4,9 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import {putAccountUpdateCurrent} from "../../server/serverActions";
 import {withCookies} from 'react-cookie';
-import {getUserInfo} from "../../redux/redux.actions/appData";
+import {getUserInfo,getOrderCurrent} from "../../redux/redux.actions/appData";
 import {connect} from 'react-redux';
+import {getOrderCurrent as svrGetOrderCurrent} from "../../server/serverActions";
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -41,8 +42,17 @@ class Profile extends React.Component {
             birthday: moment(userInfo.birthday),
             errors: null
         };
-        var date = moment('2018/05/24');
-        console.log(date)
+        const token = this.props.cookies.get('token');
+        svrGetOrderCurrent(token,'','').then(res=>{
+            if (res.status==200) {
+                if (res.data.errors == null) {
+                    this.props.getOrderCurrent(res.data.data)
+                }
+            }
+        })
+            .catch(err=>{
+                console.log(err)
+            })
     }
 
     handleChange = (date) => {
@@ -172,4 +182,4 @@ class Profile extends React.Component {
     }
 }
 
-export default connect(null,{getUserInfo})(withCookies(Profile))
+export default connect(null,{getUserInfo,getOrderCurrent})(withCookies(Profile))

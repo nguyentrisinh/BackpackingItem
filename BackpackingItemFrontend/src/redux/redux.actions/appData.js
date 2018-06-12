@@ -12,6 +12,15 @@ export const getUserInfo = (data) => {
     }
 }
 
+export const getOrderCurrent = (data) => {
+    return function (dispatch) {
+        dispatch({
+            type: Types.GET_ORDER_CURRENT,
+            data
+        })
+    }
+}
+
 export const addToCart = (data,quantity)=>{
     return function(dispatch){
        dispatch({

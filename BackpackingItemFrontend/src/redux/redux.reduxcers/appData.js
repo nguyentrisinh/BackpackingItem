@@ -12,7 +12,8 @@ const initialState = {
         data: [],
         isLoading: false
     },
-    cart:[]
+    cart:[],
+    currentOrder:null
 }
 
 export default function appData(state = initialState, action) {
@@ -30,6 +31,12 @@ export default function appData(state = initialState, action) {
             return update(state,{
                 cart:{
                     $splice:[[variant,1]]
+                }
+            })
+        case Types.GET_ORDER_CURRENT:
+            return update(state,{
+                currentOrder:{
+                    $set:action.data
                 }
             })
         // Object.assign({},state,{userInfo:action.serverData})
