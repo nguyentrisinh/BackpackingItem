@@ -1,6 +1,7 @@
 import React from 'react';
 import {numberFormat} from "../../utils/utils";
 import {withCookies} from 'react-cookie';
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -65,27 +66,35 @@ class CartDetail extends React.Component {
                       itemLayout="horizontal"
                     // loadMore={loadMore}
                       dataSource={this.props.cart}
-                      renderItem={item => (
-                          <List.Item actions={[
+                      renderItem={item =>{
+                          console.log('item',item, this.props.cart)
+                          return(
+                              (
 
-                              <Button disabled={this.props.disableAllInput}
-                                      onClick={this.onClickDelProduct.bind(this, item)} type="danger" shape="circle"
-                                      icon="delete"/>
-                          ]}>
-                              <List.Item.Meta
-                                  className='mr-3'
-                                  avatar={<Avatar
-                                      src={`${DOMAIN}/${item.images[0].imageUrl}`}/>}
-                                  title={<a href="https://ant.design">Áo giáp </a>}
-                                  description={numberFormat(item.officialPrice.toString(), ',') + ' VND'}
-                              />
-                              <Tag>{item.color.name}</Tag>
-                              <Tag>{item.size.name}</Tag>
-                              <InputNumber disabled={this.props.disableAllInput} style={{width: '60px'}} min={1}
-                                           value={item.quantity}></InputNumber>
+                                  <List.Item actions={[
 
-                          </List.Item>
-                      )}
+                                      <Button disabled={this.props.disableAllInput}
+                                              onClick={this.onClickDelProduct.bind(this, item)} type="danger" shape="circle"
+                                              icon="delete"/>
+                                  ]}>
+                                      <List.Item.Meta
+                                          className='mr-3'
+                                          avatar={<Avatar
+                                              src={`${DOMAIN}/${item.imageUrl?item.imageUrl:item.images[0].imageUrl}`}/>}
+                                          title={<Link to={`/product/${item.product.id}`}>{
+                                              item.product.name
+                                          }</Link>}
+                                          description={numberFormat(item.officialPrice.toString(), ',') + ' VND'}
+                                      />
+                                      <Tag>{item.color.name}</Tag>
+                                      <Tag>{item.size.name}</Tag>
+                                      <InputNumber disabled={this.props.disableAllInput} style={{width: '60px'}} min={1}
+                                                   value={item.quantity}></InputNumber>
+
+                                  </List.Item>
+                              )
+                          )
+                      } }
                 />
             </Card>
         )

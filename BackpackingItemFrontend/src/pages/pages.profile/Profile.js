@@ -42,17 +42,6 @@ class Profile extends React.Component {
             birthday: moment(userInfo.birthday),
             errors: null
         };
-        const token = this.props.cookies.get('token');
-        svrGetOrderCurrent(token,'','').then(res=>{
-            if (res.status==200) {
-                if (res.data.errors == null) {
-                    this.props.getOrderCurrent(res.data.data)
-                }
-            }
-        })
-            .catch(err=>{
-                console.log(err)
-            })
     }
 
     handleChange = (date) => {
@@ -175,11 +164,9 @@ class Profile extends React.Component {
                     this.renderErrors()
                 }
                 <Button onClick={this.onClickSave} className="mt-3" type="primary">Lưu</Button>
-
-
             </div>
         )
     }
 }
 
-export default connect(null,{getUserInfo,getOrderCurrent})(withCookies(Profile))
+export default connect(null,{getUserInfo})(withCookies(Profile))

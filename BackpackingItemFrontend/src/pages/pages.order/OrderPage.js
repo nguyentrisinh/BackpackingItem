@@ -348,6 +348,9 @@ class OrderPage extends React.Component {
                                     <Input value={this.state.address} disabled={true}/>
 
                                 </FormItem>
+                                <div className="text-danger font-weight-bold">
+                                    * Thanh toán tiền mặt khi nhận hàng
+                                </div>
                                 <div className="float-right">
                                     <Button onClick={this.onClickCashOut} className="bg-success" type="primary">
                                         THANH TOÁN

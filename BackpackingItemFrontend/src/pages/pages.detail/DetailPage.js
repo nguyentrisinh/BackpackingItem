@@ -7,6 +7,7 @@ import Swiper from 'react-id-swiper';
 import {withCookies} from 'react-cookie';
 import {Path} from '../../components/components.layouts/index';
 import {DOMAIN} from "../../server/serverConfig";
+import {getVariant} from "../../server/serverActions";
 
 class DetailPage extends React.Component {
     constructor(props) {
@@ -152,25 +153,31 @@ class DetailPage extends React.Component {
     onClickAddToCart = () => {
         const {cookies} = this.props;
         const variant = this.props.productData.variants.find(o => o.size.id == this.state.currentSize && o.color.id == this.state.currentColor);
-        var date= new Date();
-        date.setMonth(date.getFullYear()+10);
+        var date = new Date();
+        date.setMonth(date.getFullYear() + 10);
         if (variant) {
-            if (cookies.get(`product_${variant.id}`)){
-                cookies.set(`product_${variant.id}`,this.state.currentQuantity + parseInt(cookies.get(`product_${variant.id}`)),{
-                    path:'/',
-                    expires:date
+            if (cookies.get(`product_${variant.id}`)) {
+                cookies.set(`product_${variant.id}`, this.state.currentQuantity + parseInt(cookies.get(`product_${variant.id}`)), {
+                    path: '/',
+                    expires: date
                 });
 
-                this.props.addToCart(variant.id,variant.color,variant.size,this.state.currentQuantity);
             }
-            else{
-                cookies.set(`product_${variant.id}`,this.state.currentQuantity,{
-                    path:'/',
-                    expires:date
+            else {
+                cookies.set(`product_${variant.id}`, this.state.currentQuantity, {
+                    path: '/',
+                    expires: date
                 });
-                console.log(this.props);
-                this.props.addToCart(variant.id,variant.color,variant.size,this.state.currentQuantity);
             }
+            getVariant(variant.id).then(res=>{
+                if (res.status==200){
+                    if (res.data.errors==null){
+                        this.props.addToCart(res.data.data,this.state.currentQuantity);
+
+                    }
+                }
+            })
+
 
         }
 
@@ -256,4 +263,4 @@ class DetailPage extends React.Component {
     }
 }
 
-export default connect(null,{addToCart})(withCookies(DetailPage))
+export default connect(null, {addToCart})(withCookies(DetailPage))

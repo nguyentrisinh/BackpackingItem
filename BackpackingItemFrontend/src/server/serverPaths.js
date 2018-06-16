@@ -9,6 +9,7 @@ export const SERVER_PATHS = {
     variant:'variant',
     city:'city',
     order:'order',
+    district:'district',
     getLastestProducts: (number) => `${SERVER_PATHS.api}/${SERVER_PATHS.product}/getlatestproducts?numberOfProduct=${number}`,
     getSpecialProducts: (number) => `${SERVER_PATHS.api}/${SERVER_PATHS.product}/getspecialproducts?numberOfProduct=${number}`,
     getProductsByCategory: (categoryId,pageNumber,orderChoices,minPrice,maxPrice,pageSize) => `${SERVER_PATHS.api}/${SERVER_PATHS.product}/GetProductsByCategory/${categoryId}?OrderChoice=${orderChoices}&PriceMin=${minPrice}&PriceMax=${maxPrice}&PageNumber=${pageNumber}&PageSize=${pageSize}`,
@@ -22,5 +23,7 @@ export const SERVER_PATHS = {
     getCityAll:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.city}/getall`,
     getCityId:(cityId)=>`${SERVER_PATHS.api}/${SERVER_PATHS.city}/${cityId}`,
     postOrderCreate:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.order}/createorder`,
-    getOrderCurrent:(pageNumber,pageSize)=>`${SERVER_PATHS.api}/${SERVER_PATHS.order}/GetOrderCurrent?PageNumber=${pageNumber}&PageSize=${pageSize}`
+    getOrderCurrent:(pageNumber,pageSize)=>`${SERVER_PATHS.api}/${SERVER_PATHS.order}/GetOrderCurrent?PageNumber=${pageNumber}&PageSize=${pageSize}`,
+    getDistrictId:(id)=>`${SERVER_PATHS.api}/${SERVER_PATHS.district}/${id}`,
+    getOrderId:(id)=>`${SERVER_PATHS.api}/${SERVER_PATHS.order}/${id}`
 }

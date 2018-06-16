@@ -19,6 +19,7 @@ import Loading from './Loading'
 import Login from './Login';
 import Register from './Register';
 import Route from './Route'
+import OrderInfo from './OrderInfo'
 
 export {
     CartDetail,
@@ -40,5 +41,6 @@ export {
     Path,
     SideBar,
     Loading,
-    Route
+    Route,
+    OrderInfo
 }

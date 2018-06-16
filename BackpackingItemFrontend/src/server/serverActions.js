@@ -190,3 +190,21 @@ export const getOrderCurrent = (token,pageNumber,pageSize) =>{
             return err.response
         })
 }
+export const getDistrictId = (id) =>{
+    return AXIOS.get(SERVER_PATHS.getDistrictId(id))
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+export const getOrderId = (id) =>{
+    return AXIOS.get(SERVER_PATHS.getOrderId(id))
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}
