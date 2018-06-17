@@ -59,7 +59,7 @@ namespace BackpackingItemBackend.DataContext
                 #endregion
 
                 #region variant
-                var variants = SeedVariant(colors, sizes, products);
+                //var variants = SeedVariant(colors, sizes, products);
                 #endregion
 
                 #region images
@@ -81,12 +81,28 @@ namespace BackpackingItemBackend.DataContext
 
                 #region IDENTITY_INSERT configuration and SaveChanges
                 mDataContext.Database.OpenConnection();
-                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants ON");
+                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Category ON");
                 // Save Changes in Database
                 mDataContext.SaveChanges();
-
-                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants OFF");
+                
+                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Category OFF");
                 mDataContext.Database.CloseConnection();
+
+                //mDataContext.Database.OpenConnection();
+                //mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.SubCategory ON");
+                //// Save Changes in Database
+                //mDataContext.SaveChanges();
+                
+                //mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.SubCategory OFF");
+                //mDataContext.Database.CloseConnection();
+
+                //mDataContext.Database.OpenConnection();
+                //mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants ON");
+                //// Save Changes in Database
+                //mDataContext.SaveChanges();
+
+                //mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants OFF");
+                //mDataContext.Database.CloseConnection();
 
                 //mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants OFF");
                 //mDataContext.Database.BeginTransaction().Commit();
@@ -103,13 +119,13 @@ namespace BackpackingItemBackend.DataContext
             {
                 var categories = new List<Category>()
                 {
-                    new Category() { Name = "Mũ bảo hiểm" },
-                    new Category() { Name = "Quần áo phượt" },
-                    new Category() { Name = "Phụ kiện phượt" },
-                    new Category() { Name = "Công cụ phượt" },
-                    new Category() { Name = "Giày" },
-                    new Category() { Name = "Balo - Túi" },
-                    new Category() { Name = "Thiết bị công nghệ" }
+                    new Category() { Id = 1,Name = "Mũ bảo hiểm" },
+                    new Category() { Id=2,Name = "Quần áo phượt" },
+                    new Category() { Id=3,Name = "Phụ kiện phượt" },
+                    new Category() { Id=4,Name = "Công cụ phượt" },
+                    new Category() { Id=5,Name = "Giày" },
+                    new Category() { Id=6,Name = "Balo - Túi" },
+                    new Category() { Id=7,Name = "Thiết bị công nghệ" }
                 };
 
                 mDataContext.Set<Category>().AddRange(categories);
@@ -131,49 +147,49 @@ namespace BackpackingItemBackend.DataContext
             {
                 var subCategories = new List<SubCategory>()
                 {
-                    new SubCategory() { Name = "Mũ bảo hiểm 3/4 đầu", CategoryId = categories.Single(ent => ent.Name == "Mũ bảo hiểm").Id },
-                    new SubCategory() { Name = "Mũ bảo hiểm Fullface", CategoryId = categories.Single(ent => ent.Name == "Mũ bảo hiểm").Id },
-                    new SubCategory() { Name = "Mũ bảo hiểm cào cào", CategoryId = categories.Single(ent => ent.Name == "Mũ bảo hiểm").Id },
-                    new SubCategory() { Name = "Kính gắn mũ bảo hiểm", CategoryId = categories.Single(ent => ent.Name == "Mũ bảo hiểm").Id },
-                    new SubCategory() { Name = "Áo bảo hộ", CategoryId = categories.Single(ent => ent.Name == "Quần áo phượt").Id },
-                    new SubCategory() { Name = "Quần bảo hộ", CategoryId = categories.Single(ent => ent.Name == "Quần áo phượt").Id },
-                    new SubCategory() { Name = "Quần áo chống thấm nước", CategoryId = categories.Single(ent => ent.Name == "Quần áo phượt").Id },
-                    new SubCategory() { Name = "Quần áo nhanh khô", CategoryId = categories.Single(ent => ent.Name == "Quần áo phượt").Id },
-                    new SubCategory() { Name = "Quần áo phượt khác", CategoryId = categories.Single(ent => ent.Name == "Quần áo phượt").Id },
-                    new SubCategory() { Name = "Giày đi phượt", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
-                    new SubCategory() { Name = "Giày leo núi", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
-                    new SubCategory() { Name = "Giày lội suối", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
-                    new SubCategory() { Name = "Giày đi xe, motor", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
-                    new SubCategory() { Name = "Sandal phượt", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
-                    new SubCategory() { Name = "Tất, vớ, phụ kiện khác", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
-                    new SubCategory() { Name = "Balo Laptop", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
-                    new SubCategory() { Name = "Balo Máy ảnh", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
-                    new SubCategory() { Name = "Balo Leo núi", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
-                    new SubCategory() { Name = "Túi gác xe", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
-                    new SubCategory() { Name = "Vali kéo, hành lý", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
-                    new SubCategory() { Name = "Balo khác", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
-                    new SubCategory() { Name = "Phụ kiện Balo", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
-                    new SubCategory() { Name = "Giáp tay chân", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
-                    new SubCategory() { Name = "Găng tay", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
-                    new SubCategory() { Name = "Ống tay chống nắng", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
-                    new SubCategory() { Name = "Khăn", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
-                    new SubCategory() { Name = "Dây áo phản quang", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
-                    new SubCategory() { Name = "Mũ", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
-                    new SubCategory() { Name = "Khác", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
-                    new SubCategory() { Name = "Lều", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
-                    new SubCategory() { Name = "Túi ngủ", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
-                    new SubCategory() { Name = "Đồ sinh tồn - cứu sinh", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
-                    new SubCategory() { Name = "Thuyền - xuồng - kayak", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
-                    new SubCategory() { Name = "Thùng - Bình", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
-                    new SubCategory() { Name = "Ống nhòm", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
-                    new SubCategory() { Name = "Móc", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
-                    new SubCategory() { Name = "Dao đa năng", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
-                    new SubCategory() { Name = "Khác", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
-                    new SubCategory() { Name = "Camera hành trình", CategoryId = categories.Single(ent => ent.Name == "Thiết bị công nghệ").Id },
-                    new SubCategory() { Name = "Máy ảnh", CategoryId = categories.Single(ent => ent.Name == "Thiết bị công nghệ").Id },
-                    new SubCategory() { Name = "Đèn pin", CategoryId = categories.Single(ent => ent.Name == "Thiết bị công nghệ").Id },
-                    new SubCategory() { Name = "Pin - máy sạc", CategoryId = categories.Single(ent => ent.Name == "Thiết bị công nghệ").Id },
-                    new SubCategory() { Name = "Khác", CategoryId = categories.Single(ent => ent.Name == "Thiết bị công nghệ").Id },
+                    new SubCategory() { Id=1,Name = "Mũ bảo hiểm 3/4 đầu", CategoryId = categories.Single(ent => ent.Name == "Mũ bảo hiểm").Id },
+                    new SubCategory() { Id=24,Name = "Mũ bảo hiểm Fullface", CategoryId = categories.Single(ent => ent.Name == "Mũ bảo hiểm").Id },
+                    new SubCategory() { Id=25,Name = "Mũ bảo hiểm cào cào", CategoryId = categories.Single(ent => ent.Name == "Mũ bảo hiểm").Id },
+                    new SubCategory() { Id=26,Name = "Kính gắn mũ bảo hiểm", CategoryId = categories.Single(ent => ent.Name == "Mũ bảo hiểm").Id },
+                    new SubCategory() { Id=27,Name = "Áo bảo hộ", CategoryId = categories.Single(ent => ent.Name == "Quần áo phượt").Id },
+                    new SubCategory() { Id=28,Name = "Quần bảo hộ", CategoryId = categories.Single(ent => ent.Name == "Quần áo phượt").Id },
+                    new SubCategory() { Id=29,Name = "Quần áo chống thấm nước", CategoryId = categories.Single(ent => ent.Name == "Quần áo phượt").Id },
+                    new SubCategory() {Id=30, Name = "Quần áo nhanh khô", CategoryId = categories.Single(ent => ent.Name == "Quần áo phượt").Id },
+                    new SubCategory() { Id=31,Name = "Quần áo phượt khác", CategoryId = categories.Single(ent => ent.Name == "Quần áo phượt").Id },
+                    new SubCategory() { Id=4,Name = "Giày đi phượt", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
+                    new SubCategory() { Id=5,Name = "Giày leo núi", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
+                    new SubCategory() { Id=6,Name = "Giày lội suối", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
+                    new SubCategory() { Id=7,Name = "Giày đi xe, motor", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
+                    new SubCategory() { Id=8,Name = "Sandal phượt", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
+                    new SubCategory() { Id=9,Name = "Tất, vớ, phụ kiện khác", CategoryId = categories.Single(ent => ent.Name == "Giày").Id },
+                    new SubCategory() { Id=11,Name = "Balo Laptop", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
+                    new SubCategory() { Id=20,Name = "Balo Máy ảnh", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
+                    new SubCategory() { Id=12,Name = "Balo Leo núi", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
+                    new SubCategory() { Id=13,Name = "Túi gác xe", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
+                    new SubCategory() { Id=14,Name = "Vali kéo, hành lý", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
+                    new SubCategory() { Id=15,Name = "Balo khác", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
+                    new SubCategory() { Id=16,Name = "Phụ kiện Balo", CategoryId = categories.Single(ent => ent.Name == "Balo - Túi").Id },
+                    new SubCategory() { Id=33,Name = "Giáp tay chân", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
+                    new SubCategory() { Id=42,Name = "Găng tay", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
+                    new SubCategory() { Id=34,Name = "Ống tay chống nắng", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
+                    new SubCategory() { Id=35,Name = "Khăn", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
+                    new SubCategory() { Id=36,Name = "Dây áo phản quang", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
+                    new SubCategory() { Id=37,Name = "Mũ", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
+                    new SubCategory() { Id=38,Name = "Khác", CategoryId = categories.Single(ent => ent.Name == "Phụ kiện phượt").Id },
+                    new SubCategory() { Id=39,Name = "Lều", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
+                    new SubCategory() { Id=40,Name = "Túi ngủ", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
+                    new SubCategory() { Id=41,Name = "Đồ sinh tồn - cứu sinh", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
+                    new SubCategory() { Id=23,Name = "Thuyền - xuồng - kayak", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
+                    new SubCategory() { Id=32,Name = "Thùng - Bình", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
+                    new SubCategory() { Id=22,Name = "Ống nhòm", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
+                    new SubCategory() { Id=3,Name = "Móc", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
+                    new SubCategory() { Id=2,Name = "Dao đa năng", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
+                    new SubCategory() { Id=44,Name = "Khác", CategoryId = categories.Single(ent => ent.Name == "Công cụ phượt").Id },
+                    new SubCategory() { Id=17,Name = "Camera hành trình", CategoryId = categories.Single(ent => ent.Name == "Thiết bị công nghệ").Id },
+                    new SubCategory() { Id=18,Name = "Máy ảnh", CategoryId = categories.Single(ent => ent.Name == "Thiết bị công nghệ").Id },
+                    new SubCategory() { Id=19,Name = "Đèn pin", CategoryId = categories.Single(ent => ent.Name == "Thiết bị công nghệ").Id },
+                    new SubCategory() { Id=21,Name = "Pin - máy sạc", CategoryId = categories.Single(ent => ent.Name == "Thiết bị công nghệ").Id },
+                    new SubCategory() { Id=43,Name = "Khác", CategoryId = categories.Single(ent => ent.Name == "Thiết bị công nghệ").Id },
 
                 };
 
@@ -225,6 +241,7 @@ namespace BackpackingItemBackend.DataContext
             {
                 var sizes = new List<Size>()
                 {
+                    new Size() { Name = "None"},
                     new Size() { Name = "Free Size"},
                     new Size() { Name = "XS"},
                     new Size() { Name = "S"},
@@ -273,13 +290,13 @@ namespace BackpackingItemBackend.DataContext
             {
                 var colors = new List<Color>()
                 {
+                    new Color() { Name = "Không",ColorCode = "#ffffff"},
                     new Color() { Name = "Trà",ColorCode = "#ffe866"},
                     new Color() { Name = "Ngà",ColorCode = "#DCDCDC"},
                     new Color() { Name = "Đỏ",ColorCode = "#FF0000"},
                     new Color() { Name = "Đen",ColorCode = "#000000"},
                     new Color() { Name = "Xanh da trời",ColorCode = "#6699FF"},
                     new Color() { Name = "Xanh lá cây",ColorCode = "#005500"},
-
                     new Color() { Name = "Đa sắc",ColorCode = "#ffffff"},
                     new Color() { Name = "Hồng",ColorCode = "#FF33FF"},
                     new Color() { Name = "Xanh neon",ColorCode = "#66FF33"},
@@ -438,7 +455,112 @@ namespace BackpackingItemBackend.DataContext
             if (!mDataContext.Set<Variant>().Any())
             {
                 #region Variants
-               
+
+                var variant77 = new Variant()
+                {
+                    Id = 77,
+                    Name = "",
+                    Weight = 0,
+                    OfficialPrice = 5610000,
+                    OldPrice = 0,
+                    ProductId = products.Find(ent => ent.Name == "AGV Fluid Garda White Italy").Id,
+                    SizeId = sizes.Find(ent => ent.Name == "Free Size").Id,
+                    ColorId = colors.Find(ent => ent.Name == "Đen").Id,
+                    VariantStatus = VariantStatus.Instock,
+                };
+
+                var variant76 = new Variant()
+                {
+                    Id = 76,
+                    Name = "",
+                    Weight = 0,
+                    OfficialPrice = 6510000,
+                    OldPrice = 0,
+                    ProductId = products.Find(ent => ent.Name == "AGV Fluid IBISCUS").Id,
+                    SizeId = sizes.Find(ent => ent.Name == "Free Size").Id,
+                    ColorId = colors.Find(ent => ent.Name == "Đen").Id,
+                    VariantStatus = VariantStatus.Instock,
+                };
+
+                var variant75 = new Variant()
+                {
+                    Id = 75,
+                    Name = "",
+                    Weight = 0,
+                    OfficialPrice = 7050000,
+                    OldPrice = 0,
+                    ProductId = products.Find(ent => ent.Name == "AGV K-3 SV Balloon 2018 (Fullface 2 kính)").Id,
+                    SizeId = sizes.Find(ent => ent.Name == "Free Size").Id,
+                    ColorId = colors.Find(ent => ent.Name == "Đen").Id,
+                    VariantStatus = VariantStatus.Instock,
+                };
+
+                var variant74 = new Variant()
+                {
+                    Id = 74,
+                    Name = "",
+                    Weight = 0,
+                    OfficialPrice = 7250000,
+                    OldPrice = 0,
+                    ProductId = products.Find(ent => ent.Name == "AGV K - 3 SV Joan MIR 2018(Fullface 2 kính)").Id,
+                    SizeId = sizes.Find(ent => ent.Name == "Free Size").Id,
+                    ColorId = colors.Find(ent => ent.Name == "Đen").Id,
+                    VariantStatus = VariantStatus.Instock,
+                };
+
+                var variant73 = new Variant()
+                {
+                    Id = 73,
+                    Name = "",
+                    Weight = 0,
+                    OfficialPrice = 2300000,
+                    OldPrice = 0,
+                    ProductId = products.Find(ent => ent.Name == "Mũ bảo hiểm cào cào Offroad LS2 FAST MX437").Id,
+                    SizeId = sizes.Find(ent => ent.Name == "Free Size").Id,
+                    ColorId = colors.Find(ent => ent.Name == "Đen").Id,
+                    VariantStatus = VariantStatus.Instock,
+                };
+
+                var variant72 = new Variant()
+                {
+                    Id = 72,
+                    Name = "",
+                    Weight = 0,
+                    OfficialPrice = 2700000,
+                    OldPrice = 0,
+                    ProductId = products.Find(ent => ent.Name == "Mũ bảo hiểm Fullface Dual Sport LS2 PIONEER MX436").Id,
+                    SizeId = sizes.Find(ent => ent.Name == "Free Size").Id,
+                    ColorId = colors.Find(ent => ent.Name == "Đen").Id,
+                    VariantStatus = VariantStatus.Instock,
+                };
+
+
+
+                var variant71 = new Variant()
+                {
+                    Id = 71,
+                    Name = "",
+                    Weight = 0,
+                    OfficialPrice = 10290000,
+                    OldPrice = 0,
+                    ProductId = products.Find(ent => ent.Name == "AGV AX-8 EVO NAKED Đen nhám - Matte Black").Id,
+                    SizeId = sizes.Find(ent => ent.Name == "Free Size").Id,
+                    ColorId = colors.Find(ent => ent.Name == "Đen").Id,
+                    VariantStatus = VariantStatus.Instock,
+                };
+
+                var variant70 = new Variant()
+                {
+                    Id=70,
+                    Name = "",
+                    Weight = 0,
+                    OfficialPrice = 9000000,
+                    OldPrice = 0,
+                    ProductId  = products.Find(ent=>ent.Name== "Áo giáp Dainese Hyper Flux D-Dry Jacket").Id,
+                    SizeId = sizes.Find(ent=>ent.Name=="Free Size").Id,
+                    ColorId = colors.Find(ent => ent.Name == "Đen").Id,
+                    VariantStatus = VariantStatus.Instock,
+                };
 
                 var variant1 = new Variant()
                 {
@@ -1455,6 +1577,14 @@ namespace BackpackingItemBackend.DataContext
                     variant67,
                     variant68,
                     variant69,
+                    variant70,
+                    variant71,
+                    variant72,
+                    variant73,
+                    variant74,
+                    variant75,
+                    variant76,
+                    variant77,
                 };
 
                 mDataContext.Set<Variant>().AddRange(variants);
