@@ -25,5 +25,6 @@ export const SERVER_PATHS = {
     postOrderCreate:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.order}/createorder`,
     getOrderCurrent:(pageNumber,pageSize)=>`${SERVER_PATHS.api}/${SERVER_PATHS.order}/GetOrderCurrent?PageNumber=${pageNumber}&PageSize=${pageSize}`,
     getDistrictId:(id)=>`${SERVER_PATHS.api}/${SERVER_PATHS.district}/${id}`,
-    getOrderId:(id)=>`${SERVER_PATHS.api}/${SERVER_PATHS.order}/${id}`
+    getOrderId:(id)=>`${SERVER_PATHS.api}/${SERVER_PATHS.order}/${id}`,
+    getCategoryList:()=>`${SERVER_PATHS.api}/${SERVER_PATHS.category}/GetCategoryList`
 }

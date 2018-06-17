@@ -208,3 +208,13 @@ export const getOrderId = (id) =>{
             return err.response
         })
 }
+
+export const getCategoryList = () =>{
+    return AXIOS.get(SERVER_PATHS.getCategoryList())
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err.response
+        })
+}

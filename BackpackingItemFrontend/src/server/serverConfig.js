@@ -174,7 +174,7 @@ export const MAP_CATEGORY = [
                 name: "Đồ sinh tồn - cứu sinh"
             },
             {
-                id: 3,
+                id: 44,
                 link: 'khac',
                 name: "Công cụ khác"
             },
