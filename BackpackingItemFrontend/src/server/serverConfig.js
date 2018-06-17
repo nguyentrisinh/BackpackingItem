@@ -10,6 +10,11 @@ export const MAP_CATEGORY = [
         imageName: 'helmets.png',
         children: [
             {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
+            {
                 id: 1,
                 link: 'mu-bh-34',
                 name: "Mũ bảo hiểm 3/4"
@@ -37,6 +42,11 @@ export const MAP_CATEGORY = [
         name: "Quần áo phượt",
         imageName: 'clothes.png',
         children: [
+            {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
             {
                 id: 27,
                 link: 'ao-bao-ho',
@@ -70,6 +80,11 @@ export const MAP_CATEGORY = [
         name: 'Phụ kiện phượt',
         imageName: 'others.png',
         children: [
+            {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
             {
                 id: 33,
                 link: 'giap-tay-chan',
@@ -114,6 +129,11 @@ export const MAP_CATEGORY = [
         imageName: 'sneakers.png',
         children: [
             {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
+            {
                 id: 2,
                 link: 'dao-da-nang',
                 name: "Dao đa năng"
@@ -154,7 +174,7 @@ export const MAP_CATEGORY = [
                 name: "Đồ sinh tồn - cứu sinh"
             },
             {
-                id: 3,
+                id: 44,
                 link: 'khac',
                 name: "Công cụ khác"
             },
@@ -166,6 +186,11 @@ export const MAP_CATEGORY = [
         name: "Giày",
         imageName: 'sneakers.png',
         children: [
+            {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
             {
                 id: 4,
                 link: 'giay-di-phuot',
@@ -204,6 +229,11 @@ export const MAP_CATEGORY = [
         name: 'Balo - Túi',
         imageName: 'bags.png',
         children: [
+            {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
             {
                 id: 11,
                 link: 'balo-laptop',
@@ -249,6 +279,11 @@ export const MAP_CATEGORY = [
         imageName: 'devices.png',
         children: [
             {
+                id: '',
+                link: '',
+                name: "Tất cả"
+            },
+            {
                 id: 17,
                 link: 'camera-hanh-trinh',
                 name: "Camera hành trình"
@@ -283,3 +318,39 @@ export const AXIOS = axios.create({
     // timeout: 1000,
     // headers: {'X-Custom-Header': 'foobar'}
 });
+
+export const ORDER_CHOICES =[{
+    label:'Không sắp xếp',
+    value:0,
+    id:'NoOrder'
+},
+    {
+        label:'Mới nhất',
+        value:1,
+        id:'IsNew'
+    },
+    {
+        label:'Gía tăng dần',
+        value:2,
+        id:'PriceOrder'
+    },
+    {
+        label:'Giá giảm dần',
+        value:3,
+        id:'PriceDescOrder'
+    },
+    {
+        label:'Từ A-Z',
+        value:4,
+        id:'NameOrder'
+    },
+    {
+        label:'Từ Z-A',
+        value:5,
+        id:'NameDescOrder'
+    },
+
+
+]
+
+export const ITEM_PER_PAGE= 4;

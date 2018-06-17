@@ -1,5 +1,6 @@
 import React from 'react';
 import {DOMAIN} from "../../server/serverConfig";
+import {Link} from 'react-router-dom';
 import {Card, Icon, Meta} from 'antd';
 import {numberFormat} from "../../utils/utils";
 
@@ -13,6 +14,7 @@ export default class Product extends React.Component {
     render() {
         const {data} = this.props;
         return (
+            <Link style={{display:'block'}} to={'/product/'+data.id}>
             <Card
                 hoverable
                 bordered
@@ -23,13 +25,13 @@ export default class Product extends React.Component {
                    </div>
                 }
 
-                actions={[
-
-                    <Icon lg type={'shopping-cart'}>
-
-                    </Icon>
-
-                ]}
+                // actions={[
+                //
+                //     {/*<Icon lg type={'shopping-cart'}>*/}
+                //
+                //     {/*</Icon>*/}
+                //
+                // ]}
             >
                 <Card.Meta
                     className="Product-content"
@@ -39,9 +41,11 @@ export default class Product extends React.Component {
                         <div className="Product-name">
                             {data.name}
                         </div>
+
                     }
                 />
             </Card>
+            </Link>
         )
     }
 }

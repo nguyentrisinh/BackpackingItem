@@ -1,5 +1,5 @@
 import React from 'react';
-import {IntroCategory, Label, ListProduct, SelfIntro} from '../../components/components.layouts/index'
+import {IntroCategory, Label, ListProduct, SelfIntro,BackgroundSlider} from '../../components/components.layouts/index'
 import {connect} from 'react-redux';
 import {getLastestProducts, getSpecialProducts} from "../../redux/redux.actions/homeData";
 
@@ -13,18 +13,21 @@ class Home extends React.Component {
 
     render() {
         return (
-
-            <div className=" container">
-                <IntroCategory/>
-                <Label title={"Sản phẩm mới"}/>
-                <ListProduct data={this.props.lastestProducts}/>
-                <SelfIntro/>
-                <Label title={"Sản phẩm bán chạy"}/>
-                <ListProduct data={this.props.specialProducts}/>
-                {/*<Label title={"Sản phẩm đặc biệt"}/>*/}
-                {/*<ListProduct/>*/}
-
-            </div>
+<div className="Home">
+    <div className="Home-content">
+        <div className=" container">
+            <IntroCategory/>
+            <Label title={"Sản phẩm mới"}/>
+            <ListProduct data={this.props.lastestProducts}/>
+            <SelfIntro/>
+            <Label title={"Sản phẩm bán chạy"}/>
+            <ListProduct data={this.props.specialProducts}/>
+            {/*<Label title={"Sản phẩm đặc biệt"}/>*/}
+            {/*<ListProduct/>*/}
+            <BackgroundSlider/>
+        </div>
+    </div>
+</div>
 
         )
     }

@@ -2,7 +2,8 @@ import * as Types from "../redux.consts/appUI";
 import update from "react-addons-update";
 
 const initialState = {
-    currentCategory: null
+    currentCategory: null,
+    isOpenModalUser:false
 }
 
 export default function appUI(state = initialState, action) {
@@ -11,7 +12,13 @@ export default function appUI(state = initialState, action) {
         case Types.CLICK_MENU:
             return update(state, {
                 currentCategory: {
-                    $set: action.id
+                    $set: action.item
+                }
+            })
+        case Types.CLICK_MODAL_USER:
+            return update(state, {
+                isOpenModalUser: {
+                    $set: action.value
                 }
             })
         // case Types.GET_USER_INFO:

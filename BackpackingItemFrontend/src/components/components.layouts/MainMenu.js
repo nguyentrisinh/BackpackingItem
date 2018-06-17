@@ -4,13 +4,14 @@ import {connect} from 'react-redux';
 import {clickMenu} from '../../redux/redux.actions/appUI';
 import classNames from 'classnames';
 import {getStaticImage} from "../../utils/utils";
+import {Link} from 'react-router-dom';
 
 class MainMenu extends React.Component {
     renderMenu = () => {
         return MAP_CATEGORY.map(item => {
             return (
-                <div onClick={this.onClickMainMenu.bind(this, item.id)} id={"category" + item.id}
-                     className={classNames("MainMenu-item", {"is-active": this.props.currentCategory == item.id})}>
+                <div onClick={this.onClickMainMenu.bind(this, item)} id={"category" + item.id}
+                     className={classNames("MainMenu-item", {"is-active": (this.props.currentCategory?(this.props.currentCategory.id == item.id?true:false):false)})}>
                     <div className="MainMenu-icon">
                         <img src={getStaticImage(item.imageName)} alt=""/>
                     </div>
@@ -24,8 +25,8 @@ class MainMenu extends React.Component {
             )
         })
     }
-    onClickMainMenu = (id) => {
-        this.props.clickMenu(id);
+    onClickMainMenu = (item) => {
+        this.props.clickMenu(item);
     }
 
     constructor(props) {

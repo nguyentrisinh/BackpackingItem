@@ -1,45 +1,58 @@
 import React, {Component} from 'react';
-import {BackgroundSlider, Footer, Menu,Loading} from '../../components/components.layouts';
+import {BackgroundSlider, Footer, Menu,Loading,ModalUser,Route} from '../../components/components.layouts';
 import Home from '../../pages/pages.home/Home';
-import DetailPage from '../../pages/pages.detail/DetailPage';
-import ListPage from '../../pages/pages.list/ListPage';
+import DetailPageContainer from '../pages.detail/DetailPageContainer';
+import ListPageContainer from '../pages.list/ListPageContainer';
+import ProfileContainer from '../pages.profile/ProfileContainer';
+import {withCookies} from 'react-cookie';
+import {getAccountCurrent} from "../../server/serverActions";
+import {getUserInfo} from "../../redux/redux.actions/appData";
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 // import '../../App.css';
-import {Route, Switch} from 'react-router-dom';
 
 class App extends Component {
-    renderRoute = () => {
-        return (
-            <Switch>
-                <Route exact path={'/'} component={Home}/>
-                <Route exact path={'/list'} component={ListPage}/>
-                <Route exact path={'/detail'} component={DetailPage}/>
-                <Route exact path={'/loading'} component={Loading}/>
-
-
-            </Switch>
-        )
+    componentWillMount = () =>{
+        const {cookies} = this.props;
+        if (cookies.get("token")){
+            getAccountCurrent(cookies.get("token")).then(res=>{
+                console.log(res)
+                if (res.status==200){
+                    this.props.getUserInfo(res.data.data);
+                }
+            });
+        }
     }
+
 
     render() {
         return (
             <div className="App">
                 <Menu/>
                 <div className="App-content">
-                    <div className="Home">
+                    {/*<div className="Home">*/}
                         {/*<img className="Home-coverImg" src={getStaticImage("Artboard.png")} alt=""/>*/}
-                        <div className="Home-content">
-                            {
-                                this.renderRoute()
-                            }
-                        </div>
+                        {/*<div className="Home-content">*/}
+                            <Route userInfo={this.props.userInfo}/>
+                        {/*</div>*/}
 
-                    </div>
+                    {/*</div>*/}
                 </div>
-                <Footer/>
-                <BackgroundSlider/>
+                <ModalUser/>
+                {/*<Footer/>*/}
             </div>
         );
     }
 }
 
-export default App;
+const mapStateToProps = state =>    {
+    return {
+        userInfo:state.app.userInfo
+    }
+}
+
+export default withRouter(
+    connect(mapStateToProps,{getUserInfo})(withCookies(App))
+);
+// export default App
+
