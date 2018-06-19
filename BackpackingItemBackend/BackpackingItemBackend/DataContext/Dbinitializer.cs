@@ -36,30 +36,10 @@ namespace BackpackingItemBackend.DataContext
             {
                 #region categories
                 var categories = SeedCategory();
-
-                #region save categories
-                mDataContext.Database.OpenConnection();
-                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Categories ON");
-
-                mDataContext.SaveChanges();
-
-                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Categories OFF");
-                mDataContext.Database.CloseConnection();
-                #endregion
                 #endregion
 
                 #region subCategories
                 var subCategories = SeedSubCategory(categories);
-
-                #region save sub categories
-                mDataContext.Database.OpenConnection();
-                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.SubCategories ON");
-
-                mDataContext.SaveChanges();
-
-                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.SubCategories OFF");
-                mDataContext.Database.CloseConnection();
-                #endregion
                 #endregion
 
                 #region suppliers
@@ -79,17 +59,7 @@ namespace BackpackingItemBackend.DataContext
                 #endregion
 
                 #region variant
-                var variants = SeedVariant(colors, sizes, products);
-
-                #region save variants
-                mDataContext.Database.OpenConnection();
-                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants ON");
-
-                mDataContext.SaveChanges();
-
-                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants OFF");
-                mDataContext.Database.CloseConnection();
-                #endregion
+                //var variants = SeedVariant(colors, sizes, products);
                 #endregion
 
                 #region images
@@ -110,8 +80,32 @@ namespace BackpackingItemBackend.DataContext
                 #endregion
 
                 #region IDENTITY_INSERT configuration and SaveChanges
+                mDataContext.Database.OpenConnection();
+                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Category ON");
                 // Save Changes in Database
                 mDataContext.SaveChanges();
+                
+                mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Category OFF");
+                mDataContext.Database.CloseConnection();
+
+                //mDataContext.Database.OpenConnection();
+                //mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.SubCategory ON");
+                //// Save Changes in Database
+                //mDataContext.SaveChanges();
+                
+                //mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.SubCategory OFF");
+                //mDataContext.Database.CloseConnection();
+
+                //mDataContext.Database.OpenConnection();
+                //mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants ON");
+                //// Save Changes in Database
+                //mDataContext.SaveChanges();
+
+                //mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants OFF");
+                //mDataContext.Database.CloseConnection();
+
+                //mDataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Variants OFF");
+                //mDataContext.Database.BeginTransaction().Commit();
                 #endregion
             }
 
